@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRegisterMutation, setCredentials } from "../../../services";
 import { useDispatch } from "react-redux";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -56,8 +56,8 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="p-8 rounded-xl shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
@@ -95,7 +95,7 @@ const RegisterPage = () => {
           <button
             type="submit"
             disabled={isLoading}
-            className="bg-blue-600 text-white font-medium py-2 rounded-md hover:bg-blue-700 transition"
+            className="text-white font-medium py-2 rounded-md hover:bg-blue-700 transition"
           >
             {isLoading ? "Registering..." : "Register"}
           </button>
