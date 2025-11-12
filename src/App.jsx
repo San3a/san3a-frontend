@@ -3,6 +3,7 @@ import LoginPage from "./features/auth/pages/LoginPage";
 import RegisterPage from "./features/auth/pages/RegisterPage";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
+import PostsPage from "./features/posts/PostsPage";
 const App = () => {
   const { i18n } = useTranslation();
   useEffect(() => {
@@ -19,7 +20,7 @@ const App = () => {
   return (
     <>
       <MainLayout>
-        <RegisterPage></RegisterPage>
+        <PostsPage></PostsPage>
       </MainLayout>
     </>
   );
