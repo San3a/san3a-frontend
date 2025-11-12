@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar.jsx";
+import Navbar from "../components/Navbar";
 export default function MainLayout({ children }) {
   return (
     <div className="min-h-screen flex flex-col">
