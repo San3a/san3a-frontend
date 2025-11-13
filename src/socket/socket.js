@@ -54,3 +54,15 @@ export const disconnectSocket = () => {
     socket = null;
   }
 };
+
+export const unsendMessage = (messageId, conversationId) => {
+  if (socket) {
+    socket.emit("unsendMessage", { messageId, conversationId });
+  }
+};
+
+export const onMessageDeleted = (callback) => {
+  if (socket) {
+    socket.on("messageDeleted", callback);
+  }
+};
