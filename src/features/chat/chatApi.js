@@ -30,6 +30,21 @@ export const chatApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+
+    uploadMessageImage: builder.mutation({
+      query: ({ conversationId, file }) => {
+        const formData = new FormData();
+        formData.append("image", file);
+        formData.append("userId", localStorage.getItem("userId"));
+        console.log("hello");
+
+        return {
+          url: `/chat/${conversationId}/upload`,
+          method: "POST",
+          body: formData,
+        };
+      },
+    }),
   }),
 });
 
@@ -38,4 +53,5 @@ export const {
   useGetAllConversationsQuery,
   useGetMessagesQuery,
   useSendMessageMutation,
+  useUploadMessageImageMutation,
 } = chatApiSlice;

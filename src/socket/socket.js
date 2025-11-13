@@ -2,12 +2,11 @@ import { io } from "socket.io-client";
 
 let socket = null;
 
-// Connect socket with auth (userId)
 export const connectSocket = (userId) => {
   if (!socket) {
     socket = io("http://localhost:3000", {
-      auth: { userId }, // use auth instead of query
-      autoConnect: true, // ensures socket tries to connect automatically
+      auth: { userId },
+      autoConnect: true,
     });
 
     socket.on("connect_error", (err) => {
@@ -17,7 +16,6 @@ export const connectSocket = (userId) => {
   return socket;
 };
 
-// Join a conversation room AFTER socket is connected
 export const joinConversation = (conversationId) => {
   if (socket && socket.connected) {
     socket.emit("joinRoom", conversationId);
@@ -28,7 +26,6 @@ export const joinConversation = (conversationId) => {
   }
 };
 
-// Send a new message
 export const sendSocketMessage = (
   conversationId,
   authorId,
@@ -40,14 +37,12 @@ export const sendSocketMessage = (
   }
 };
 
-// Listen for new messages
 export const onNewMessage = (callback) => {
   if (socket) {
     socket.on("newMessage", callback);
   }
 };
 
-// Disconnect socket safely
 export const disconnectSocket = () => {
   if (socket) {
     socket.disconnect();
@@ -64,5 +59,17 @@ export const unsendMessage = (messageId, conversationId) => {
 export const onMessageDeleted = (callback) => {
   if (socket) {
     socket.on("messageDeleted", callback);
+  }
+};
+
+export const sendTyping = (conversationId, userId) => {
+  if (socket) {
+    socket.emit("typing", { conversationId, userId });
+  }
+};
+
+export const onTyping = (callback) => {
+  if (socket) {
+    socket.on("typing", callback);
   }
 };

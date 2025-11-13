@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
-import { useGetMessagesQuery } from "../chatApi";
-import { Send, MoreVertical } from "lucide-react";
+import { useGetMessagesQuery, useUploadMessageImageMutation } from "../chatApi";
+import { Send, MoreVertical, Paperclip } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Dialog } from "@headlessui/react";
 import {
@@ -11,24 +11,32 @@ import {
   onNewMessage,
   unsendMessage,
   onMessageDeleted,
+  sendTyping,
+  onTyping,
 } from "../../../socket/socket";
 import { useSelector } from "react-redux";
 
 export default function ChatPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLocale = i18n.language === "ar" ? "ar-EG" : "en-GB";
   const { conversationId } = useParams();
   const { user } = useSelector((state) => state.auth);
   const { data: messagesData = [] } = useGetMessagesQuery(conversationId);
+  const [uploadMessageImage] = useUploadMessageImageMutation();
 
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [receiver, setReceiver] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [messageToDelete, setMessageToDelete] = useState(null);
-  const [openDropdownId, setOpenDropdownId] = useState(null); // track which dropdown is open
-  const messagesEndRef = useRef(null);
+  const [openDropdownId, setOpenDropdownId] = useState(null);
+  const [isTyping, setIsTyping] = useState(false);
+  const [selectedImages, setSelectedImages] = useState([]);
 
-  // Set initial messages & receiver
+  const typingTimeoutRef = useRef(null);
+  const messagesEndRef = useRef(null);
+  const fileInputRef = useRef(null);
+
   useEffect(() => {
     setMessages(messagesData);
     const otherUser = messagesData.find(
@@ -37,7 +45,6 @@ export default function ChatPage() {
     setReceiver(otherUser || null);
   }, [messagesData, user._id]);
 
-  // Socket connection & listeners
   useEffect(() => {
     if (!user?._id) return;
     const socket = connectSocket(user._id);
@@ -54,37 +61,81 @@ export default function ChatPage() {
       setMessages((prev) => prev.filter((m) => m._id !== messageId));
     };
 
+    const handleTyping = ({ userId }) => {
+      if (userId !== user._id) {
+        setIsTyping(true);
+        clearTimeout(typingTimeoutRef.current);
+        typingTimeoutRef.current = setTimeout(() => setIsTyping(false), 2000);
+      }
+    };
+
     onNewMessage(handleNewMessage);
     onMessageDeleted(handleDeletedMessage);
+    onTyping(handleTyping);
 
     return () => {
       if (socket) {
         socket.off("newMessage", handleNewMessage);
         socket.off("messageDeleted", handleDeletedMessage);
+        socket.off("typing", handleTyping);
       }
     };
   }, [conversationId, user._id]);
 
-  // Scroll to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  }, [messages, isTyping, selectedImages]);
 
-  // Send message
-  const handleSendMessage = () => {
-    if (!newMessage.trim()) return;
-    sendSocketMessage(conversationId, user._id, newMessage);
-    setNewMessage("");
+  const handleSendMessage = async () => {
+    if (!newMessage.trim() && selectedImages.length === 0) return;
+
+    for (const img of selectedImages) {
+      try {
+        const data = await uploadMessageImage({
+          conversationId,
+          file: img.file,
+        }).unwrap();
+        if (!data.url) throw new Error("No URL returned from server");
+        console.log("ss");
+
+        sendSocketMessage(conversationId, user._id, {
+          type: "image",
+          url: data.url,
+        });
+      } catch (err) {
+        console.error("Image upload failed:", err);
+      }
+    }
+
+    if (newMessage.trim()) {
+      sendSocketMessage(conversationId, user._id, newMessage);
+      setNewMessage("");
+    }
+
+    setSelectedImages([]);
   };
 
-  // Open modal for confirmation
+  const handleInputChange = (e) => {
+    setNewMessage(e.target.value);
+    sendTyping(conversationId, user._id);
+  };
+
+  const handleImageSelect = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setSelectedImages((prev) => [
+      ...prev,
+      { file, preview: URL.createObjectURL(file) },
+    ]);
+    e.target.value = null;
+  };
+
   const confirmUnsend = (messageId) => {
     setMessageToDelete(messageId);
     setModalOpen(true);
     setOpenDropdownId(null);
   };
 
-  // Unsend message after confirmation
   const handleUnsendConfirmed = () => {
     unsendMessage(messageToDelete, conversationId);
     setModalOpen(false);
@@ -93,7 +144,6 @@ export default function ChatPage() {
 
   return (
     <div className="flex flex-col h-screen bg-gray-50">
-      {/* Navbar */}
       {receiver && (
         <div className="flex items-center gap-3 p-4 bg-white shadow border-b">
           {receiver.avatar ? (
@@ -113,22 +163,18 @@ export default function ChatPage() {
         </div>
       )}
 
-      {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-6 space-y-4 flex flex-col">
+      <div className="flex-1 overflow-y-auto p-15 space-y-4 flex flex-col">
         {messages.map((m) => (
           <div
             key={m._id}
-            className={`w-full max-w-lg break-words p-4 rounded-2xl shadow-sm relative
-              ${
-                m.author?._id === user._id
-                  ? "bg-blue-500 text-white self-end rounded-bl-none"
-                  : "bg-white text-gray-800 self-start rounded-br-none"
-              }`}
+            className={`w-full max-w-lg break-words p-4 rounded-2xl shadow-sm relative flex flex-col ${
+              m.author?._id === user._id
+                ? "bg-blue-500 text-white self-end rounded-bl-none"
+                : "bg-white text-gray-800 self-start rounded-br-none"
+            }`}
           >
-            {/* Header with dropdown */}
             <div className="flex justify-between items-center text-sm font-semibold mb-1 relative">
               <span>{m.author?.name || m.author?.username || "Unknown"}</span>
-
               {m.author?._id === user._id && (
                 <div className="relative">
                   <button
@@ -141,7 +187,7 @@ export default function ChatPage() {
                   </button>
 
                   {openDropdownId === m._id && (
-                    <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-25 bg-white rounded-md shadow-lg border border-gray-200 z-50">
+                    <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-40 bg-white rounded-md shadow-lg border border-gray-200 z-50">
                       <button
                         onClick={() => confirmUnsend(m._id)}
                         className="w-full text-center px-4 py-2 hover:bg-red-100 text-red-600 transition rounded-md"
@@ -154,35 +200,88 @@ export default function ChatPage() {
               )}
             </div>
 
-            {/* Message content */}
-            <div className="text-base">
+            <div className="text-base mb-2">
               {typeof m.content === "string"
                 ? m.content
                 : JSON.stringify(m.content)}
             </div>
+
+            <div className="text-xs self-end">
+              {new Date(m.date).toLocaleDateString(currentLocale, {
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+              })}
+            </div>
           </div>
         ))}
+
+        {isTyping && (
+          <div className="text-sm text-gray-500 italic ml-2">
+            {receiver?.name || receiver?.username || "User"} {t("is typing...")}
+          </div>
+        )}
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input */}
-      <div className="p-4 bg-white border-t flex items-center gap-3">
-        <input
-          type="text"
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-          placeholder={t("Message")}
-          className="flex-1 border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-        />
-        <button
-          onClick={handleSendMessage}
-          className="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full flex items-center justify-center transition"
-        >
-          <Send size={20} />
-        </button>
+      <div className="p-4 bg-white border-t flex flex-col gap-2">
+        {selectedImages.length > 0 && (
+          <div className="flex gap-2 overflow-x-auto">
+            {selectedImages.map((img, idx) => (
+              <div
+                key={idx}
+                className="relative w-20 h-20 rounded-md overflow-hidden border"
+              >
+                <img
+                  src={img.preview}
+                  alt="preview"
+                  className="w-full h-full object-cover"
+                />
+                <button
+                  onClick={() =>
+                    setSelectedImages((prev) =>
+                      prev.filter((_, i) => i !== idx)
+                    )
+                  }
+                  className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
+                >
+                  ×
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+        <div className="flex items-center gap-3">
+          <input
+            type="text"
+            value={newMessage}
+            onChange={handleInputChange}
+            placeholder={t("Message")}
+            className="flex-1 border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          />
+          <input
+            type="file"
+            accept="image/*"
+            className="hidden"
+            ref={fileInputRef}
+            onChange={handleImageSelect}
+          />
+          <button
+            onClick={() => fileInputRef.current.click()}
+            className="bg-gray-200 hover:bg-gray-300 p-3 rounded-full transition"
+            title="Upload Image"
+          >
+            <Paperclip size={20} />
+          </button>
+          <button
+            onClick={handleSendMessage}
+            className="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full flex items-center justify-center transition"
+          >
+            <Send size={20} />
+          </button>
+        </div>
       </div>
 
-      {/* Unsend Confirmation Modal */}
       <Dialog
         open={modalOpen}
         onClose={() => setModalOpen(false)}
