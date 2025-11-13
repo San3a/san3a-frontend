@@ -85,18 +85,19 @@ export default function ChatPage() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping, selectedImages]);
-
   const handleSendMessage = async () => {
     if (!newMessage.trim() && selectedImages.length === 0) return;
 
+    // Send images
     for (const img of selectedImages) {
       try {
         const data = await uploadMessageImage({
           conversationId,
           file: img.file,
+          author: user._id,
         }).unwrap();
+
         if (!data.url) throw new Error("No URL returned from server");
-        console.log("ss");
 
         sendSocketMessage(conversationId, user._id, {
           type: "image",
@@ -107,11 +108,13 @@ export default function ChatPage() {
       }
     }
 
+    // Send text message
     if (newMessage.trim()) {
       sendSocketMessage(conversationId, user._id, newMessage);
       setNewMessage("");
     }
 
+    // Clear selected images
     setSelectedImages([]);
   };
 
@@ -200,10 +203,18 @@ export default function ChatPage() {
               )}
             </div>
 
-            <div className="text-base mb-2">
-              {typeof m.content === "string"
-                ? m.content
-                : JSON.stringify(m.content)}
+            <div className="mb-2">
+              {m.type === "image" && m.images?.length > 0 ? (
+                <div className="w-full rounded-xl overflow-hidden shadow-sm">
+                  <img
+                    src={m.images[0].url}
+                    alt="uploaded"
+                    className="w-full max-w-full max-h-80 object-contain rounded-xl"
+                  />
+                </div>
+              ) : (
+                <span>{m.content}</span>
+              )}
             </div>
 
             <div className="text-xs self-end">

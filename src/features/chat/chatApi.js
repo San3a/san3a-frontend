@@ -32,11 +32,13 @@ export const chatApiSlice = apiSlice.injectEndpoints({
     }),
 
     uploadMessageImage: builder.mutation({
-      query: ({ conversationId, file }) => {
+      query: ({ conversationId, file, author }) => {
         const formData = new FormData();
-        formData.append("image", file);
-        formData.append("userId", localStorage.getItem("userId"));
-        console.log("hello");
+        formData.append("images", file);
+        formData.append("conversationId", conversationId);
+        formData.append("author", author);
+        formData.append("content", "imageUrl");
+        formData.append("type", "image");
 
         return {
           url: `/chat/${conversationId}/upload`,
