@@ -7,5 +7,12 @@
   "login": "Login",
   "signup": "Sign Up",
   "readMore": "Read More",
-  "readLess": "Read Less"
+  "readLess": "Read Less",
+  "sendOffer": "Send Offer",
+  "showOffers": "Show Offers",
+  "send": "Send",
+  "writeAnOffer": "Write an offer",
+  "writePrice": "Write price",
+  "startChat": "Start Chat",
+  "atTime": "at"
 }

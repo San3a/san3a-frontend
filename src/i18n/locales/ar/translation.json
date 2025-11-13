@@ -7,5 +7,12 @@
   "login": "تسجيل الدخول",
   "signup": "إنشاء حساب",
   "readMore": "اقرأ المزيد",
-  "readLess": "اقرأ أقل"
+  "readLess": "اقرأ أقل",
+  "sendOffer": "إرسال عرض",
+  "showOffers": "عرض العروض",
+  "send": "إرسال",
+  "writeAnOffer": "اكتب عرضًا",
+  "writePrice": "اكتب السعر",
+  "startChat": "ابدء المحادثة",
+  "atTime": "في الساعة"
 }
