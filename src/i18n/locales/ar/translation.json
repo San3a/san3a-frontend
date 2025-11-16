@@ -6,6 +6,14 @@
   "about": "عن التطبيق",
   "login": "تسجيل الدخول",
   "signup": "إنشاء حساب",
+  "Chat": "الدردشة",
+  "Message": "ارسل رسالة.....",
+  "Delete Message": "حذف الرسالة",
+  "Confirm Delete": "تأكيد الحذف",
+  "Are you sure you want to delete this message?": "هل أنت متأكد أنك تريد حذف هذه الرسالة؟",
+  "Cancel": "إلغاء",
+  "Delete": "حذف",
+  "is typing...": "يكتب..."
   "search": "ابحث...",
   "All Categories": "كل الفئات"
 }
