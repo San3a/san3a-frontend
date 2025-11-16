@@ -50,12 +50,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`top-0 left-0 w-full z-50 backdrop-blur-sm transition-colors duration-300 border-b border-opacity-20
-        ${
-          theme === "dark"
-            ? "bg-gray-900/90 border-gray-700"
-            : "bg-white/90 border-gray-200"
-        }`}
+      className={`top-0 left-0 bg-peter w-full z-50 backdrop-blur-sm transition-colors duration-300 border-b border-opacity-20`}
       aria-label="Main navigation"
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -72,17 +67,11 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               className={`font-semibold text-sm tracking-wider transition-all duration-300 relative group
-                ${
-                  theme === "dark"
-                    ? "text-gray-300 hover:text-blue-400"
-                    : "text-gray-700 hover:text-blue-600"
-                }`}
+               `}
             >
               {link.name}
               <span
-                className={`absolute bottom-[-5px] left-0 w-full h-[2px] transition-transform duration-300 transform scale-x-0 group-hover:scale-x-100 ${
-                  theme === "dark" ? "bg-blue-400" : "bg-blue-600"
-                }`}
+                className={`absolute bottom-[-5px] left-0 w-full h-[2px] transition-transform duration-300 transform scale-x-0 group-hover:scale-x-100 `}
               ></span>
             </a>
           ))}
