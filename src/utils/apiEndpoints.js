@@ -4,6 +4,11 @@ export const API_ENDPOINTS = {
     REGISTER: "/auth/signup",
     PROFILE: "/auth/profile",
   },
+  POSTS: {
+    CREATE_POST: "/posts/",
+    GET_POSTS: "/posts",
+  },
 };
 
 export const Auth = API_ENDPOINTS.AUTH;
+export const Posts = API_ENDPOINTS.POSTS;

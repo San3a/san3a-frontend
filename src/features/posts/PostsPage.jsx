@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PostImagesViewer from "./components/PostImagesViewer";
 import PostMainContent from "./components/PostMainContent";
 import PostShimmer from "./components/PostShimmer";
+import AddPost from "./components/AddPost";
+import { useGetAllPostsQuery } from "./postsApi";
 
 function PostsPage() {
+  const [getAllPosts, { isError, error }] = useGetAllPostsQuery();
+  const [posts, setPosts] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(null);
   const images = [
     "https://images.unsplash.com/photo-1762930163317-01b67347b1bf?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -14,8 +18,24 @@ function PostsPage() {
     "https://images.unsplash.com/photo-1762930163317-01b67347b1bf?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   ];
 
+  useEffect(() => {
+    async function fetchPosts() {
+      const postsData = await getAllPosts();
+      setPosts(postsData);
+    }
+    fetchPosts();
+  }, [getAllPosts]);
+
+  if (!posts) {
+    return <p>Loading posts...</p>;
+  }
+  if (isError) {
+    return <p>{error}</p>;
+  }
+
   return (
     <div className="min-h-screen flex flex-col gap-5 items-center justify-center">
+      <AddPost />
       {Array.from({ length: 10 }).map((_, index) => (
         <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
           <PostMainContent
