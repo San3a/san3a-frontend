@@ -1,9 +1,11 @@
 {
-  "appName": "صنعه",
+  "appName": "صنعة",
   "home": "الرئيسية",
   "offers": "العروض",
   "categories": "الفئات",
   "about": "عن التطبيق",
   "login": "تسجيل الدخول",
-  "signup": "إنشاء حساب"
+  "signup": "إنشاء حساب",
+  "search": "ابحث...",
+  "All Categories": "كل الفئات"
 }
