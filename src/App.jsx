@@ -13,6 +13,7 @@ import {
 } from "react-router-dom";
 import ChatPage from "./features/chat/pages/chatPage";
 import HomePage from "./pages/HomePage";
+import ProfilePage from "./features/profile/pages/ProfilePage";
 
 const App = () => {
   const { i18n } = useTranslation();
@@ -32,6 +33,8 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           {/* Authentication Routes */}
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/test" element={<TestPage />}></Route>

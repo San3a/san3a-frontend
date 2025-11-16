@@ -2,7 +2,7 @@ export const API_ENDPOINTS = {
   AUTH: {
     LOGIN: "/auth/login",
     REGISTER: "/auth/signup",
-    PROFILE: "/auth/profile",
+    // PROFILE: "/auth/profile",
   },
   CHAT: {
     Conversation: "/chat",
@@ -17,8 +17,14 @@ export const API_ENDPOINTS = {
     UPDATE: (id) => `/categories/${id}`,
     DELETE: (id) => `/categories/${id}`,
   },
+  PROFILE: {
+    getProfile: '/profile',
+    getPastWork: (id) => `/users/past-work/${id}`
+  }
+
 };
 
 export const Auth = API_ENDPOINTS.AUTH;
 export const Chat = API_ENDPOINTS.CHAT;
 export const Category = API_ENDPOINTS.CATEGORY;
+export const Profile = API_ENDPOINTS.PROFILE;
