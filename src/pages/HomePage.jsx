@@ -1,7 +1,5 @@
-import CategorySection from "../features/category/components/CategorySection";
-
 const HomePage = () => {
-  return <CategorySection />;
+  return <></>;
 };
 
 export default HomePage;
