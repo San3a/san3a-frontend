@@ -1,5 +1,5 @@
 {
-  "appName": "صنعه",
+  "appName": "صنعة",
   "home": "الرئيسية",
   "offers": "العروض",
   "categories": "الفئات",
@@ -14,4 +14,6 @@
   "Cancel": "إلغاء",
   "Delete": "حذف",
   "is typing...": "يكتب..."
+  "search": "ابحث...",
+  "All Categories": "كل الفئات"
 }
