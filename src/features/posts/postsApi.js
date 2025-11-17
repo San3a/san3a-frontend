@@ -9,6 +9,7 @@ export const postsApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["Posts"],
     }),
     updatePost: builder.mutation({
       query: ({ postId, data }) => ({
@@ -16,6 +17,14 @@ export const postsApiSlice = apiSlice.injectEndpoints({
         method: "PATCH",
         body: data,
       }),
+      invalidatesTags: ["Posts"],
+    }),
+    deletePost: builder.mutation({
+      query: (postId) => ({
+        url: Posts.DELETE_POST(postId),
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Posts"],
     }),
     getAllPosts: builder.query({
       query: () => ({
@@ -25,6 +34,7 @@ export const postsApiSlice = apiSlice.injectEndpoints({
           "Cache-Control": "no-cache",
         },
       }),
+      providesTags: ["Posts"],
     }),
     getPostOffers: builder.query({
       query: (postId) => ({
@@ -34,6 +44,7 @@ export const postsApiSlice = apiSlice.injectEndpoints({
           "Cache-Control": "no-cache",
         },
       }),
+      providesTags: (result, error, postId) => [{ type: "Offers", id: postId }],
     }),
     addOfferToPost: builder.mutation({
       query: ({ postId, data }) => ({
@@ -41,6 +52,10 @@ export const postsApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: (result, error, { postId }) => [
+        { type: "Offers", id: postId },
+        "Posts",
+      ],
     }),
   }),
 });
@@ -51,4 +66,5 @@ export const {
   useGetPostOffersQuery,
   useAddOfferToPostMutation,
   useUpdatePostMutation,
+  useDeletePostMutation,
 } = postsApiSlice;

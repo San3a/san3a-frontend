@@ -8,6 +8,7 @@ export const API_ENDPOINTS = {
     CREATE_POST: "/posts/",
     GET_POSTS: "/posts/me",
     UPDATE_POST: (postId) => `/posts/${postId}`,
+    DELETE_POST: (postId) => `/posts/${postId}`,
   },
   CATEGORY: {
     GET_ALL: "/categories",

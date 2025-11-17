@@ -54,5 +54,11 @@
   "existingImages": "الصور الموجودة",
   "writeSomething": "اكتب شيئًا...",
   "locationSelected": "تم اختيار الموقع",
-  "locationFailed": "فشل في جلب الموقع"
+  "locationFailed": "فشل في جلب الموقع",
+  "postDeletedSuccessfully": "تم حذف المنشور بنجاح",
+  "deletePost": "حذف المنشور",
+  "thisActionCannotBeUndone": "لا يمكن التراجع عن هذا الإجراء",
+  "warning": "تحذير",
+  "allOffersWillBeDeletedAsWell": "جميع العروض المرتبطة سيتم حذفها أيضًا",
+  "deleteNow": "احذف الآن"
 }

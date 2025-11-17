@@ -11,14 +11,33 @@ import {
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import UpsertPostModal from "./upsertPostModal/UpsertPostModal";
+import ConfirmModal from "@/components/ConfirmModal";
 import { useState } from "react";
+import { useDeletePostMutation } from "../postsApi";
+import { toast } from "sonner";
 
 function PostHeader({ post }) {
   const { t, i18n } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [deletePost] = useDeletePostMutation();
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
+
+  const handleDeleteClick = () => setIsDeleteModalOpen(true);
+  const handleCancelDelete = () => setIsDeleteModalOpen(false);
+
+  const handleConfirmDelete = async () => {
+    try {
+      await deletePost(post._id);
+      setIsDeleteModalOpen(false);
+      toast.success(t("postDeletedSuccessfully"));
+    } catch {
+      toast.error(t("errorOccurred"));
+    }
+  };
+
   const formatDate = (dateString) => {
     const isEnglish = i18n.language === "en";
     return format(new Date(dateString), `d MMMM '${t("atTime")}' h:mma`, {
@@ -29,7 +48,11 @@ function PostHeader({ post }) {
 
   const postOptions = [
     { onClick: handleOpenModal, name: t("update"), color: "text-green-600" },
-    { onClick: () => {}, name: t("delete"), color: "text-red-600" },
+    {
+      onClick: handleDeleteClick,
+      name: t("delete"),
+      color: "text-red-600",
+    },
   ];
 
   return (
@@ -81,6 +104,16 @@ function PostHeader({ post }) {
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         post={post}
+      />
+
+      <ConfirmModal
+        isOpen={isDeleteModalOpen}
+        onClose={handleCancelDelete}
+        onConfirm={handleConfirmDelete}
+        title={t("deletePost")}
+        description={t("thisActionCannotBeUndone")}
+        warningMessage={`${t("warning")}: ${t("allOffersWillBeDeletedAsWell")}`}
+        confirmButtonText={t("deleteNow")}
       />
     </div>
   );
