@@ -1,10 +1,15 @@
+import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import CategorySection from "../features/category/components/CategorySection";
 
-export default function MainLayout({ children }) {
+export default function MainLayout() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      <main className="flex-1 mt-20">{children}</main>
+      <CategorySection />
+      <main className="flex-grow">
+        <Outlet />
+      </main>
     </div>
   );
 }
