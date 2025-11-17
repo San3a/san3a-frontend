@@ -10,6 +10,12 @@ export const API_ENDPOINTS = {
     UPDATE_POST: (postId) => `/posts/${postId}`,
     DELETE_POST: (postId) => `/posts/${postId}`,
   },
+  CHAT: {
+    Conversation: "/chat",
+    AllConversations: "/chat/:userId",
+    ConversationMessages: "/chat/messages/:conversationId",
+    SendMessage: "/chat/messages",
+  },
   CATEGORY: {
     GET_ALL: "/categories",
     CREATE: "/categories",
@@ -26,4 +32,5 @@ export const API_ENDPOINTS = {
 export const Auth = API_ENDPOINTS.AUTH;
 export const Posts = API_ENDPOINTS.POSTS;
 export const Offers = API_ENDPOINTS.OFFERS;
+export const Chat = API_ENDPOINTS.CHAT;
 export const Category = API_ENDPOINTS.CATEGORY;
