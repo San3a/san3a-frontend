@@ -19,7 +19,6 @@ const LanguageSwitcher = () => {
 
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
-    localStorage.setItem("language", lang);
   };
 
   const currentLang = i18n.language || "en";

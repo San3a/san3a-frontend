@@ -15,5 +15,17 @@
   "Delete": "حذف",
   "is typing...": "يكتب...",
   "search": "ابحث...",
-  "All Categories": "كل الفئات"
+  "All Categories": "كل الفئات",
+  "Category": "الفئة",
+  "All": "الكل",
+  "Rating": "التقييم",
+  "Stars": "نجوم",
+  "Any": "أي",
+  "Price": "السعر",
+  "Min": "الحد الأدنى",
+  "Max": "الحد الأقصى",
+  "Clear Filters": "مسح الفلاتر",
+  "No categories available": "لا توجد فئات متاحة",
+  "Please try again later.": "يرجى المحاولة مرة أخرى لاحقًا.",
+  "No services found": "لا  يوجد خدمات متاحة"
 }
