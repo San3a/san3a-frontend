@@ -162,7 +162,7 @@ export default function PostForm({ post, onClose }) {
         <button
           type="button"
           onClick={onClose}
-          className="px-5 py-2 bg-gray-200 rounded-xl w-[30%] h-14"
+          className="px-5 py-2 bg-gray-200 rounded-xl w-[30%] h-14 cursor-pointer"
         >
           {t("cancel")}
         </button>
@@ -174,7 +174,7 @@ export default function PostForm({ post, onClose }) {
             (!coords && !post?.location) ||
             (existingImages.length === 0 && newImages.length === 0)
           }
-          title={t("save")}
+          title={t("publish")}
           width="70%"
         />
       </div>

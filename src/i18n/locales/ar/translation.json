@@ -69,5 +69,6 @@
   "warning": "تحذير",
   "allOffersWillBeDeletedAsWell": "جميع العروض المرتبطة سيتم حذفها أيضًا",
   "deleteNow": "احذف الآن",
-  "newImages": "الصور الجديدة"
+  "newImages": "الصور الجديدة",
+  "publish": "نشر"
 }

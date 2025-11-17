@@ -12,6 +12,7 @@ import {
   BrowserRouter,
 } from "react-router-dom";
 import ChatPage from "./features/chat/pages/chatPage";
+import PostsPage from "./features/posts/PostsPage";
 const App = () => {
   const { i18n } = useTranslation();
   useEffect(() => {
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/test" element={<TestPage />}></Route>
           <Route path="/chat/:conversationId" element={<ChatPage />} />
+          <Route path="/posts" element={<PostsPage />} />
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </BrowserRouter>
