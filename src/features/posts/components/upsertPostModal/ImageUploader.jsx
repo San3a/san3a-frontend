@@ -75,7 +75,7 @@ export default function ImageUploader({
 
       {newImages.length > 0 && (
         <div>
-          <h4 className="font-semibold mb-2">New Images</h4>
+          <h4 className="font-semibold mb-2">{t("newImages")}</h4>
           <div className="grid grid-cols-3 gap-3">
             {newImages.map((imgObj, i) => (
               <div key={i} className="relative">

@@ -61,10 +61,17 @@ export default function PostForm({ post, onClose }) {
 
     tags.forEach((t) => formData.append("tags[]", t.toLowerCase()));
 
-    // Only append new image files (File objects) for multer to process
+    // Only append new image files for multer to process
     newImages.forEach((imgObj) => {
       formData.append("images", imgObj.file);
     });
+
+    // For edits, send existing image URLs so backend knows which to keep
+    if (isEdit && existingImages.length > 0) {
+      existingImages.forEach((img) => {
+        formData.append("existingImages[]", img.public_id);
+      });
+    }
 
     if (coords) {
       formData.append("location[type]", "Point");

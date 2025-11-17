@@ -60,5 +60,6 @@
   "thisActionCannotBeUndone": "لا يمكن التراجع عن هذا الإجراء",
   "warning": "تحذير",
   "allOffersWillBeDeletedAsWell": "جميع العروض المرتبطة سيتم حذفها أيضًا",
-  "deleteNow": "احذف الآن"
+  "deleteNow": "احذف الآن",
+  "newImages": "الصور الجديدة"
 }
