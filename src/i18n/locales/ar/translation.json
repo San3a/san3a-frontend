@@ -32,7 +32,7 @@
   "selectCategory": "اختر الفئة",
   "addTag": "إضافة وسم",
   "tag": "وسم",
-  "post": "انشر",
+  "post": "المنشور",
   "cancel": "إلغاء",
   "createPost": "إنشاء منشور",
   "uploadImages": "تحميل صور",
@@ -70,5 +70,6 @@
   "allOffersWillBeDeletedAsWell": "جميع العروض المرتبطة سيتم حذفها أيضًا",
   "deleteNow": "احذف الآن",
   "newImages": "الصور الجديدة",
-  "publish": "نشر"
+  "publish": "نشر",
+  "noOffersAvailable": "لا توجد عروض متاحة"
 }

@@ -5,6 +5,7 @@ import { FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
 
 import PostImagesArrowBtn from "./PostImagesArrowBtn";
 import PostMainContent from "./PostMainContent";
+import AddOfferForm from "./AddOfferForm";
 
 function PostImagesViewer({
   post,
@@ -42,6 +43,7 @@ function PostImagesViewer({
             showImages={false}
             isShowPostOffersBtnVisible={false}
           />
+          <AddOfferForm post={post} />
         </motion.div>
 
         <motion.div

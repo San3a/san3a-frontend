@@ -5,8 +5,7 @@ import OfferShimmer from "./OfferShimmer";
 
 function PostOffer({ postId }) {
   const { data, isLoading, isError, error } = useGetPostOffersQuery(postId);
-  const [offers, setOffers] = useState([]);
-  console.log(`These are post offers: ${JSON.stringify(offers)}`);
+  const [_offers, setOffers] = useState([]);
 
   const { t } = useTranslation();
 
@@ -25,8 +24,45 @@ function PostOffer({ postId }) {
     return <p>{error.message}</p>;
   }
 
+  const offers = [
+    {
+      post: "652f1c7b4f1c2a6b8f0d1234",
+      technician: "652f1c8a4f1c2a6b8f0d5678",
+      price: 150,
+      message: "I can fix this issue within 2 days using quality parts.",
+      createdAt: "2025-11-17T10:00:00.000Z",
+      updatedAt: "2025-11-17T10:00:00.000Z",
+    },
+    {
+      post: "652f1c7b4f1c2a6b8f0d2345",
+      technician: "652f1c8a4f1c2a6b8f0d6789",
+      price: 200,
+      message:
+        "I have 5 years of experience with similar repairs. Ready to start immediately.",
+      createdAt: "2025-11-16T15:30:00.000Z",
+      updatedAt: "2025-11-16T15:30:00.000Z",
+    },
+    {
+      post: "652f1c7b4f1c2a6b8f0d3456",
+      technician: "652f1c8a4f1c2a6b8f0d7890",
+      price: 120,
+      message: "Can provide a quick solution and a warranty for 1 month.",
+      createdAt: "2025-11-15T09:45:00.000Z",
+      updatedAt: "2025-11-15T09:45:00.000Z",
+    },
+    {
+      post: "652f1c7b4f1c2a6b8f0d4567",
+      technician: "652f1c8a4f1c2a6b8f0d8901",
+      price: 180,
+      message:
+        "I can complete the work efficiently and provide a detailed report.",
+      createdAt: "2025-11-14T12:15:00.000Z",
+      updatedAt: "2025-11-14T12:15:00.000Z",
+    },
+  ];
+
   return offers.length === 0 ? (
-    <p className="text-gray-500 mt-8 text-center">No offers available</p>
+    <p className="text-gray-500 mt-8 text-center">{t("noOffersAvailable")}</p>
   ) : (
     offers.map((offer) => (
       <div className="mt-5">
