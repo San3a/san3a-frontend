@@ -6,12 +6,14 @@ import RegisterPage from "../features/auth/pages/RegisterPage";
 import TestPage from "../pages/TestPage";
 import ChatPage from "../features/chat/pages/chatPage";
 import HomePage from "../pages/HomePage";
+import ChatBotPage from "../features/chatbot/pages/ChatBotPage";
 
 const AppRoutes = () => {
   return (
     <Routes>
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
+        <Route path="/chat-bot-messaging" element={<ChatBotPage />} />
         <Route path="/tech-services" element={<TechServicesPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

@@ -124,7 +124,7 @@ export default function FiltersSidebar() {
 
       <button
         onClick={clearFilters}
-        className="w-full py-2 px-4 bg-primary text-white rounded hover:bg-secondary transition"
+        className="w-full py-2 px-4 bg-primary text-secondary rounded hover:bg-popover  transition"
       >
         {t("Clear Filters")}
       </button>

@@ -27,5 +27,9 @@
   "Clear Filters": "مسح الفلاتر",
   "No categories available": "لا توجد فئات متاحة",
   "Please try again later.": "يرجى المحاولة مرة أخرى لاحقًا.",
-  "No services found": "لا  يوجد خدمات متاحة"
+  "No services found": "لا  يوجد خدمات متاحة",
+  "chatbot": "تحدث مع الأسطى",
+  "Say hi to start the chat": "ابعت أهلا لبدأ المحادثة",
+  "Type a message...": "اكتب رسالة...",
+  "Send": "أرسل"
 }

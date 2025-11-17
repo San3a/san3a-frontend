@@ -1,7 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import { useGetTechServicesQuery } from "../techServiceApi";
 import CircularProgressIndicator from "../../../components/CircularProgressIndicator";
-import Error from "../../../components/Error";
 import TechServiceCard from "../components/TechServiceCard";
 import FiltersSidebar from "../components/FiltersSidebar";
 import { useTranslation } from "react-i18next";
