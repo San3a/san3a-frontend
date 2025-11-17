@@ -14,6 +14,7 @@ import {
 import ChatPage from "./features/chat/pages/chatPage";
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./features/profile/pages/ProfilePage";
+import PastWorkPage from "./features/past-work/pages/PastWorkPage";
 
 const App = () => {
   const { i18n } = useTranslation();
@@ -39,6 +40,7 @@ const App = () => {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/test" element={<TestPage />}></Route>
           <Route path="/chat/:conversationId" element={<ChatPage />} />
+          <Route path="/past-work/:id" element={<PastWorkPage />} />
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </BrowserRouter>

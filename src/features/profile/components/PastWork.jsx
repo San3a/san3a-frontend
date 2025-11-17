@@ -99,7 +99,13 @@ const PastWork = ({ item }) => {
         <div className="flex items-center justify-between pt-3 border-t border-gray-100">
           <div className="flex items-center gap-2 text-xs text-gray-500">
             <Calendar size={14} />
-            <span>{new Date(item.createdAt).toLocaleDateString()}</span>
+            <span>
+              {new Date(item.createdAt).getDate().toString().padStart(2, "0")}/
+              {(new Date(item.createdAt).getMonth() + 1)
+                .toString()
+                .padStart(2, "0")}
+              /{new Date(item.createdAt).getFullYear()}
+            </span>
           </div>
 
           {item.status && (
