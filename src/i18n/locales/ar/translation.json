@@ -13,7 +13,76 @@
   "Are you sure you want to delete this message?": "هل أنت متأكد أنك تريد حذف هذه الرسالة؟",
   "Cancel": "إلغاء",
   "Delete": "حذف",
-  "is typing...": "يكتب..."
+  "is typing...": "يكتب...",
   "search": "ابحث...",
-  "All Categories": "كل الفئات"
+  "All Categories": "كل الفئات",
+
+  "dashboard": {
+    "totalCustomers": "إجمالي العملاء",
+    "totalTechnicians": "إجمالي الفنيين",
+    "techPerCategory": "الفنيون لكل فئة",
+    "usersDemographics": "توزيع العملاء حسب المدينة",
+    "techDemographics": "توزيع الفنيين حسب المدينة",
+    "totalIncome": "إجمالي الدخل"
+  },
+
+  "cities": {
+    "Cairo": "القاهرة",
+    "Alexandria": "الإسكندرية",
+    "Giza": "الجيزة"
+  },
+  "dashboardTitle": "لوحة التحكم",
+  "users": "المستخدمون",
+  "reviews": "التقييمات",
+  "admin": "المسؤول",
+  "panel": "لوحة",
+  "welcomeBack": "مرحبًا بعودتك، {{user}}",
+
+  "createCategory": "إنشاء فئة",
+  "allCategories": "كل الفئات",
+  "name": "الاسم",
+  "description": "الوصف",
+  "create": "إنشاء",
+  "edit": "تعديل",
+  "delete": "حذف",
+  "categoryCreated": "تم إنشاء الفئة بنجاح",
+  "categoryCreateFailed": "فشل في إنشاء الفئة",
+
+  "categoryNames": {
+    "Carpenter": "نجار",
+    "Cleaner": "منظف",
+    "Painter": "دهان",
+    "Beauty": "تجميل",
+    "AC Repair": "تصليح تكييف",
+    "Plumber": "سباك",
+    "Men's Salon": "صالون رجالي",
+    "Electrician": "كهربائي"
+  },
+
+  "categoryDescriptions": {
+    "Carpenter": "خدمات النجارة المهنية بما في ذلك الأثاث والخزائن والأعمال الخشبية.",
+    "Cleaner": "خدمات تنظيف الخبراء للمنازل والمكاتب والمساحات التجارية.",
+    "Painter": "خدمات طلاء احترافية للأسطح الداخلية والخارجية.",
+    "Beauty": "خدمات التجميل بما في ذلك الشعر والمكياج وعلاجات العناية بالبشرة.",
+    "AC Repair": "خدمات صيانة وتصليح أجهزة التكييف لجميع الأنواع.",
+    "Plumber": "خدمات السباكة بما في ذلك إصلاح التسريبات وتركيب الأنابيب والصيانة.",
+    "Men's Salon": "خدمات العناية الشخصية للرجال بما في ذلك قص الشعر والحلاقة والتصفيف.",
+    "Electrician": "خدمات كهربائية معتمدة بما في ذلك التركيب والإصلاح والصيانة."
+  },
+
+  "usersManagement": "إدارة المستخدمين",
+  "customers": "العملاء",
+  "technicians": "الفنيون",
+  "loadingUsers": "جاري تحميل المستخدمين...",
+  "errorLoadingUsers": "حدث خطأ أثناء تحميل المستخدمين.",
+  "email": "البريد الإلكتروني",
+  "rating": "التقييم",
+  "totalEarning": "إجمالي الأرباح",
+  "view": "عرض",
+  "ban": "حظر",
+  "unban": "رفع الحظر",
+  "actions": "الإجراءات",
+  "loadingReviews": "جاري تحميل التقييمات...",
+  "errorLoadingReviews": "حدث خطأ أثناء تحميل التقييمات.",
+  "noReviews": "لا توجد تقييمات بعد."
 }

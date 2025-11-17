@@ -4,6 +4,11 @@ import RegisterPage from "./features/auth/pages/RegisterPage";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import TestPage from "./pages/TestPage";
+import Dashboard from "./features/admin/pages/Dashboard";
+import Users from "./features/admin/pages/Users";
+import Categories from "./features/admin/pages/Categories";
+import Reviews from "./features/admin/pages/Reviews";
+import Layout from "./features/admin/components/Layout";
 import {
   BrowserRouter as Router,
   Routes,
@@ -28,14 +33,22 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          {/* Authentication Routes */}
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/test" element={<TestPage />}></Route>
-          <Route path="/chat/:conversationId" element={<ChatPage />} />
-          <Route path="*" element={<Navigate to="/login" replace />} />
-        </Routes>
+        <Layout>
+          <Routes>
+            {/* Authentication Routes */}
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/test" element={<TestPage />}></Route>
+            <Route path="/chat/:conversationId" element={<ChatPage />} />
+
+            {/* Admin Routes */}
+            <Route path="/admin" element={<Dashboard />} />
+            <Route path="/admin/users" element={<Users />} />
+            <Route path="/admin/categories" element={<Categories />} />
+            <Route path="/admin/reviews" element={<Reviews />} />
+            <Route path="*" element={<Navigate to="/login" replace />} />
+          </Routes>
+        </Layout>
       </BrowserRouter>
     </>
   );
