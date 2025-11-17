@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ImSpinner8 } from "react-icons/im";
 
 export default function LoadingButton({
@@ -19,9 +19,18 @@ export default function LoadingButton({
   duration = 0.4,
   style = {},
   disabled = false,
+  isBtnLoading = null,
+  submitForm = true,
 }) {
   const [isLoading, setIsLoading] = useState(false);
   const [showText, setShowText] = useState(true);
+
+  useEffect(() => {
+    if (isBtnLoading !== null) {
+      setIsLoading(isBtnLoading);
+      setShowText(!isBtnLoading);
+    }
+  }, [isBtnLoading]);
 
   const handleClick = async (e) => {
     if (disabled || isLoading) {
@@ -46,12 +55,13 @@ export default function LoadingButton({
   return (
     <motion.button
       disabled={disabled}
-      onClick={handleClick}
+      onClick={isBtnLoading !== null ? null : handleClick}
       animate={{
         width: isLoading ? height : width,
         borderRadius: isLoading ? height / 2 : borderRadius,
       }}
       transition={{ duration, ease: "easeInOut" }}
+      type={submitForm ? "submit" : "button"}
       style={{
         backgroundColor: color,
         color: textColor,

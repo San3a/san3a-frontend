@@ -6,8 +6,16 @@ import { FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
 import PostImagesArrowBtn from "./PostImagesArrowBtn";
 import PostMainContent from "./PostMainContent";
 
-function PostImagesViewer({ images, selectedIndex, onClose }) {
+function PostImagesViewer({
+  post,
+  selectedIndex,
+  setSelectedPostDetails,
+  onClose,
+}) {
   const [index, setIndex] = useState(selectedIndex);
+
+  const images = post.images.map((img) => img.url);
+  console.log(`These are the images: ${images}`);
 
   const prev = () => setIndex((i) => (i > 0 ? i - 1 : images.length - 1));
   const next = () => setIndex((i) => (i < images.length - 1 ? i + 1 : 0));
@@ -27,7 +35,13 @@ function PostImagesViewer({ images, selectedIndex, onClose }) {
           transition={{ duration: 0.3 }}
           className="hidden md:block bg-white p-6 ms-5 max-w-md w-full h-[80vh] overflow-y-auto"
         >
-          <PostMainContent setSelectedIndex={setIndex} />
+          <PostMainContent
+            post={post}
+            setSelectedIndex={setIndex}
+            setSelectedPostDetails={setSelectedPostDetails}
+            showImages={false}
+            isShowPostOffersBtnVisible={false}
+          />
         </motion.div>
 
         <motion.div
@@ -50,16 +64,20 @@ function PostImagesViewer({ images, selectedIndex, onClose }) {
             <FaTimes />
           </button>
 
-          <PostImagesArrowBtn
-            onClick={prev}
-            direction="left"
-            icon={<FaChevronLeft />}
-          />
-          <PostImagesArrowBtn
-            onClick={next}
-            direction="right"
-            icon={<FaChevronRight />}
-          />
+          {images.length > 1 && (
+            <>
+              <PostImagesArrowBtn
+                onClick={prev}
+                direction="left"
+                icon={<FaChevronLeft />}
+              />
+              <PostImagesArrowBtn
+                onClick={next}
+                direction="right"
+                icon={<FaChevronRight />}
+              />
+            </>
+          )}
         </motion.div>
       </motion.div>
     </AnimatePresence>

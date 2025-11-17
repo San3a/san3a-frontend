@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import CreatePostModal from "./CreatePostModal"; // import the modal we created earlier
+import UpsertPostModal from "./upsertPostModal/UpsertPostModal"; // import the modal we created earlier
 
 function AddPost() {
   const { t } = useTranslation();
@@ -8,12 +8,6 @@ function AddPost() {
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
-
-  const handlePostSubmit = (postData) => {
-    console.log("Submitting post data to backend:", postData);
-    // You can call your API here, e.g.,
-    // axios.post("/api/posts", postData)
-  };
 
   return (
     <>
@@ -30,12 +24,7 @@ function AddPost() {
         </button>
       </div>
 
-      {/* Modal */}
-      <CreatePostModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        onSubmit={handlePostSubmit}
-      />
+      <UpsertPostModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </>
   );
 }

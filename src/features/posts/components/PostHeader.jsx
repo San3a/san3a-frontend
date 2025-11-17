@@ -2,28 +2,86 @@ import { format } from "date-fns";
 import { ar, enUS } from "date-fns/locale";
 import { useTranslation } from "react-i18next";
 import { FaEllipsisH } from "react-icons/fa";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { ChevronDown } from "lucide-react";
+import UpsertPostModal from "./upsertPostModal/UpsertPostModal";
+import { useState } from "react";
 
-function PostHeader() {
+function PostHeader({ post }) {
   const { t, i18n } = useTranslation();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
   const formatDate = (dateString) => {
     const isEnglish = i18n.language === "en";
     return format(new Date(dateString), `d MMMM '${t("atTime")}' h:mma`, {
       locale: isEnglish ? enUS : ar,
     });
   };
+  const currentLang = i18n.language || "en";
+
+  const postOptions = [
+    { onClick: handleOpenModal, name: t("update"), color: "text-green-600" },
+    { onClick: () => {}, name: t("delete"), color: "text-red-600" },
+  ];
+
   return (
-    <div className="flex gap-2 justify-center items-center">
+    <div className="flex gap-2 items-center">
       <img
         className="h-12 w-12 bg-black rounded-full "
         src="https://plus.unsplash.com/premium_photo-1755882951408-b6d668ccca21?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       />
       <div>
-        <h2 className="font-semibold">Yousef Mohamed</h2>
+        <h2 className="font-semibold">{post.user.name}</h2>
         <p className="text-xs font-semibold text-gray-600">
-          {formatDate("2025-11-05T18:30:00")}
+          {formatDate(post.createdAt)}
         </p>
       </div>
-      <FaEllipsisH className="ms-auto text-gray-500 cursor-pointer" />
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button
+            variant="outline"
+            size="icon"
+            className="w-8 h-8 ms-auto hover:bg-gray-100 dark:hover:bg-gray-800"
+          >
+            <FaEllipsisH className=" text-gray-500" />
+            <ChevronDown size={16} className="absolute opacity-0" />
+          </Button>
+        </DropdownMenuTrigger>
+
+        <DropdownMenuContent
+          align={currentLang === "ar" ? "start" : "end"}
+          className="w-40"
+        >
+          {postOptions.map((option, index) => (
+            <DropdownMenuItem
+              key={index}
+              onClick={option.onClick}
+              className={`cursor-pointer ${
+                Date.now() === "lsndld"
+                  ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 font-semibold"
+                  : ""
+              }`}
+            >
+              <span className={`text-xl mr-2 ${option.color}`}>
+                {option.name}
+              </span>
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
+      <UpsertPostModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        post={post}
+      />
     </div>
   );
 }

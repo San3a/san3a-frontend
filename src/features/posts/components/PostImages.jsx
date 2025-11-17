@@ -1,4 +1,15 @@
 function PostImages({ images, onImageClick }) {
+  if (images.length === 1) {
+    return (
+      <div className="relative cursor-pointer" onClick={() => onImageClick(0)}>
+        <img
+          src={images[0]}
+          alt=""
+          className=" w-full h-96 object-contain hover:opacity-90 transition"
+        />
+      </div>
+    );
+  }
   return (
     <div className="grid grid-cols-2 gap-0.5 mt-3">
       {images.slice(0, 4).map((img, index) => (

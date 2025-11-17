@@ -6,20 +6,32 @@ import ShowPostOffersBtn from "./ShowPostOffersBtn";
 
 function PostMainContent({
   setSelectedIndex,
-  images,
+  setSelectedPostDetails,
+  post,
   isShowPostOffersBtnVisible = true,
   showOffers = true,
+  showImages = true,
 }) {
+  const images = post.images.map((image) => image.url);
   return (
     <>
-      <PostHeader />
-      <PostText />
-      {images && <PostImages images={images} onImageClick={setSelectedIndex} />}
-      {showOffers && <PostOffer />}
+      <PostHeader post={post} />
+      <PostText post={post} />
+      {showImages && images && (
+        <PostImages
+          images={images}
+          onImageClick={(val) => {
+            setSelectedIndex(val);
+            setSelectedPostDetails(post);
+          }}
+        />
+      )}
+      {showOffers && <PostOffer postId={post._id} />}
       {isShowPostOffersBtnVisible && (
         <ShowPostOffersBtn
-          images={images}
+          post={post}
           setSelectedIndex={setSelectedIndex}
+          setSelectedPostDetails={setSelectedPostDetails}
         />
       )}
     </>
