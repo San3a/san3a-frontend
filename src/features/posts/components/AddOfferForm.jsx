@@ -7,12 +7,13 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 function AddOfferForm({ post }) {
-  const [createOffer, { reset }] = useAddOfferToPostMutation();
+  const [createOffer, { reset: resetMutation }] = useAddOfferToPostMutation();
   const { t } = useTranslation();
 
   const {
     register: offerForm,
     handleSubmit,
+    reset,
     formState: { errors, isValid, isSubmitting },
   } = useForm({ mode: "onChange" });
 
@@ -28,46 +29,66 @@ function AddOfferForm({ post }) {
 
       toast.success(t("offerSubmittedSuccessfully"));
       reset();
+      resetMutation();
     } catch (err) {
       toast.error(err?.data?.message || t("errorOccurred"));
     }
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="p-4 border-t border-gray-100 bg-transparent flex gap-2 justify-center items-center"
-    >
-      <textarea
-        type="text"
-        placeholder={t("writeAnOffer")}
-        className="w-[70%] border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        {...offerForm("text", { required: t("offerTextRequired") })}
-      />
-      <InputError message={errors.text?.message} />
-      <input
-        type="text"
-        placeholder={t("writePrice")}
-        className="w-[30%] border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 h-12"
-        {...offerForm("price", {
-          required: t("offerPriceRequired"),
-          pattern: {
-            value: /^[0-9]+(\.[0-9]{1,2})?$/,
-            message: t("offerPriceMustBeNumber"),
-          },
-        })}
-      />
-      <InputError message={errors.price?.message} />
-      <LoadingButton
-        isBtnLoading={isSubmitting}
-        disabled={!isValid}
-        title={<BiSend size={25} className="-rotate-45" />}
-        width="min-content"
-        borderRadius="0"
-        height="3rem"
-        style={{ margin: "1rem", padding: "1rem" }}
-      />
-    </form>
+    <div className="sticky top-0 z-10 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-sm">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="px-4 pt-4 flex gap-3 items-start"
+      >
+        <div className="shrink-0 pt-1">
+          <img
+            className="h-10 w-10 rounded-full object-cover ring-2 ring-blue-500/20"
+            src="https://plus.unsplash.com/premium_photo-1755882951408-b6d668ccca21?q=80&w=387&auto=format&fit=crop"
+            alt="User"
+          />
+        </div>
+
+        <div className="flex-1 space-y-2">
+          <div className="flex gap-2 justify-start">
+            <div className="flex-1">
+              <textarea
+                placeholder={t("writeAnOffer")}
+                rows={2}
+                className="w-full border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none placeholder:text-gray-400 dark:placeholder:text-gray-500 text-sm"
+                {...offerForm("text", { required: t("offerTextRequired") })}
+              />
+              {errors.text && <InputError message={errors.text.message} />}
+            </div>
+
+            <div className="w-28">
+              <input
+                type="text"
+                placeholder={t("price")}
+                className="w-full border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder:text-gray-400 dark:placeholder:text-gray-500 text-sm"
+                {...offerForm("price", {
+                  required: t("offerPriceRequired"),
+                  pattern: {
+                    value: /^[0-9]+(\.[0-9]{1,2})?$/,
+                    message: t("offerPriceMustBeNumber"),
+                  },
+                })}
+              />
+              {errors.price && <InputError message={errors.price.message} />}
+            </div>
+
+            <LoadingButton
+              isBtnLoading={isSubmitting}
+              disabled={!isValid || isSubmitting}
+              title={<BiSend size={20} className="-rotate-45" />}
+              width="42px"
+              height="42px"
+              borderRadius="4px"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
   );
 }
 

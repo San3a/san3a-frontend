@@ -57,6 +57,7 @@
   "offerPriceMustBeNumber": "يجب أن يكون السعر رقمًا",
   "offerSubmittedSuccessfully": "تم إرسال العرض بنجاح",
   "errorOccurred": "حدث خطأ ما",
+  "price": "السعر",
   "update": "تحديث",
   "delete": "حذف",
   "existingImages": "الصور الموجودة",
