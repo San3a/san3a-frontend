@@ -20,9 +20,13 @@ export const API_ENDPOINTS = {
   TechService: {
     GET_ALL: "/tech-services",
   },
+  ChatBot: {
+    SEND_MESSAGE: "/chatbot",
+  },
 };
 
 export const Auth = API_ENDPOINTS.AUTH;
 export const Chat = API_ENDPOINTS.CHAT;
 export const Category = API_ENDPOINTS.CATEGORY;
 export const TechService = API_ENDPOINTS.TechService;
+export const ChatBot = API_ENDPOINTS.ChatBot;
