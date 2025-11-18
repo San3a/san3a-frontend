@@ -26,7 +26,7 @@ function PostsPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col gap-5 items-center justify-center">
+    <div className="flex flex-col gap-5 items-center justify-center">
       <AddPost />
       {!posts || posts.length === 0 ? (
         <p className="text-gray-500 mt-8">{t("noPostsAvailable")}</p>

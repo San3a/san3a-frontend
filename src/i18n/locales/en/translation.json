@@ -122,5 +122,6 @@
   "chatbot": "Chat with Elosta",
   "Say hi to start the chat": "Say hi to start the chat",
   "Type a message...": "Type a message...",
-  "Send": "Send"
+  "Send": "Send",
+  "noPostsAvailable": "No posts available"
 }
