@@ -33,5 +33,20 @@
   "Customer Name": "اسم العميل",
   "Save": "حفظ",
   "Please fill in all fields": "اكمل جميع الحقول المطلوبه",
-  "Past work added successfully": "تمت إضافة العمل السابق بنجاح"
+  "Past work added successfully": "تمت إضافة العمل السابق بنجاح",
+  "Profile updated successfully": "تم تعديل الملف الشخصي بنجاح",
+  "Failed to update your profile": "خطأ فى تعديل الملف الشخصي",
+  "My Posts": "منشوراتي",
+  "open": "مفتوح",
+  "in-progress": "جاري..",
+  "completed": "مكتملة",
+  "Add Post": "إضافة منشور",
+  "Reviews": "التقييمات",
+  "Add New Post": "إضافة منشور جديد",
+  "Category": "الفئة",
+  "Tags": "الوسوم",
+  "Create Post": "اضف منشور",
+  "Add": "اضف",
+  "Address": "العنوان",
+  "Saving": "يتم الحفظ"
 }

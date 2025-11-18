@@ -1,24 +1,24 @@
 import React, { useState } from "react";
-import { ChevronLeft, ChevronRight, Calendar } from "lucide-react";
+import { ChevronLeft, ChevronRight, Calendar, Briefcase } from "lucide-react";
 
 const PastWork = ({ item }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = item.images || [];
 
   const handlePrev = (e) => {
-    e.stopPropagation(); // Prevent event bubbling
+    e.stopPropagation();
     setCurrentImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
   const handleNext = (e) => {
-    e.stopPropagation(); // Prevent event bubbling
+    e.stopPropagation();
     setCurrentImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+    <div className="bg-card text-card-foreground rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 dark:bg-gray-800 dark:text-gray-100">
       {/* Image Carousel */}
-      <div className="relative h-48 w-full overflow-hidden bg-gray-200 group">
+      <div className="relative h-48 w-full overflow-hidden bg-gray-200 dark:bg-gray-700 group">
         {images.length > 0 ? (
           <>
             <img
@@ -34,7 +34,7 @@ const PastWork = ({ item }) => {
               </div>
             )}
 
-            {/* Navigation Buttons - Show on hover */}
+            {/* Navigation Buttons */}
             {images.length > 1 && (
               <>
                 <button
@@ -76,7 +76,7 @@ const PastWork = ({ item }) => {
             )}
           </>
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-500">
+          <div className="w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-300">
             <div className="text-center">
               <Briefcase size={40} className="mx-auto mb-2 opacity-50" />
               <p className="text-sm">No Image</p>
@@ -87,17 +87,17 @@ const PastWork = ({ item }) => {
 
       {/* Content */}
       <div className="p-5">
-        <h3 className="text-lg font-bold text-gray-800 mb-2">
+        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
           {item.title || "Untitled Work"}
         </h3>
 
-        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 mb-4">
+        <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed line-clamp-3 mb-4">
           {item.description || "No description provided."}
         </p>
 
         {/* Footer */}
-        <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-          <div className="flex items-center gap-2 text-xs text-gray-500">
+        <div className="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-700">
+          <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
             <Calendar size={14} />
             <span>
               {new Date(item.createdAt).getDate().toString().padStart(2, "0")}/
@@ -109,7 +109,7 @@ const PastWork = ({ item }) => {
           </div>
 
           {item.status && (
-            <span className="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">
+            <span className="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold dark:bg-green-700 dark:text-green-100">
               {item.status}
             </span>
           )}

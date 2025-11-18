@@ -9,21 +9,24 @@ const ProfileDetails = () => {
 
   return (
     <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div className="bg-gray-50 p-5 rounded-xl shadow-sm flex flex-col items-center">
+      {/* Rating */}
+      <div className="p-5 rounded-xl shadow-sm flex flex-col items-center bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700">
         <Star className="text-yellow-500 mb-2" />
         <h3 className="font-semibold text-lg">{t("Rating")}</h3>
         <p className="text-xl font-bold">{user.rating}</p>
       </div>
 
+      {/* Total Earnings (Technician only) */}
       {user.role === "technician" && (
-        <div className="bg-gray-50 p-5 rounded-xl shadow-sm flex flex-col items-center">
+        <div className="p-5 rounded-xl shadow-sm flex flex-col items-center bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700">
           <Briefcase className="text-green-600 mb-2" />
           <h3 className="font-semibold text-lg">{t("Total Earnings")}</h3>
           <p className="text-xl font-bold">${user.totalEarning}</p>
         </div>
       )}
 
-      <div className="bg-gray-50 p-5 rounded-xl shadow-sm flex flex-col items-center">
+      {/* Email */}
+      <div className="p-5 rounded-xl shadow-sm flex flex-col items-center bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700">
         <Mail className="text-blue-600 mb-2" />
         <h3 className="font-semibold text-lg">{t("Email")}</h3>
         <p className="text-sm">{user.email}</p>

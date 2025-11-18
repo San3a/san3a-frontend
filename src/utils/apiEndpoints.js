@@ -22,7 +22,9 @@ export const API_ENDPOINTS = {
     getPastWork: (id) => `/users/past-work/${id}`,
     updateProfile: () => '/users/updateMe',
     addPastWork: () => '/past-work/',
-    getReviews: (id) => `users/reviews/${id}`
+    getReviews: (id) => `users/reviews/${id}`,
+    getPosts: () => 'posts/me',
+    addPost: () => 'posts'
   }
 
 };

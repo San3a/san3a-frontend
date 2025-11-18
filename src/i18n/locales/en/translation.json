@@ -33,5 +33,20 @@
   "Customer Name": "Customer Name",
   "Save": "Save",
   "Please fill in all fields": "Please fill in all fields",
-  "Past work added successfully": "Past work added successfully"
+  "Past work added successfully": "Past work added successfully",
+  "Profile updated successfully": "Profile updated successfully",
+  "Failed to update your profile": "Failed to update your profile",
+  "My Posts": "My Posts",
+  "open": "open",
+  "in-progress": "in-progress",
+  "completed": "completed",
+  "Add Post": "Add Post",
+  "Reviews": "Reviews",
+  "Add New Post": "Add New Post",
+  "Category": "Category",
+  "Tags": "Tags",
+  "Create Post": "Create Post",
+  "Add": "Add",
+  "Address": "Address",
+  "Saving": "Saving"
 }
