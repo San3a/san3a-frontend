@@ -10,19 +10,14 @@ import { useTranslation } from "react-i18next";
 import { useCreatePostMutation, useUpdatePostMutation } from "../../postsApi";
 import { toast } from "sonner";
 import { useTheme } from "next-themes";
-
-const categories = [
-  "Plumbing",
-  "Electrical",
-  "AC Repair",
-  "Painting",
-  "Carpentry",
-];
+import { useSelector } from "react-redux";
 
 export default function PostForm({ post, onClose }) {
+  const { categories } = useSelector((state) => state.category);
   const isEdit = Boolean(post);
   const { theme } = useTheme();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.dir() === "rtl";
   const [createPost] = useCreatePostMutation();
   const [updatePost] = useUpdatePostMutation();
   const {
@@ -44,7 +39,7 @@ export default function PostForm({ post, onClose }) {
       reset({
         title: post.title,
         description: post.description,
-        category: post.category,
+        category: post.category._id,
         address: post.location?.address || "",
       });
     }
@@ -151,8 +146,8 @@ export default function PostForm({ post, onClose }) {
       >
         <option value="">{t("selectCategory")}</option>
         {categories.map((c) => (
-          <option key={c} value={c}>
-            {c}
+          <option key={c._id} value={c._id}>
+            {isRTL ? c.nameAr : c.name}
           </option>
         ))}
       </select>

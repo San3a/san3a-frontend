@@ -7,6 +7,7 @@ import PostImagesArrowBtn from "./PostImagesArrowBtn";
 import PostMainContent from "./PostMainContent";
 import AddOfferForm from "./AddOfferForm";
 import { useTheme } from "next-themes";
+import { useSelector } from "react-redux";
 
 function PostImagesViewer({
   post,
@@ -16,6 +17,7 @@ function PostImagesViewer({
 }) {
   const [index, setIndex] = useState(selectedIndex);
   const { theme } = useTheme();
+  const { user } = useSelector((state) => state.auth);
 
   const images = post.images.map((img) => img.url);
 
@@ -55,7 +57,7 @@ function PostImagesViewer({
               isShowPostOffersBtnVisible={false}
             />
           </div>
-          <AddOfferForm post={post} />
+          {user.role === "technician" && <AddOfferForm post={post} />}
         </motion.div>
 
         <motion.div

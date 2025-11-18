@@ -8,6 +8,7 @@ import UpdateOfferModal from "./UpdateOfferModal";
 import { toast } from "sonner";
 import ConfirmModal from "../../../components/ConfirmModal";
 import DefaultUserImage from "@/assets/default-user.jpg";
+import { useSelector } from "react-redux";
 
 function PostOffer({ postId }) {
   const { theme } = useTheme();
@@ -17,6 +18,8 @@ function PostOffer({ postId }) {
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [deleteOffer] = useDeleteOfferMutation();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const { user } = useSelector((state) => state.auth);
+
   const handleDeleteClick = (offer) => {
     setSelectedOffer(offer);
     setIsDeleteModalOpen(true);
@@ -78,7 +81,7 @@ function PostOffer({ postId }) {
   ];
 
   return offers.length === 0 ? (
-    <p className="text-gray-500 mt-8 text-center">{t("noOffersAvailable")}</p>
+    <p className="text-gray-500 my-8 text-center">{t("noOffersAvailable")}</p>
   ) : (
     <>
       {offers.map((offer) => (
@@ -108,7 +111,9 @@ function PostOffer({ postId }) {
                   </span>
                 </div>
 
-                <CustomActionsDropDown options={getOfferOptions(offer)} />
+                {user._id === offer.technician._id && (
+                  <CustomActionsDropDown options={getOfferOptions(offer)} />
+                )}
               </div>
 
               <p

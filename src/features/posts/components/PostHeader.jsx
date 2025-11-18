@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { useTheme } from "next-themes";
 import CustomActionsDropDown from "../../../components/customActionsDropDown";
 import DefaultUserImage from "@/assets/default-user.jpg";
+import { useSelector } from "react-redux";
 
 function PostHeader({ post }) {
   const { theme } = useTheme();
@@ -17,6 +18,7 @@ function PostHeader({ post }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [deletePost] = useDeletePostMutation();
+  const { user } = useSelector((state) => state.auth);
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
@@ -59,8 +61,7 @@ function PostHeader({ post }) {
       />
       <div>
         <h2
-          c
-          lassName={`font-semibold ${
+          className={`font-semibold ${
             theme === "dark" ? "text-white" : "text-black"
           }`}
         >
@@ -74,7 +75,9 @@ function PostHeader({ post }) {
           {formatDate(post.createdAt)}
         </p>
       </div>
-      <CustomActionsDropDown options={postOptions} />
+      {user._id === post.user._id && (
+        <CustomActionsDropDown options={postOptions} />
+      )}
 
       <UpsertPostModal
         isOpen={isModalOpen}

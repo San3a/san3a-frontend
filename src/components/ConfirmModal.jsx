@@ -58,10 +58,10 @@ export default function ConfirmModal({
           </div>
         )}
 
-        <div className="p-6 border-t border-gray-200 dark:border-gray-700 flex gap-3 mx-auto">
+        <div className="p-6 border-t border-gray-200  dark:border-gray-700 flex gap-3 mx-auto">
           <button
             onClick={onClose}
-            className="w-[50%] px-4 py-3 bg-gray-100  cursor-pointer"
+            className="w-[50%] px-4 py-3 bg-gray-100 dark:bg-black  cursor-pointer rounded-md"
           >
             {cancelButtonText || t("cancel")}
           </button>
