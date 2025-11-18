@@ -60,7 +60,6 @@
   "description": "الوصف",
   "create": "إنشاء",
   "edit": "تعديل",
-  "delete": "حذف",
   "categoryCreated": "تم إنشاء الفئة بنجاح",
   "categoryCreateFailed": "فشل في إنشاء الفئة",
 
@@ -100,8 +99,7 @@
   "actions": "الإجراءات",
   "loadingReviews": "جاري تحميل التقييمات...",
   "errorLoadingReviews": "حدث خطأ أثناء تحميل التقييمات.",
-  "noReviews": "لا توجد تقييمات بعد."
-  "All Categories": "كل الفئات",
+  "noReviews": "لا توجد تقييمات بعد.",
   "readMore": "اقرأ المزيد",
   "readLess": "اقرأ أقل",
   "sendOffer": "إرسال عرض",
