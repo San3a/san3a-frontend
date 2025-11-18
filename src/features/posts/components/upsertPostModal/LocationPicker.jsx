@@ -3,24 +3,31 @@ import { toast } from "sonner";
 import { FaCheckCircle } from "react-icons/fa";
 import LoadingButton from "../../../../components/LoadingButton";
 import { useTheme } from "next-themes";
+import { useState } from "react";
 
 export default function LocationPicker({ coords, setCoords }) {
   const { theme } = useTheme();
+
+  const [isLoadingLocation, setIsLoadingLocation] = useState(false);
+
   const getLocation = () => {
     if (!navigator.geolocation) {
       toast.error(t("geolocation_not_supported"));
       return;
     }
 
+    setIsLoadingLocation(true);
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         const { latitude, longitude } = pos.coords;
         setCoords([longitude, latitude]);
         toast.success(t("locationSelected"));
+        setIsLoadingLocation(false);
       },
       (err) => {
         console.log(`location error: ${err}`);
         toast.error(t("locationFailed"));
+        setIsLoadingLocation(false);
       }
     );
   };
@@ -39,24 +46,27 @@ export default function LocationPicker({ coords, setCoords }) {
         {t("location")}
       </h3>
 
-      <LoadingButton
+      <button
+        type="button"
         onClick={getLocation}
-        submitForm={false}
-        title={
-          <div className="flex justify-center items-center gap-2">
+        disabled={isLoadingLocation}
+        className={`w-full h-12 my-4 p-4 text-white rounded-md flex justify-center items-center gap-2 transition-colors duration-200 ${
+          isLoadingLocation
+            ? "bg-gray-400 cursor-not-allowed"
+            : "bg-green-600 hover:bg-green-700"
+        }`}
+      >
+        {isLoadingLocation ? (
+          t("gettingLocation")
+        ) : (
+          <>
             {t("useMyCurrentLocation")}
             {coords && <FaCheckCircle className="text-white text-lg" />}
-          </div>
-        }
-        height="3rem"
-        style={{
-          margin: "1rem 0",
-          padding: "1rem",
-          backgroundColor: "green",
-        }}
-      />
+          </>
+        )}
+      </button>
 
-      {coords && (
+      {coords && !isLoadingLocation && (
         <p className="text-gray-700 text-sm flex items-center gap-1">
           <FaCheckCircle className="text-green-600" />
           {t("locationSelected")}
