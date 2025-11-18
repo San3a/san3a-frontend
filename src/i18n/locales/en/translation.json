@@ -123,6 +123,10 @@
   "Say hi to start the chat": "Say hi to start the chat",
   "Type a message...": "Type a message...",
   "Send": "Send",
+  "topTechniciansLabel": "Top Technicians",
+  "topTechniciansTitle": "Best Rated Near You",
+  "topTechniciansHint": "These technicians are picked based on rating and completed jobs.",
+  "jobsDone": "jobs done",
   "noPostsAvailable": "No posts available",
   "postCategoryRequired": "Post category is required",
   "titleRequired": "Title is required",
@@ -164,5 +168,6 @@
   "deleteOffer": "Delete Offer",
   "offerWillBeDeletedPermanently": "Offer will be deleted permanently",
   "offer": "Offer",
-  "updateOffer": "Update Offer"
+  "updateOffer": "Update Offer",
+  "gettingLocation": "Getting location..."
 }

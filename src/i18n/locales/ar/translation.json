@@ -33,6 +33,11 @@
   "Type a message...": "اكتب رسالة...",
   "Send": "أرسل",
 
+  "topTechniciansLabel": "أفضل الفنيين",
+  "topTechniciansTitle": "الأعلى تقييماً بالقرب منك",
+  "topTechniciansHint": "تم اختيار هؤلاء الفنيين بناءً على التقييم وعدد الطلبات المنجزة.",
+  "jobsDone": "طلبات منجزة",
+
   "dashboard": {
     "totalCustomers": "إجمالي العملاء",
     "totalTechnicians": "إجمالي الفنيين",
@@ -163,5 +168,6 @@
   "deleteOffer": "حذف العرض",
   "offerWillBeDeletedPermanently": "سيتم حذف العرض نهائيًا",
   "offer": "العرض",
-  "updateOffer": "تحديث العرض"
+  "updateOffer": "تحديث العرض",
+  "gettingLocation": "جاري جلب الموقع..."
 }
