@@ -8,6 +8,7 @@ function ExpandableText({
   readMoreText = "Read more",
   readLessText = "Read less",
   className = "",
+  textColor = "text-gray-800",
 }) {
   const [expanded, setExpanded] = useState(false);
   const [needsTruncation, setNeedsTruncation] = useState(false);
@@ -31,7 +32,7 @@ function ExpandableText({
       >
         <p
           ref={textRef}
-          className={`text-gray-800 leading-relaxed transition-all duration-300 ${
+          className={`${textColor} leading-relaxed transition-all duration-300 ${
             expanded ? "" : `line-clamp-${maxLines}`
           }`}
         >

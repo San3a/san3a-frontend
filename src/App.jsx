@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import AppRoutes from "./routes/app.routes";
+import PostsPage from "./features/posts/PostsPage";
 const App = () => {
   const { i18n } = useTranslation();
 
