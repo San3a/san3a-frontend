@@ -7,6 +7,8 @@ import CustomActionsDropDown from "../../../components/CustomActionsDropDown";
 import UpdateOfferModal from "./UpdateOfferModal";
 import { toast } from "sonner";
 import ConfirmModal from "../../../components/ConfirmModal";
+import DefaultUserImage from "@/assets/default-user.jpg";
+import { useSelector } from "react-redux";
 
 function PostOffer({ postId }) {
   const { theme } = useTheme();
@@ -16,6 +18,8 @@ function PostOffer({ postId }) {
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [deleteOffer] = useDeleteOfferMutation();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const { user } = useSelector((state) => state.auth);
+
   const handleDeleteClick = (offer) => {
     setSelectedOffer(offer);
     setIsDeleteModalOpen(true);
@@ -77,7 +81,7 @@ function PostOffer({ postId }) {
   ];
 
   return offers.length === 0 ? (
-    <p className="text-gray-500 mt-8 text-center">{t("noOffersAvailable")}</p>
+    <p className="text-gray-500 my-8 text-center">{t("noOffersAvailable")}</p>
   ) : (
     <>
       {offers.map((offer) => (
@@ -85,7 +89,8 @@ function PostOffer({ postId }) {
           <div className="flex">
             <img
               className="h-8 w-8 bg-black rounded-full shrink-0"
-              src="https://plus.unsplash.com/premium_photo-1755882951408-b6d668ccca21?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              src={offer.technician.image.url}
+              fallback={DefaultUserImage}
             />
             <div
               className={`w-full bg-black/10 rounded-lg px-3 py-1 ms-2 ${
@@ -106,7 +111,9 @@ function PostOffer({ postId }) {
                   </span>
                 </div>
 
-                <CustomActionsDropDown options={getOfferOptions(offer)} />
+                {user._id === offer.technician._id && (
+                  <CustomActionsDropDown options={getOfferOptions(offer)} />
+                )}
               </div>
 
               <p

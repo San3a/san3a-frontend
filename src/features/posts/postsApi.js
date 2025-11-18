@@ -27,14 +27,34 @@ export const postsApiSlice = apiSlice.injectEndpoints({
       invalidatesTags: ["Posts"],
     }),
     getAllPosts: builder.query({
-      query: () => ({
-        url: Posts.GET_POSTS,
-        method: "GET",
-        headers: {
-          "Cache-Control": "no-cache",
-        },
-      }),
-      providesTags: ["Posts"],
+      query: (page = 1) => `${Posts.GET_POSTS}?page=${page}&limit=10`,
+      serializeQueryArgs: ({ endpointName }) => {
+        return endpointName;
+      },
+      merge: (currentCache, newItems, { arg }) => {
+        if (arg === 1) {
+          return newItems;
+        }
+        const uniqueNewPosts = newItems.data.filter(
+          (newItem) =>
+            !currentCache.data.some(
+              (cachedItem) => cachedItem._id === newItem._id
+            )
+        );
+        currentCache.data.push(...uniqueNewPosts);
+        currentCache.page = newItems.page;
+        currentCache.totalPages = newItems.totalPages;
+      },
+      forceRefetch({ currentArg, previousArg }) {
+        return currentArg !== previousArg;
+      },
+      providesTags: (result) =>
+        result?.data
+          ? [
+              ...result.data.map(({ _id }) => ({ type: "Posts", id: _id })),
+              { type: "Posts", id: "LIST" },
+            ]
+          : [{ type: "Posts", id: "LIST" }],
     }),
     getPostOffers: builder.query({
       query: (postId) => ({

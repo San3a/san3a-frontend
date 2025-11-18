@@ -8,6 +8,8 @@ import { useDeletePostMutation } from "../postsApi";
 import { toast } from "sonner";
 import { useTheme } from "next-themes";
 import CustomActionsDropDown from "../../../components/CustomActionsDropDown";
+import DefaultUserImage from "@/assets/default-user.jpg";
+import { useSelector } from "react-redux";
 
 function PostHeader({ post }) {
   const { theme } = useTheme();
@@ -16,6 +18,7 @@ function PostHeader({ post }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [deletePost] = useDeletePostMutation();
+  const { user } = useSelector((state) => state.auth);
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
@@ -29,9 +32,6 @@ function PostHeader({ post }) {
       setIsDeleteModalOpen(false);
       toast.success(t("postDeletedSuccessfully"));
     } catch (err) {
-      console.log(
-        `This is the error while deleting post: ${JSON.stringify(err)}`
-      );
       toast.error(err.data?.message || t("errorOccurred"));
     }
   };
@@ -55,8 +55,9 @@ function PostHeader({ post }) {
   return (
     <div className="flex gap-2 items-center">
       <img
-        className="h-12 w-12 bg-black rounded-full "
-        src="https://plus.unsplash.com/premium_photo-1755882951408-b6d668ccca21?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        className="h-12 w-12 bg-black object-cover rounded-full shrink-0"
+        src={post.user.image.url}
+        fallback={DefaultUserImage}
       />
       <div>
         <h2
@@ -74,7 +75,9 @@ function PostHeader({ post }) {
           {formatDate(post.createdAt)}
         </p>
       </div>
-      <CustomActionsDropDown options={postOptions} />
+      {user._id === post.user._id && (
+        <CustomActionsDropDown options={postOptions} />
+      )}
 
       <UpsertPostModal
         isOpen={isModalOpen}

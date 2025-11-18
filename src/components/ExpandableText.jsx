@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import isTextRTL from "../utils/isTextRTL";
 
 function ExpandableText({
   children,
@@ -13,7 +14,9 @@ function ExpandableText({
   const [expanded, setExpanded] = useState(false);
   const [needsTruncation, setNeedsTruncation] = useState(false);
   const textRef = useRef(null);
-
+  const textDirection = isTextRTL(children) ? "rtl" : "ltr";
+  const textAlign = isTextRTL(children) ? "text-right" : "text-left";
+  console.log(`isTextRTL(children):`, isTextRTL(children));
   useEffect(() => {
     if (textRef.current) {
       const el = textRef.current;
@@ -22,7 +25,10 @@ function ExpandableText({
   }, [children, maxLines]);
 
   return (
-    <div className={`relative w-full flex flex-col items-start ${className}`}>
+    <div
+      dir={textDirection}
+      className={`relative w-full flex flex-col items-start ${className}`}
+    >
       <motion.div
         key={expanded ? "expanded" : "collapsed"}
         initial={{ height: 0, opacity: 0 }}
@@ -32,7 +38,7 @@ function ExpandableText({
       >
         <p
           ref={textRef}
-          className={`${textColor} leading-relaxed transition-all duration-300 ${
+          className={`${textColor} ${textAlign} leading-relaxed transition-all duration-300 ${
             expanded ? "" : `line-clamp-${maxLines}`
           }`}
         >

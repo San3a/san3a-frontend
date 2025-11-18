@@ -1,16 +1,20 @@
 import { useTranslation } from "react-i18next";
 import ExpandableText from "../../../components/ExpandableText";
 import { useTheme } from "next-themes";
+import isTextRTL from "../../../utils/isTextRTL";
 
 function PostText({ post }) {
   const { t } = useTranslation();
   const { theme } = useTheme();
+  const titleDirection = isTextRTL(post.title) ? "rtl" : "ltr";
+  const titleAlign = isTextRTL(post.title) ? "text-right" : "text-left";
 
   return (
     <>
       <h2
-        className={`mt-3 font-bold ${
-          theme === "dark" ? "text-white" : "text-black"
+        dir={titleDirection}
+        className={`mt-3 font-bold ${titleAlign} ${
+          theme === "dark" ? "text-white" : "text-black ${}"
         }`}
       >
         {post.title}
