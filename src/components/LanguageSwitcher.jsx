@@ -19,7 +19,6 @@ const LanguageSwitcher = () => {
 
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
-    localStorage.setItem("language", lang);
   };
 
   const currentLang = i18n.language || "en";
@@ -32,7 +31,7 @@ const LanguageSwitcher = () => {
         <Button
           variant="outline"
           size="icon"
-          className="w-8 h-8 border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
+          className="w-8 h-8 border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer"
           aria-label={`Current language: ${selectedLang.name}`}
         >
           <span className="text-xl">{selectedLang.flag}</span>
