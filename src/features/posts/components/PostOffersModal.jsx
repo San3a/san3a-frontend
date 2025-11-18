@@ -1,11 +1,10 @@
-import { MdClose, MdLocalOffer } from "react-icons/md";
+import { MdClose } from "react-icons/md";
 import PostMainContent from "./PostMainContent";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 
 import AddOfferForm from "./AddOfferForm";
 import { useTheme } from "next-themes";
-import { useSelector } from "react-redux";
 
 function PostOffersModal({
   isOpen,
@@ -16,7 +15,6 @@ function PostOffersModal({
 }) {
   const { theme } = useTheme();
   const { t } = useTranslation();
-  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (isOpen) {
@@ -62,7 +60,7 @@ function PostOffersModal({
             isShowPostOffersBtnVisible={false}
           />
         </div>
-        {user.role === "technician" && <AddOfferForm post={post} />}
+        <AddOfferForm post={post} />
       </div>
     </div>
   );

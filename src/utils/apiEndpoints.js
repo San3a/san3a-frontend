@@ -6,7 +6,7 @@ export const API_ENDPOINTS = {
   },
   POSTS: {
     CREATE_POST: "/posts/",
-    GET_POSTS: "/posts/me",
+    GET_POSTS: "/posts",
     UPDATE_POST: (postId) => `/posts/${postId}`,
     DELETE_POST: (postId) => `/posts/${postId}`,
   },
@@ -28,6 +28,8 @@ export const API_ENDPOINTS = {
     ADD_OFFER_TO_POST: (postId) => `/posts/${postId}/offers`,
     UPDATE_OFFER: (postId, offerId) => `/posts/${postId}/offers/${offerId}`,
     DELETE_OFFER: (postId, offerId) => `/posts/${postId}/offers/${offerId}`,
+    DID_TECHNICIAN_ALREADY_ADD_OFFER: (postId) =>
+      `/posts/${postId}/offers/did-make-offer`,
   },
   ADMIN: {
     GET_ALL_USERS: "/admin/users",
