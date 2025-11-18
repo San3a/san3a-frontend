@@ -21,7 +21,7 @@ function PostImages({ images, onImageClick }) {
           <img
             src={img}
             alt=""
-            className=" w-full h-40 object-cover hover:opacity-90 transition cursor-pointer"
+            className=" w-full h-40 object-contain hover:opacity-90 transition cursor-pointer"
           />
           {index === 3 && images.length > 4 && (
             <div className="absolute inset-0 bg-black/20 bg-opacity-50 flex items-center justify-center text-white text-xl font-semibold ">

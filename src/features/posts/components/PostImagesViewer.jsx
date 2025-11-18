@@ -70,7 +70,7 @@ function PostImagesViewer({
           <img
             src={images[index]}
             alt=""
-            className="max-h-full max-w-full object-contain rounded-lg"
+            className="max-h-full max-w-full object-contain"
           />
 
           {images.length > 1 && (
