@@ -10,7 +10,7 @@ function PostText({ post }) {
     <>
       <h2
         className={`mt-3 font-bold ${
-          theme === "light" ? "text-white" : "text-black"
+          theme === "dark" ? "text-white" : "text-black"
         }`}
       >
         {post.title}
@@ -19,7 +19,7 @@ function PostText({ post }) {
         maxLines={3}
         readMoreText={t("readMore")}
         readLessText={t("readLess")}
-        textColor={theme === "light" ? "text-white" : "text-black"}
+        textColor={theme === "dark" ? "text-white" : "text-black"}
       >
         {post.description}
       </ExpandableText>

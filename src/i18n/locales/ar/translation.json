@@ -72,5 +72,6 @@
   "deleteNow": "احذف الآن",
   "newImages": "الصور الجديدة",
   "publish": "نشر",
-  "noOffersAvailable": "لا توجد عروض متاحة"
+  "noOffersAvailable": "لا توجد عروض متاحة",
+  "noPostsAvailable": "لا توجد منشورات متاحة"
 }

@@ -34,13 +34,13 @@ function PostOffersModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
       <div
         className={`${
-          theme === "light" ? "bg-black" : "bg-white"
+          theme === "dark" ? "bg-black" : "bg-white"
         } w-full max-w-lg rounded-xl shadow-lg flex flex-col max-h-[90vh] overflow-hidden`}
       >
         <div className="flex justify-between items-center p-4 border-b border-gray-200">
           <h2
             className={`font-semibold text-lg mx-auto ${
-              theme === "light" ? "text-white" : "text-black"
+              theme === "dark" ? "text-white" : "text-black"
             }`}
           >
             {t("post")}

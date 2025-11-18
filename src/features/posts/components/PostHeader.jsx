@@ -67,14 +67,14 @@ function PostHeader({ post }) {
       <div>
         <h2
           className={`font-semibold ${
-            theme === "light" ? "text-white" : "text-black"
+            theme === "dark" ? "text-white" : "text-black"
           }`}
         >
           {post.user.name}
         </h2>
         <p
           className={`text-xs font-semibold ${
-            theme === "light" ? "text-gray-400" : "text-gray-600"
+            theme === "dark" ? "text-gray-400" : "text-gray-600"
           }`}
         >
           {formatDate(post.createdAt)}
@@ -86,7 +86,7 @@ function PostHeader({ post }) {
             variant="outline"
             size="icon"
             className={`w-8 h-8 ms-auto rounded-full bg-transparent border-none ${
-              theme === "light" ? "hover:bg-gray-100" : "hover:bg-black"
+              theme === "dark" ? "hover:bg-gray-100" : "hover:bg-black"
             }`}
           >
             <FaEllipsisH
@@ -100,7 +100,7 @@ function PostHeader({ post }) {
 
         <DropdownMenuContent
           align={currentLang === "ar" ? "start" : "end"}
-          className={`min-w-fit ${theme === "light" ? "bg-black" : "bg-white"}`}
+          className={`min-w-fit ${theme === "dark" ? "bg-black" : "bg-white"}`}
         >
           {postOptions.map((option, index) => (
             <DropdownMenuItem

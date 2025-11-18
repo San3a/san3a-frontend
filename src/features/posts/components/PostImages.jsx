@@ -1,11 +1,14 @@
 function PostImages({ images, onImageClick }) {
   if (images.length === 1) {
     return (
-      <div className="relative cursor-pointer" onClick={() => onImageClick(0)}>
+      <div
+        className="relative cursor-pointer bg-blue-600"
+        onClick={() => onImageClick(0)}
+      >
         <img
           src={images[0]}
           alt=""
-          className=" w-full h-96 object-contain hover:opacity-90 transition"
+          className=" w-full max-h-96 object-contain hover:opacity-90 transition"
         />
       </div>
     );

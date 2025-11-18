@@ -15,8 +15,8 @@ function AddPost() {
     <>
       <div
         className={`${
-          theme === "light" ? "bg-[#252728]" : "bg-white"
-        } p-8 rounded-xl shadow-lg w-full max-w-md flex justify-center items-center gap-4 `}
+          theme === "dark" ? "bg-[#252728]" : "bg-white"
+        } p-8 rounded-xl shadow-lg w-full max-w-lg flex justify-center items-center gap-4 `}
       >
         <img
           className="h-12 w-12 bg-black rounded-full shrink-0"
@@ -25,9 +25,9 @@ function AddPost() {
         <button
           onClick={handleOpenModal}
           className={`h-[80%] ${
-            theme === "light" ? "bg-[#333334]" : "bg-gray-100"
+            theme === "dark" ? "bg-[#333334]" : "bg-gray-100"
           } ${
-            theme === "light" ? "text-gray-300" : "text-black/80"
+            theme === "dark" ? "text-gray-300" : "text-black/80"
           } font-medium w-full rounded-full px-4 py-4 text-start hover:bg-gray-200 cursor-pointer`}
         >
           {t("startTypingPost")}

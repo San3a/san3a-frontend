@@ -9,6 +9,7 @@ import LocationPicker from "./LocationPicker";
 import { useTranslation } from "react-i18next";
 import { useCreatePostMutation, useUpdatePostMutation } from "../../postsApi";
 import { toast } from "sonner";
+import { useTheme } from "next-themes";
 
 const categories = [
   "Plumbing",
@@ -20,6 +21,7 @@ const categories = [
 
 export default function PostForm({ post, onClose }) {
   const isEdit = Boolean(post);
+  const { theme } = useTheme();
   const { t } = useTranslation();
   const [createPost] = useCreatePostMutation();
   const [updatePost] = useUpdatePostMutation();
@@ -114,7 +116,11 @@ export default function PostForm({ post, onClose }) {
             maxLength: { value: 100, message: t("postTitleMaxLength") },
           })}
           placeholder={t("title")}
-          className="w-full border border-gray-300 p-3 rounded-xl"
+          className={`w-full border p-3 rounded-xl ${
+            theme === "dark"
+              ? "border-gray-600 bg-gray-700 text-white placeholder:text-gray-400"
+              : "border-gray-300 bg-white text-gray-900 placeholder:text-gray-500"
+          }`}
         />
         <InputError message={errors.title?.message} />
       </div>
@@ -126,14 +132,22 @@ export default function PostForm({ post, onClose }) {
             minLength: { value: 10, message: t("postDescriptionMinLength") },
           })}
           placeholder={t("writeSomething")}
-          className="w-full border border-gray-300 p-3 rounded-xl h-28 resize-none"
+          className={`w-full border p-3 rounded-xl h-28 resize-none ${
+            theme === "dark"
+              ? "border-gray-600 bg-gray-700 text-white placeholder:text-gray-400"
+              : "border-gray-300 bg-white text-gray-900 placeholder:text-gray-500"
+          }`}
         />
         <InputError message={errors.description?.message} />
       </div>
 
       <select
         {...register("category", { required: t("postCategoryRequired") })}
-        className="w-full border border-gray-300 p-3 rounded-xl"
+        className={`w-full border p-3 rounded-xl ${
+          theme === "dark"
+            ? "border-gray-600 bg-gray-700 text-white"
+            : "border-gray-300 bg-white text-gray-900"
+        }`}
       >
         <option value="">{t("selectCategory")}</option>
         {categories.map((c) => (
@@ -162,7 +176,11 @@ export default function PostForm({ post, onClose }) {
         <button
           type="button"
           onClick={onClose}
-          className="px-5 py-2 bg-gray-200 rounded-xl w-[30%] h-14 cursor-pointer"
+          className={`px-5 py-2 rounded-xl w-[30%] h-14 cursor-pointer transition-colors ${
+            theme === "dark"
+              ? "bg-gray-700 text-white hover:bg-gray-600"
+              : "bg-gray-200 text-gray-900 hover:bg-gray-300"
+          }`}
         >
           {t("cancel")}
         </button>

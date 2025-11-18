@@ -38,7 +38,7 @@ function PostOffer({ postId }) {
           />
           <div
             className={`w-full bg-black/10 rounded-lg px-3 py-1 ms-2 ${
-              theme === "light" ? "text-white" : "text-black"
+              theme === "dark" ? "text-white" : "text-black"
             }`}
           >
             <span className="font-semibold text-[16px]">
@@ -46,7 +46,7 @@ function PostOffer({ postId }) {
             </span>
             <span
               className={`font-bold ${
-                theme === "light" ? "text-gray-400" : "text-gray-700"
+                theme === "dark" ? "text-gray-400" : "text-gray-700"
               } text-[14px]`}
             >
               .{offer.price}EGP
@@ -54,7 +54,7 @@ function PostOffer({ postId }) {
 
             <p
               className={`font-normal ${
-                theme === "light" ? "text-white" : "text-black"
+                theme === "dark" ? "text-white" : "text-black"
               }`}
             >
               {offer.message}

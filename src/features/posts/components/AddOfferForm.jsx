@@ -58,9 +58,9 @@ function AddOfferForm({ post }) {
                 placeholder={t("writeAnOffer")}
                 rows={2}
                 className={`w-full border border-gray-300  ${
-                  theme === "light" ? "bg-[#252728]" : "bg-gray-50"
+                  theme === "dark" ? "bg-[#252728]" : "bg-gray-50"
                 }  text-gray-900 rounded-md px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none ${
-                  theme === "light"
+                  theme === "dark"
                     ? "placeholder:text-white"
                     : "placeholder:text-gray-400"
                 } text-sm`}
@@ -74,9 +74,9 @@ function AddOfferForm({ post }) {
                 type="text"
                 placeholder={t("price")}
                 className={`w-full border border-gray-300  ${
-                  theme === "light" ? "bg-[#252728]" : "bg-gray-50"
+                  theme === "dark" ? "bg-[#252728]" : "bg-gray-50"
                 }  text-gray-900  rounded-md px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                  theme === "light"
+                  theme === "dark"
                     ? "placeholder:text-white"
                     : "placeholder:text-gray-400"
                 } text-sm`}
