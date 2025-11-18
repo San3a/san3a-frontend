@@ -50,7 +50,7 @@ const LanguageSwitcher = () => {
             className={`cursor-pointer ${
               lang.code === currentLang
                 ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 font-semibold"
-                : ""
+                : "text-secondary"
             }`}
           >
             <span className="text-xl mr-2">{lang.flag}</span>
