@@ -5,7 +5,7 @@ function PostShimmer() {
   return (
     <div
       className={`${
-        theme === "dark" ? "bg-black" : "bg-white"
+        theme === "dark" ? "bg-[#252728]" : "bg-white"
       } p-8 rounded-xl shadow-lg w-full max-w-lg animate-pulse mx-auto mb-2`}
     >
       <div className="flex gap-2 items-center mb-3">

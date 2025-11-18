@@ -8,6 +8,7 @@ import { useDeletePostMutation } from "../postsApi";
 import { toast } from "sonner";
 import { useTheme } from "next-themes";
 import CustomActionsDropDown from "../../../components/customActionsDropDown";
+import DefaultUserImage from "@/assets/default-user.jpg";
 
 function PostHeader({ post }) {
   const { theme } = useTheme();
@@ -29,9 +30,6 @@ function PostHeader({ post }) {
       setIsDeleteModalOpen(false);
       toast.success(t("postDeletedSuccessfully"));
     } catch (err) {
-      console.log(
-        `This is the error while deleting post: ${JSON.stringify(err)}`
-      );
       toast.error(err.data?.message || t("errorOccurred"));
     }
   };
@@ -55,12 +53,14 @@ function PostHeader({ post }) {
   return (
     <div className="flex gap-2 items-center">
       <img
-        className="h-12 w-12 bg-black rounded-full "
-        src="https://plus.unsplash.com/premium_photo-1755882951408-b6d668ccca21?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        className="h-12 w-12 bg-black object-cover rounded-full shrink-0"
+        src={post.user.image.url}
+        fallback={DefaultUserImage}
       />
       <div>
         <h2
-          className={`font-semibold ${
+          c
+          lassName={`font-semibold ${
             theme === "dark" ? "text-white" : "text-black"
           }`}
         >
