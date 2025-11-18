@@ -38,9 +38,13 @@ export const API_ENDPOINTS = {
     GET_USER_DEMOGRAPHICS: "/admin/stats/user-demographics",
     GET_TECHNICIAN_DEMOGRAPHICS: "/admin/stats/technician-demographics",
   },
+  TechService: {
+    GET_ALL: "/tech-services",
+  },
 };
 
 export const Auth = API_ENDPOINTS.AUTH;
 export const Chat = API_ENDPOINTS.CHAT;
 export const Category = API_ENDPOINTS.CATEGORY;
 export const Admin = API_ENDPOINTS.ADMIN;
+export const TechService = API_ENDPOINTS.TechService;

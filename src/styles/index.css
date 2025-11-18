@@ -47,11 +47,11 @@
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
+  --popover: oklch(33.984% 0.00419 16.857);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --primary: oklch(0% 0 0);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
+  --secondary: oklch(100% 0.00011 271.152);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
@@ -81,11 +81,11 @@
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
+  --popover: oklch(85.165% 0.00887 16.732);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
+  --primary: oklch(100% 0.00011 271.152);
   --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
+  --secondary: oklch(0% 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
@@ -117,4 +117,18 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+@font-face {
+  font-family: "MaisonNeueBook";
+  src: url("../assets//fonts/FontsFree-Net-Maison-Neue-Book.ttf")
+    format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  font-family: "MaisonNeueBook", sans-serif;
+}
+html[lang="ar"] body {
+  font-family: "Cairo", sans-serif;
 }

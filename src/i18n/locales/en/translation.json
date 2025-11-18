@@ -15,7 +15,6 @@
   "Delete": "Delete",
   "is typing...": "is typing...",
   "search": "search...",
-  "All Categories": "All Categories",
 
   "dashboard": {
     "totalCustomers": "Total Customers",
@@ -85,5 +84,22 @@
   "loadingReviews": "Loading reviews...",
   "errorLoadingReviews": "Error loading reviews.",
 
-  "noReviews": "No reviews available."
+  "noReviews": "No reviews available.",
+  "All Categories": "AllCategories",
+  "Category": "Category",
+  "All": "All",
+  "Rating": "Rating",
+  "Stars": "Stars",
+  "Any": "Any",
+  "Price": "Price",
+  "Min": "Min",
+  "Max": "Max",
+  "Clear Filters": "Clear Filters",
+  "No categories available": "No categories available",
+  "Please try again later.": "Please try again later.",
+  "No services found": "No services found",
+  "chatbot": "Chat with Elosta",
+  "Say hi to start the chat": "Say hi to start the chat",
+  "Type a message...": "Type a message...",
+  "Send": "Send"
 }
