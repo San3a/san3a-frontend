@@ -7,6 +7,11 @@ import TestPage from "../pages/TestPage";
 import HomePage from "../pages/HomePage";
 import ChatBotPage from "../features/chatbot/pages/ChatBotPage";
 import ChatPage from "../features/chat/pages/ChatPage";
+import Dashboard from "../features/admin/pages/Dashboard";
+import Users from "../features/admin/pages/Users";
+import Categories from "../features/admin/pages/Categories";
+import Reviews from "../features/admin/pages/Reviews";
+import Layout from "../features/admin/components/Layout";
 
 const AppRoutes = () => {
   return (
@@ -20,6 +25,13 @@ const AppRoutes = () => {
         <Route path="/test" element={<TestPage />}></Route>
         <Route path="/chat/:conversationId" element={<ChatPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
+      </Route>
+      <Route element={<Layout />}>
+        <Route path="/admin" element={<Dashboard />} />
+        <Route path="/admin/users" element={<Users />} />
+        <Route path="/admin/categories" element={<Categories />} />
+        <Route path="/admin/reviews" element={<Reviews />} />
+        <Route path="*" element={<Navigate to="/admin" replace />} />
       </Route>
     </Routes>
   );

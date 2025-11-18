@@ -15,6 +15,76 @@
   "Delete": "Delete",
   "is typing...": "is typing...",
   "search": "search...",
+
+  "dashboard": {
+    "totalCustomers": "Total Customers",
+    "totalTechnicians": "Total Technicians",
+    "techPerCategory": "Technicians per Category",
+    "usersDemographics": "Users Demographics",
+    "techDemographics": "Technician Demographics",
+    "totalIncome": "Total Income"
+  },
+
+  "cities": {
+    "Cairo": "Cairo",
+    "Alexandria": "Alexandria",
+    "Giza": "Giza"
+  },
+  "dashboardTitle": "Dashboard",
+  "users": "Users",
+  "reviews": "Reviews",
+  "admin": "Admin",
+  "panel": "Panel",
+  "welcomeBack": "Welcome back, {{user}}",
+
+  "createCategory": "Create Category",
+  "allCategories": "All Categories",
+  "name": "Name",
+  "description": "Description",
+  "create": "Create",
+  "edit": "Edit",
+  "delete": "Delete",
+  "categoryCreated": "Category created successfully",
+  "categoryCreateFailed": "Failed to create category",
+
+  "categoryNames": {
+    "Carpenter": "Carpenter",
+    "Cleaner": "Cleaner",
+    "Painter": "Painter",
+    "Beauty": "Beauty",
+    "AC Repair": "AC Repair",
+    "Plumber": "Plumber",
+    "Men's Salon": "Men's Salon",
+    "Electrician": "Electrician"
+  },
+
+  "categoryDescriptions": {
+    "Carpenter": "Professional carpentry services including furniture, cabinets, and woodwork.",
+    "Cleaner": "Expert cleaning services for homes, offices, and commercial spaces.",
+    "Painter": "Professional painting services for interior and exterior surfaces.",
+    "Beauty": "Beauty services including hair, makeup, and skincare treatments.",
+    "AC Repair": "Air conditioning repair and maintenance services for all types of AC units.",
+    "Plumber": "Plumbing services including leak repair, pipe installation, and maintenance.",
+    "Men's Salon": "Men's grooming services including haircuts, shaving, and styling.",
+    "Electrician": "Certified electrical services including installation, repair, and maintenance."
+  },
+
+  "usersManagement": "Users Management",
+  "customers": "Customers",
+  "technicians": "Technicians",
+  "loadingUsers": "Loading users...",
+  "errorLoadingUsers": "Error loading users.",
+  "email": "Email",
+  "rating": "Rating",
+  "totalEarning": "Total Earning",
+  "view": "View",
+  "ban": "Ban",
+  "unban": "Unban",
+  "actions": "Actions",
+  "loadingReviews": "Loading reviews...",
+  "errorLoadingReviews": "Error loading reviews.",
+
+  "noReviews": "No reviews available.",
   "All Categories": "AllCategories",
   "Category": "Category",
   "All": "All",

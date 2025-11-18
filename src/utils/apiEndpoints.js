@@ -17,6 +17,27 @@ export const API_ENDPOINTS = {
     UPDATE: (id) => `/categories/${id}`,
     DELETE: (id) => `/categories/${id}`,
   },
+  ADMIN: {
+    GET_ALL_USERS: "/admin/users",
+    GET_TECHNICIANS: "/admin/technicians",
+    BAN_USER: (id) => `/admin/users/${id}/ban`,
+    UNBAN_USER: (id) => `/admin/users/${id}/unban`,
+    UPDATE_USER: (id) => `/admin/users/${id}`,
+    USER_EARNINGS: (id) => `/admin/users/${id}/earnings`,
+
+    ADMIN_GET_CATEGORIES: "/admin/categories",
+    ADMIN_CREATE_CATEGORY: "/admin/categories",
+    ADMIN_UPDATE_CATEGORY: (id) => `/admin/categories/${id}`,
+    ADMIN_DELETE_CATEGORY: (id) => `/admin/categories/${id}`,
+
+    GET_ALL_REVIEWS: "/admin/reviews",
+    DELETE_REVIEW: (id) => `/admin/reviews/${id}`,
+
+    GET_COUNTS: "/admin/stats/counts",
+    TECHNICIANS_PER_CATEGORY: "/admin/stats/technicians-per-category",
+    GET_USER_DEMOGRAPHICS: "/admin/stats/user-demographics",
+    GET_TECHNICIAN_DEMOGRAPHICS: "/admin/stats/technician-demographics",
+  },
   TechService: {
     GET_ALL: "/tech-services",
   },
@@ -28,5 +49,6 @@ export const API_ENDPOINTS = {
 export const Auth = API_ENDPOINTS.AUTH;
 export const Chat = API_ENDPOINTS.CHAT;
 export const Category = API_ENDPOINTS.CATEGORY;
+export const Admin = API_ENDPOINTS.ADMIN;
 export const TechService = API_ENDPOINTS.TechService;
 export const ChatBot = API_ENDPOINTS.ChatBot;
