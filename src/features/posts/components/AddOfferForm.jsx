@@ -5,8 +5,10 @@ import { BiSend } from "react-icons/bi";
 import { useAddOfferToPostMutation } from "../postsApi";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "next-themes";
 
 function AddOfferForm({ post }) {
+  const { theme } = useTheme();
   const [createOffer, { reset: resetMutation }] = useAddOfferToPostMutation();
   const { t } = useTranslation();
 
@@ -36,7 +38,7 @@ function AddOfferForm({ post }) {
   };
 
   return (
-    <div className="sticky top-0 z-10 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-sm">
+    <div className="sticky top-0 z-10  border-b border-gray-200  shadow-sm pb-2">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="px-4 pt-4 flex gap-3 items-start"
@@ -55,7 +57,13 @@ function AddOfferForm({ post }) {
               <textarea
                 placeholder={t("writeAnOffer")}
                 rows={2}
-                className="w-full border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none placeholder:text-gray-400 dark:placeholder:text-gray-500 text-sm"
+                className={`w-full border border-gray-300  ${
+                  theme === "light" ? "bg-[#252728]" : "bg-gray-50"
+                }  text-gray-900 rounded-md px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none ${
+                  theme === "light"
+                    ? "placeholder:text-white"
+                    : "placeholder:text-gray-400"
+                } text-sm`}
                 {...offerForm("text", { required: t("offerTextRequired") })}
               />
               {errors.text && <InputError message={errors.text.message} />}
@@ -65,7 +73,13 @@ function AddOfferForm({ post }) {
               <input
                 type="text"
                 placeholder={t("price")}
-                className="w-full border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder:text-gray-400 dark:placeholder:text-gray-500 text-sm"
+                className={`w-full border border-gray-300  ${
+                  theme === "light" ? "bg-[#252728]" : "bg-gray-50"
+                }  text-gray-900  rounded-md px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                  theme === "light"
+                    ? "placeholder:text-white"
+                    : "placeholder:text-gray-400"
+                } text-sm`}
                 {...offerForm("price", {
                   required: t("offerPriceRequired"),
                   pattern: {

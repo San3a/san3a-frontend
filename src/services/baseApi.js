@@ -7,7 +7,7 @@ const baseQuery = fetchBaseQuery({
   prepareHeaders: (headers, { getState }) => {
     const token =
       getState().auth.token ||
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MTQ1MTdiOWIxM2NmZjY1YmU2ZWI3MyIsImlhdCI6MTc2MzM2NDk3OSwiZXhwIjoxNzYzOTY5Nzc5fQ.KM4K_5Ru4tUgfp7RCELnp00g_f62Z95fbUqwLodmuik";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MTRjYTU5NWYwNmM3MWZkYjRjNTNkMyIsImlhdCI6MTc2MzM4MjQ4MCwiZXhwIjoxNzYzOTg3MjgwfQ.-U_yWSPXR8Y6mw5rDNX6-5DuVVe1mx5neVnR971IHYg";
     if (token) {
       headers.set("Authorization", `Bearer ${token}`);
     }

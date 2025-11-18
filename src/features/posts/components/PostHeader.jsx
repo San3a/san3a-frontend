@@ -15,8 +15,11 @@ import ConfirmModal from "@/components/ConfirmModal";
 import { useState } from "react";
 import { useDeletePostMutation } from "../postsApi";
 import { toast } from "sonner";
+import { useTheme } from "next-themes";
 
 function PostHeader({ post }) {
+  const { theme } = useTheme();
+
   const { t, i18n } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -62,8 +65,18 @@ function PostHeader({ post }) {
         src="https://plus.unsplash.com/premium_photo-1755882951408-b6d668ccca21?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       />
       <div>
-        <h2 className="font-semibold">{post.user.name}</h2>
-        <p className="text-xs font-semibold text-gray-600">
+        <h2
+          className={`font-semibold ${
+            theme === "light" ? "text-white" : "text-black"
+          }`}
+        >
+          {post.user.name}
+        </h2>
+        <p
+          className={`text-xs font-semibold ${
+            theme === "light" ? "text-gray-400" : "text-gray-600"
+          }`}
+        >
           {formatDate(post.createdAt)}
         </p>
       </div>
@@ -72,28 +85,32 @@ function PostHeader({ post }) {
           <Button
             variant="outline"
             size="icon"
-            className="w-8 h-8 ms-auto hover:bg-gray-100 dark:hover:bg-gray-800"
+            className={`w-8 h-8 ms-auto rounded-full bg-transparent border-none ${
+              theme === "light" ? "hover:bg-gray-100" : "hover:bg-black"
+            }`}
           >
-            <FaEllipsisH className=" text-gray-500" />
+            <FaEllipsisH
+              className={`text-gray-600 ${
+                theme === " dark" ? "hover:text-black" : "hover:text-white"
+              }`}
+            />
             <ChevronDown size={16} className="absolute opacity-0" />
           </Button>
         </DropdownMenuTrigger>
 
         <DropdownMenuContent
           align={currentLang === "ar" ? "start" : "end"}
-          className="w-40"
+          className={`min-w-fit ${theme === "light" ? "bg-black" : "bg-white"}`}
         >
           {postOptions.map((option, index) => (
             <DropdownMenuItem
               key={index}
               onClick={option.onClick}
-              className={`cursor-pointer ${
-                Date.now() === "lsndld"
-                  ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 font-semibold"
-                  : ""
+              className={`cursor-pointer hover:bg-blue-900 hover:text-blue-700 font-semibold flex justify-center"
+                  
               }`}
             >
-              <span className={`text-xl mr-2 ${option.color}`}>
+              <span className={`text-md mr-2 ${option.color}`}>
                 {option.name}
               </span>
             </DropdownMenuItem>

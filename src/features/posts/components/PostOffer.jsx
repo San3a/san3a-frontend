@@ -2,8 +2,10 @@ import { useTranslation } from "react-i18next";
 import { useGetPostOffersQuery } from "../postsApi";
 import { useEffect, useState } from "react";
 import OfferShimmer from "./OfferShimmer";
+import { useTheme } from "next-themes";
 
 function PostOffer({ postId }) {
+  const { theme } = useTheme();
   const { data, isLoading, isError, error } = useGetPostOffersQuery(postId);
   const [offers, setOffers] = useState([]);
 
@@ -34,15 +36,29 @@ function PostOffer({ postId }) {
             className="h-8 w-8 bg-black rounded-full shrink-0"
             src="https://plus.unsplash.com/premium_photo-1755882951408-b6d668ccca21?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           />
-          <div className="w-full   bg-black/10 rounded-lg px-3 py-1 ms-2">
+          <div
+            className={`w-full bg-black/10 rounded-lg px-3 py-1 ms-2 ${
+              theme === "light" ? "text-white" : "text-black"
+            }`}
+          >
             <span className="font-semibold text-[16px]">
               {offer.technician.name}
             </span>
-            <span className="font-bold text-gray-700 text-[14px]">
+            <span
+              className={`font-bold ${
+                theme === "light" ? "text-gray-400" : "text-gray-700"
+              } text-[14px]`}
+            >
               .{offer.price}EGP
             </span>
 
-            <p className="font-normal text-black">{offer.message}</p>
+            <p
+              className={`font-normal ${
+                theme === "light" ? "text-white" : "text-black"
+              }`}
+            >
+              {offer.message}
+            </p>
           </div>
         </div>
 

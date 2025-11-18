@@ -4,10 +4,13 @@ import PostMainContent from "./components/PostMainContent";
 import AddPost from "./components/AddPost";
 import { useGetAllPostsQuery } from "./postsApi";
 import PostShimmer from "./components/PostShimmer";
+import { useTheme } from "next-themes";
 
 function PostsPage() {
   const { data, isError, error, isLoading } = useGetAllPostsQuery();
   const posts = useMemo(() => data?.data || [], [data]);
+  const { theme } = useTheme();
+
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [selectedPostDetails, setSelectedPostDetails] = useState(null);
 
@@ -29,7 +32,9 @@ function PostsPage() {
         posts.map((post) => (
           <div
             key={post._id}
-            className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md"
+            className={`${
+              theme === "light" ? "bg-[#252728]" : "bg-white"
+            } p-8 rounded-xl shadow-lg w-full max-w-md`}
           >
             <PostMainContent
               setSelectedIndex={setSelectedIndex}

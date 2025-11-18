@@ -40,7 +40,7 @@ function PostImagesViewer({
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: -200, opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="hidden md:flex md:flex-col bg-white ms-5 max-w-md w-full h-[80vh]"
+          className="hidden md:flex md:flex-col ms-5 max-w-md w-full h-[80vh]"
         >
           <div className="flex-1 overflow-y-auto p-6">
             <PostMainContent
