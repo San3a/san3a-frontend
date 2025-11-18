@@ -73,5 +73,11 @@
   "newImages": "الصور الجديدة",
   "publish": "نشر",
   "noOffersAvailable": "لا توجد عروض متاحة",
-  "noPostsAvailable": "لا توجد منشورات متاحة"
+  "noPostsAvailable": "لا توجد منشورات متاحة",
+  "offerUpdatedSuccessfully": "تم تحديث العرض بنجاح",
+  "offerDeletedSuccessfully": "تم حذف العرض بنجاح",
+  "deleteOffer": "حذف العرض",
+  "offerWillBeDeletedPermanently": "سيتم حذف العرض نهائيًا",
+  "offer": "العرض",
+  "updateOffer": "تحديث العرض"
 }

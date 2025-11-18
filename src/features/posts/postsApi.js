@@ -57,6 +57,27 @@ export const postsApiSlice = apiSlice.injectEndpoints({
         "Posts",
       ],
     }),
+    updateOffer: builder.mutation({
+      query: ({ postId, offerId, data }) => ({
+        url: Offers.UPDATE_OFFER(postId, offerId),
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: (result, error, { postId }) => [
+        { type: "Offers", id: postId },
+        "Posts",
+      ],
+    }),
+    deleteOffer: builder.mutation({
+      query: ({ postId, offerId }) => ({
+        url: Offers.DELETE_OFFER(postId, offerId),
+        method: "DELETE",
+      }),
+      invalidatesTags: (result, error, { postId }) => [
+        { type: "Offers", id: postId },
+        "Posts",
+      ],
+    }),
   }),
 });
 
@@ -65,6 +86,8 @@ export const {
   useGetAllPostsQuery,
   useGetPostOffersQuery,
   useAddOfferToPostMutation,
+  useUpdateOfferMutation,
+  useDeleteOfferMutation,
   useUpdatePostMutation,
   useDeletePostMutation,
 } = postsApiSlice;

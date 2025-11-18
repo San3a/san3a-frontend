@@ -26,6 +26,8 @@ export const API_ENDPOINTS = {
   OFFERS: {
     GET_POST_OFFERS: (postId) => `/posts/${postId}/offers`,
     ADD_OFFER_TO_POST: (postId) => `/posts/${postId}/offers`,
+    UPDATE_OFFER: (postId, offerId) => `/posts/${postId}/offers/${offerId}`,
+    DELETE_OFFER: (postId, offerId) => `/posts/${postId}/offers/${offerId}`,
   },
 };
 

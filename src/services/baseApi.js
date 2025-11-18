@@ -11,8 +11,6 @@ const baseQuery = fetchBaseQuery({
     if (token) {
       headers.set("Authorization", `Bearer ${token}`);
     }
-    // Don't set Content-Type for FormData - let the browser set it automatically
-    // This ensures the multipart/form-data boundary is set correctly
     return headers;
   },
 });

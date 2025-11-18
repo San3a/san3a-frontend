@@ -2,15 +2,18 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import UpsertPostModal from "./upsertPostModal/UpsertPostModal"; // import the modal we created earlier
 import { useTheme } from "next-themes";
+import { useSelector } from "react-redux";
 
 function AddPost() {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { user } = useSelector((state) => state.auth);
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
+  console.log(`This is the data of user: ${JSON.stringify(user)}`);
   return (
     <>
       <div
@@ -20,7 +23,7 @@ function AddPost() {
       >
         <img
           className="h-12 w-12 bg-black rounded-full shrink-0"
-          src="https://plus.unsplash.com/premium_photo-1755882951408-b6d668ccca21?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src={user.image}
         />
         <button
           onClick={handleOpenModal}
