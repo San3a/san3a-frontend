@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useDeletePostMutation } from "../postsApi";
 import { toast } from "sonner";
 import { useTheme } from "next-themes";
-import CustomActionsDropDown from "../../../components/customActionsDropDown";
+import CustomActionsDropDown from "../../../components/CustomActionsDropDown";
 
 function PostHeader({ post }) {
   const { theme } = useTheme();

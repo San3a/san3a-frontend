@@ -3,7 +3,7 @@ import { useDeleteOfferMutation, useGetPostOffersQuery } from "../postsApi";
 import { useEffect, useState } from "react";
 import OfferShimmer from "./OfferShimmer";
 import { useTheme } from "next-themes";
-import CustomActionsDropDown from "../../../components/customActionsDropDown";
+import CustomActionsDropDown from "../../../components/CustomActionsDropDown";
 import UpdateOfferModal from "./UpdateOfferModal";
 import { toast } from "sonner";
 import ConfirmModal from "../../../components/ConfirmModal";
