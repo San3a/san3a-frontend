@@ -23,7 +23,7 @@ function AddPost() {
       >
         <img
           className="h-12 w-12 bg-black border border-black object-cover rounded-full shrink-0"
-          src={user.image.url}
+          src={user?.image.url}
           fallback={DefaultUserImage}
         />
 
