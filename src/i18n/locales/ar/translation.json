@@ -169,5 +169,22 @@
   "offerWillBeDeletedPermanently": "سيتم حذف العرض نهائيًا",
   "offer": "العرض",
   "updateOffer": "تحديث العرض",
-  "gettingLocation": "جاري جلب الموقع..."
+  "gettingLocation": "جاري جلب الموقع...",
+  "needHelpFindingTechnician": "تحتاج مساعدة في العثور على فني؟",
+  "needHelpFindingTechnicianDesc": "تصفح أفضل الفنيين أو اختر من الفئات للوصول لأفضل شخص لمهمتك.",
+  "popularCategories": "الفئات الشائعة",
+  "howItWorks": "كيف يعمل التطبيق",
+  "howItWorksStep1": "أنشئ طلباً واشرح مشكلتك بشكل واضح.",
+  "howItWorksStep2": "يصلك عروض من الفنيين القريبين منك.",
+  "howItWorksStep3": "اختر أفضل عرض وابدأ الدردشة.",
+  "category_electrician": "كهربائي",
+  "category_plumber": "سباك",
+  "category_carpenter": "نجار",
+  "category_painter": "دهان",
+  "techTipsTitle": "نصائح للحصول على طلبات أكثر",
+  "techTip1": "استجب بسرعة للعروض الجديدة لزيادة فرصك.",
+  "techTip2": "اجعل صورتك الشخصية ووصفك احترافيين.",
+  "techTip3": "التزم بالمواعيد واطلب من العملاء تقييمك.",
+  "techProfileReminderTitle": "أكمل بيانات حسابك",
+  "techProfileReminderDesc": "أضف مهاراتك، مدينتك، وصوراً واضحة لأعمالك حتى تجذب العملاء."
 }

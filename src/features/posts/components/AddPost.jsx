@@ -33,7 +33,7 @@ function AddPost() {
             theme === "dark" ? "bg-[#333334]" : "bg-gray-100"
           } ${
             theme === "dark" ? "text-gray-300" : "text-black/80"
-          } hover:text-black font-medium w-full rounded-full px-4 py-4 text-start hover:bg-gray-200 cursor-pointer`}
+          } hover:text-black font-medium w-full rounded-full px-4 py-4 text-start hover:bg-gray-200 cursor-pointer flex items-center`}
         >
           {t("startTypingPost")}
         </button>
