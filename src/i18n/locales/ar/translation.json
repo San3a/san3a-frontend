@@ -70,7 +70,7 @@
   "createCategory": "إنشاء فئة",
   "allCategories": "كل الفئات",
   "name": "الاسم",
-  "description": "الوصف",
+  "description": "وصف الخدمة",
   "create": "إنشاء",
   "edit": "تعديل",
   "categoryCreated": "تم إنشاء الفئة بنجاح",
@@ -194,5 +194,11 @@
   "techTip2": "اجعل صورتك الشخصية ووصفك احترافيين.",
   "techTip3": "التزم بالمواعيد واطلب من العملاء تقييمك.",
   "techProfileReminderTitle": "أكمل بيانات حسابك",
-  "techProfileReminderDesc": "أضف مهاراتك، مدينتك، وصوراً واضحة لأعمالك حتى تجذب العملاء."
+  "techProfileReminderDesc": "أضف مهاراتك، مدينتك، وصوراً واضحة لأعمالك حتى تجذب العملاء.",
+  "Technician Information": "معلومات الصنايعي",
+  "Chat with Technician": "تواصل مع الصنايعي",
+  "Proceed to Checkout": "استكمل الدفع",
+  "Availability": "المواعيد المتاحة",
+  "Select Date": "اختر معاد",
+  "No available dates at the moment": "لا يوجد مواعيد متاحة في الوقت الحالي"
 }
