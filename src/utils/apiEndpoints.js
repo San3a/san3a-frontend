@@ -16,7 +16,6 @@ export const API_ENDPOINTS = {
     ConversationMessages: "/chat/messages/:conversationId",
     SendMessage: "/chat/messages",
   },
-  },
   CATEGORY: {
     GET_ALL: "/categories",
     CREATE: "/categories",
@@ -32,9 +31,8 @@ export const API_ENDPOINTS = {
     getReviews: (id) => `users/reviews/${id}`,
     getPosts: () => 'posts/me',
     addPost: () => 'posts'
-  }
-
   },
+
   OFFERS: {
     GET_POST_OFFERS: (postId) => `/posts/${postId}/offers`,
     ADD_OFFER_TO_POST: (postId) => `/posts/${postId}/offers`,
