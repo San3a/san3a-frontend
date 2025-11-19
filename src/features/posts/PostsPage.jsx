@@ -5,10 +5,12 @@ import AddPost from "./components/AddPost";
 import { useGetAllPostsQuery } from "./postsApi";
 import PostShimmer from "./components/PostShimmer";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 
 function PostsPage() {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const { user } = useSelector((state) => state.auth);
 
   const { data, isError, error, isLoading, isFetching } = useGetAllPostsQuery(
     page,
@@ -54,7 +56,7 @@ function PostsPage() {
 
   return (
     <div className="flex flex-col gap-5 items-center justify-center">
-      <AddPost />
+      {user.role === "user" && <AddPost />}
       {!posts || posts.length === 0 ? (
         <p className="text-gray-500 mt-8">{t("noPostsAvailable")}</p>
       ) : (
