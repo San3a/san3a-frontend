@@ -10,7 +10,14 @@ export const techServiceApiSlice = apiSlice.injectEndpoints({
         params,
       }),
     }),
+    getTechServiceById: builder.query({
+      query: (id) => ({
+        url: TechService.GET_SPECIFIC(id),
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useGetTechServicesQuery } = techServiceApiSlice;
+export const { useGetTechServicesQuery, useGetTechServiceByIdQuery } =
+  techServiceApiSlice;

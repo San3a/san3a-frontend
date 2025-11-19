@@ -12,6 +12,7 @@ import Users from "../features/admin/pages/Users";
 import Categories from "../features/admin/pages/Categories";
 import Reviews from "../features/admin/pages/Reviews";
 import Layout from "../features/admin/components/Layout";
+import TechServicePage from "../features/technician-service/pages/TechServicePage";
 
 const AppRoutes = () => {
   return (
@@ -20,6 +21,7 @@ const AppRoutes = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/chat-bot-messaging" element={<ChatBotPage />} />
         <Route path="/tech-services" element={<TechServicesPage />} />
+        <Route path="/tech-service/:id" element={<TechServicePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/test" element={<TestPage />}></Route>
