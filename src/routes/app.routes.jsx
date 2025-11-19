@@ -27,7 +27,7 @@ const AppRoutes = () => {
         <Route path="/checkout/:id" element={<Checkout />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/test" element={<TestPage />}></Route>
+        {/* <Route path="/test" element={<TestPage />}></Route> */}
         <Route path="/profile" element={<ProfilePage />}></Route>
         <Route path="/chat/:conversationId" element={<ChatPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
