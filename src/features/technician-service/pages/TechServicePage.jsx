@@ -1,7 +1,7 @@
 import { useGetTechServiceByIdQuery } from "../techServiceApi";
 import ImageCarousel from "../components/ImageCarousel";
 import { Star } from "lucide-react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import CircularProgressIndicator from "../../../components/CircularProgressIndicator";
 import { useEffect } from "react";
@@ -11,11 +11,13 @@ import { useTranslation } from "react-i18next";
 const TechServicePage = () => {
   const { t } = useTranslation();
   const { id } = useParams();
-
+  const navigate = useNavigate();
   const { data, isLoading, isError, error } = useGetTechServiceByIdQuery(id, {
     refetchOnMountOrArgChange: true,
   });
-
+  const handleCheckout = () => {
+    navigate(`/checkout/${id}`);
+  };
   useEffect(() => {
     if (isError) {
       const msg =
@@ -63,7 +65,10 @@ const TechServicePage = () => {
           <p className="text-xl font-bold text-gray-900 dark:text-gray-100">
             {t("Price")}: EGP {service.price}
           </p>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white py-2">
+          <Button
+            onClick={handleCheckout}
+            className="bg-blue-600 hover:bg-blue-700 text-white py-2"
+          >
             {t("Proceed to Checkout")}
           </Button>
           <Button className="bg-green-600 hover:bg-green-700 text-white py-2">
