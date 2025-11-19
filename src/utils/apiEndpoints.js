@@ -2,7 +2,7 @@ export const API_ENDPOINTS = {
   AUTH: {
     LOGIN: "/auth/login",
     REGISTER: "/auth/signup",
-    PROFILE: "/auth/profile",
+    // PROFILE: "/auth/profile",
   },
   POSTS: {
     CREATE_POST: "/posts/",
@@ -23,6 +23,16 @@ export const API_ENDPOINTS = {
     UPDATE: (id) => `/categories/${id}`,
     DELETE: (id) => `/categories/${id}`,
   },
+  PROFILE: {
+    getProfile: '/profile',
+    getPastWork: (id) => `/users/past-work/${id}`,
+    updateProfile: () => '/users/updateMe',
+    addPastWork: () => '/past-work/',
+    getReviews: (id) => `users/reviews/${id}`,
+    getPosts: () => 'posts/me',
+    addPost: () => 'posts'
+  },
+
   OFFERS: {
     GET_POST_OFFERS: (postId) => `/posts/${postId}/offers`,
     ADD_OFFER_TO_POST: (postId) => `/posts/${postId}/offers`,
@@ -69,3 +79,4 @@ export const Category = API_ENDPOINTS.CATEGORY;
 export const Admin = API_ENDPOINTS.ADMIN;
 export const TechService = API_ENDPOINTS.TechService;
 export const ChatBot = API_ENDPOINTS.ChatBot;
+export const Profile = API_ENDPOINTS.PROFILE;

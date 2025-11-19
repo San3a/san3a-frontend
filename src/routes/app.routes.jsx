@@ -6,6 +6,7 @@ import RegisterPage from "../features/auth/pages/RegisterPage";
 import HomePage from "../pages/HomePage";
 import ChatBotPage from "../features/chatbot/pages/ChatBotPage";
 import ChatPage from "../features/chat/pages/ChatPage";
+import ProfilePage from "./../features/profile/pages/ProfilePage";
 import Dashboard from "../features/admin/pages/Dashboard";
 import Users from "../features/admin/pages/Users";
 import Categories from "../features/admin/pages/Categories";
@@ -26,6 +27,9 @@ const AppRoutes = () => {
         <Route path="/checkout/:id" element={<Checkout />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/test" element={<TestPage />}></Route>
+        <Route path="/profile" element={<ProfilePage />}></Route>
+        <Route path="/chat/:conversationId" element={<ChatPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
       <Route element={<Layout />}>
