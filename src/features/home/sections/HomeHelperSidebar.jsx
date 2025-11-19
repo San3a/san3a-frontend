@@ -1,10 +1,8 @@
-import { useTheme } from "next-themes";
 import { useTranslation } from "react-i18next";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 
 function HomeHelperSidebar() {
-  const { theme } = useTheme();
   const { t, i18n } = useTranslation();
   const isRTL = i18n.dir() === "rtl";
   const { user } = useSelector((state) => state.auth);
@@ -13,16 +11,11 @@ function HomeHelperSidebar() {
   const cardBase =
     "rounded-2xl border shadow-sm px-4 py-3 mb-3 transition-colors";
   const cardBg =
-    theme === "dark"
-      ? "bg-[#252728] border-gray-700"
-      : "bg-white border-gray-200";
+    "dark:bg-[#252728] dark:border-gray-700 bg-white border-gray-200";
 
-  const smallText =
-    theme === "dark" ? "text-gray-400 text-xs" : "text-gray-500 text-xs";
+  const smallText = "dark:text-gray-400 dark:text-xs text-gray-500 text-xs";
   const titleText =
-    theme === "dark"
-      ? "text-white font-semibold"
-      : "text-gray-900 font-semibold";
+    "dark:text-white dark:font-semibold text-gray-900 font-semibold";
 
   const isTechnician = role === "technician";
 
@@ -74,11 +67,7 @@ function HomeHelperSidebar() {
                 <button
                   key={cat.key}
                   type="button"
-                  className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium ${
-                    theme === "dark"
-                      ? "bg-gray-800 text-gray-200 hover:bg-gray-700"
-                      : "bg-slate-100 text-slate-800 hover:bg-slate-200"
-                  } transition-colors`}
+                  className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 bg-slate-100 text-slate-800 hover:bg-slate-200 transition-colors"
                 >
                   <span>{cat.icon}</span>
                   <span>{t(`category_${cat.key}`)}</span>
@@ -89,11 +78,7 @@ function HomeHelperSidebar() {
 
           <div className={`${cardBase} ${cardBg}`}>
             <h3 className={`${titleText} text-sm mb-1`}>{t("howItWorks")}</h3>
-            <ol
-              className={`mt-1 space-y-1.5 text-xs ${
-                theme === "dark" ? "text-gray-300" : "text-gray-700"
-              }`}
-            >
+            <ol className="mt-1 space-y-1.5 text-xs dark:text-gray-300 text-gray-700">
               {howItWorksSteps.map((stepKey, idx) => (
                 <li key={stepKey} className="flex gap-2">
                   <span className="mt-0.5 inline-flex h-4 w-4 items-center justify-center rounded-full bg-blue-500/10 text-[0.65rem] text-blue-500">
@@ -116,11 +101,7 @@ function HomeHelperSidebar() {
               </div>
               <h3 className={`${titleText} text-sm`}>{t("techTipsTitle")}</h3>
             </div>
-            <ol
-              className={`mt-1 space-y-1.5 text-xs ${
-                theme === "dark" ? "text-gray-300" : "text-gray-700"
-              }`}
-            >
+            <ol className="mt-1 space-y-1.5 text-xs dark:text-gray-300 text-gray-700">
               {techTips.map((tipKey, idx) => (
                 <li key={tipKey} className="flex gap-2">
                   <span className="mt-0.5 inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500/10 text-[0.65rem] text-emerald-500">

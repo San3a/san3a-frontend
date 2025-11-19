@@ -1,5 +1,5 @@
 import { apiSlice } from "../../services/baseApi";
-import { Offers, Posts } from "../../utils/apiEndpoints";
+import { Chat, Offers, Posts } from "../../utils/apiEndpoints";
 
 export const postsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

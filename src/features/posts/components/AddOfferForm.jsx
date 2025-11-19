@@ -5,7 +5,6 @@ import { BiSend } from "react-icons/bi";
 import { useAddOfferToPostMutation } from "../postsApi";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useTheme } from "next-themes";
 
 import { useSelector } from "react-redux";
 import { useDidTechnicianAlreadyAddOfferQuery } from "../postsApi";
@@ -21,7 +20,6 @@ function AddOfferForm({ post }) {
     [data]
   );
 
-  const { theme } = useTheme();
   const [createOffer, { reset: resetMutation }] = useAddOfferToPostMutation();
   const { t } = useTranslation();
 
@@ -79,13 +77,7 @@ function AddOfferForm({ post }) {
               <textarea
                 placeholder={t("writeAnOffer")}
                 rows={2}
-                className={`w-full border border-gray-300  ${
-                  theme === "dark" ? "bg-[#252728]" : "bg-gray-50"
-                }  text-gray-900 rounded-md px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none ${
-                  theme === "dark"
-                    ? "placeholder:text-white"
-                    : "placeholder:text-gray-400"
-                } text-sm`}
+                className="w-full border border-gray-300 bg-gray-50 text-gray-900 rounded-md px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none placeholder:text-gray-400 text-sm dark:bg-[#252728] dark:placeholder:text-white"
                 {...offerForm("text", { required: t("offerTextRequired") })}
               />
               {errors.text && <InputError message={errors.text.message} />}
@@ -95,13 +87,7 @@ function AddOfferForm({ post }) {
               <input
                 type="text"
                 placeholder={t("price")}
-                className={`w-full border border-gray-300  ${
-                  theme === "dark" ? "bg-[#252728]" : "bg-gray-50"
-                }  text-gray-900  rounded-md px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                  theme === "dark"
-                    ? "placeholder:text-white"
-                    : "placeholder:text-gray-400"
-                } text-sm`}
+                className="w-full border border-gray-300 bg-gray-50 text-gray-900 rounded-md px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder:text-gray-400 text-sm dark:bg-[#252728] dark:placeholder:text-white"
                 {...offerForm("price", {
                   required: t("offerPriceRequired"),
                   pattern: {

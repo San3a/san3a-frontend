@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 
 import AddOfferForm from "./AddOfferForm";
-import { useTheme } from "next-themes";
 
 function PostOffersModal({
   isOpen,
@@ -13,7 +12,6 @@ function PostOffersModal({
   setIndex,
   setSelectedPostDetails,
 }) {
-  const { theme } = useTheme();
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -32,17 +30,9 @@ function PostOffersModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div
-        className={`${
-          theme === "dark" ? "bg-black" : "bg-white"
-        } w-full max-w-lg rounded-xl shadow-lg flex flex-col max-h-[90vh] overflow-hidden`}
-      >
+      <div className="w-full max-w-lg rounded-xl shadow-lg flex flex-col max-h-[90vh] overflow-hidden bg-white dark:bg-black">
         <div className="flex justify-between items-center p-4 border-b border-gray-200">
-          <h2
-            className={`font-semibold text-lg mx-auto ${
-              theme === "dark" ? "text-white" : "text-black"
-            }`}
-          >
+          <h2 className="font-semibold text-lg mx-auto text-black dark:text-white">
             {t("post")}
           </h2>
           <MdClose

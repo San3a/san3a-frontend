@@ -1,13 +1,6 @@
-import { useTheme } from "next-themes";
-
 function PostShimmer() {
-  const { theme } = useTheme();
   return (
-    <div
-      className={`${
-        theme === "dark" ? "bg-[#252728]" : "bg-white"
-      } p-8 rounded-xl shadow-lg w-full max-w-lg animate-pulse mx-auto mb-2`}
-    >
+    <div className="dark:bg-[#252728] bg-white p-8 rounded-xl shadow-lg w-full max-w-lg animate-pulse mx-auto mb-2">
       <div className="flex gap-2 items-center mb-3">
         <div className="h-12 w-12 bg-gray-300 rounded-full shrink-0" />
         <div className="flex flex-col gap-2 w-full">

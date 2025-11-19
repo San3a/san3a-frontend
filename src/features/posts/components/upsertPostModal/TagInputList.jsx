@@ -1,8 +1,6 @@
-import { useTheme } from "next-themes";
 import { useTranslation } from "react-i18next";
 
 export default function TagInputList({ tags, setTags }) {
-  const { theme } = useTheme();
   const { t } = useTranslation();
 
   const addTag = () => setTags([...tags, ""]);
@@ -42,9 +40,7 @@ export default function TagInputList({ tags, setTags }) {
         <button
           type="button"
           onClick={addTag}
-          className={`px-4 py-2 ${
-            theme === "ligth" ? "bg-gray-200" : "bg-white/70"
-          } rounded-xl`}
+          className="px-4 py-2 bg-gray-200 dark:bg-white/70 rounded-xl"
         >
           {t("addTag")}
         </button>
