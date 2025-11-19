@@ -14,6 +14,7 @@ import Reviews from "../features/admin/pages/Reviews";
 import Layout from "../features/admin/components/Layout";
 import TechServicePage from "../features/technician-service/pages/TechServicePage";
 import Checkout from "../features/Checkout/pages/Checkout";
+import SuccessCashPayment from "../features/Checkout/pages/SuccessCashPayment";
 
 const AppRoutes = () => {
   return (
@@ -30,6 +31,10 @@ const AppRoutes = () => {
         {/* <Route path="/test" element={<TestPage />}></Route> */}
         <Route path="/profile" element={<ProfilePage />}></Route>
         <Route path="/chat/:conversationId" element={<ChatPage />} />
+        <Route
+          path="/success-cash-payment"
+          element={<SuccessCashPayment />}
+        ></Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
       <Route element={<Layout />}>
