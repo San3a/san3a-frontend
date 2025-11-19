@@ -1,6 +1,7 @@
 import { Star } from "lucide-react";
 import ImageCarousel from "./ImageCarousel";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function TechServiceCard({
   _id,
@@ -13,7 +14,7 @@ export default function TechServiceCard({
   ratingsQuantity,
 }) {
   const navigate = useNavigate();
-
+  const { t } = useTranslation();
   const handleClick = () => {
     navigate(`/tech-service/${_id}`);
   };
@@ -64,7 +65,7 @@ export default function TechServiceCard({
 
         <div className="space-y-[-4px]">
           <span className="text-lg font-bold text-gray-900 dark:text-gray-100">
-            EGP {price}
+            {price} {t("egp")}
           </span>
         </div>
 

@@ -2,18 +2,20 @@ import { useTranslation } from "react-i18next";
 import { useDeleteOfferMutation, useGetPostOffersQuery } from "../postsApi";
 import { useEffect, useState } from "react";
 import OfferShimmer from "./OfferShimmer";
-import { useTheme } from "next-themes";
 import CustomActionsDropDown from "../../../components/customActionsDropDown";
 import UpdateOfferModal from "./UpdateOfferModal";
 import { toast } from "sonner";
 import ConfirmModal from "../../../components/ConfirmModal";
 import DefaultUserImage from "@/assets/default-user.jpg";
 import { useSelector } from "react-redux";
+import { useCreateConversationMutation } from "../../chat/chatApi";
+import { useNavigate } from "react-router-dom";
 
 function PostOffer({ postId }) {
-  const { theme } = useTheme();
   const { data, isLoading, isError, error } = useGetPostOffersQuery(postId);
+  const [createConversation] = useCreateConversationMutation();
   const [offers, setOffers] = useState([]);
+  const navigate = useNavigate();
   const [selectedOffer, setSelectedOffer] = useState(null);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [deleteOffer] = useDeleteOfferMutation();
@@ -29,7 +31,8 @@ function PostOffer({ postId }) {
     setSelectedOffer(null);
   };
 
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === "ar";
 
   useEffect(() => {
     if (data) {
@@ -80,6 +83,22 @@ function PostOffer({ postId }) {
     },
   ];
 
+  async function handleStartConversation(technicianId) {
+    try {
+      const res = await createConversation({
+        participants: [user._id, technicianId],
+      });
+      console.log(
+        `This the response after calling createConversation:${JSON.stringify(
+          res
+        )}`
+      );
+      navigate(`/chat/${res.data._id}`);
+    } catch (err) {
+      toast.error(err?.data?.message || t("errorOccurred"));
+    }
+  }
+
   return offers.length === 0 ? (
     <p className="text-gray-500 my-8 text-center">{t("noOffersAvailable")}</p>
   ) : (
@@ -92,22 +111,18 @@ function PostOffer({ postId }) {
               src={offer.technician.image.url}
               fallback={DefaultUserImage}
             />
-            <div
-              className={`w-full bg-black/10 rounded-lg px-3 py-1 ms-2 ${
-                theme === "dark" ? "text-white" : "text-black"
-              }`}
-            >
+            <div className="w-full bg-black/10 rounded-lg px-3 py-1 ms-2 dark:text-white text-black">
               <div className="flex justify-between">
                 <div>
                   <span className="font-semibold text-[16px]">
                     {offer.technician.name}
                   </span>
                   <span
-                    className={`font-bold ${
-                      theme === "dark" ? "text-gray-400" : "text-gray-700"
-                    } text-[14px]`}
+                    dir={isRTL ? "rtl" : "ltr"}
+                    className="font-bold dark:text-gray-40 text-gray-700 text-[14px]"
                   >
-                    .{offer.price}EGP
+                    .{offer.price}
+                    {t("egp")}
                   </span>
                 </div>
 
@@ -116,19 +131,20 @@ function PostOffer({ postId }) {
                 )}
               </div>
 
-              <p
-                className={`font-normal ${
-                  theme === "dark" ? "text-white" : "text-black"
-                }`}
-              >
+              <p className="font-normal dark:text-white text-black">
                 {offer.message}
               </p>
             </div>
           </div>
 
-          <button className="text-blue-600 ms-10 font-bold hover:scale-102 transition-transform mt-2 cursor-pointer">
-            {t("startChat")}
-          </button>
+          {user.role === "user" && (
+            <button
+              onClick={() => handleStartConversation(offer.technician._id)}
+              className="text-blue-600 ms-10 font-bold hover:scale-102 transition-transform mt-2 cursor-pointer"
+            >
+              {t("startChat")}
+            </button>
+          )}
         </div>
       ))}
 

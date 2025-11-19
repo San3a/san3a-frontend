@@ -1,11 +1,9 @@
 import { useTranslation } from "react-i18next";
 import ExpandableText from "../../../components/ExpandableText";
-import { useTheme } from "next-themes";
 import isTextRTL from "../../../utils/isTextRTL";
 
 function PostText({ post }) {
   const { t } = useTranslation();
-  const { theme } = useTheme();
   const titleDirection = isTextRTL(post.title) ? "rtl" : "ltr";
   const titleAlign = isTextRTL(post.title) ? "text-right" : "text-left";
 
@@ -13,9 +11,7 @@ function PostText({ post }) {
     <>
       <h2
         dir={titleDirection}
-        className={`mt-3 font-bold ${titleAlign} ${
-          theme === "dark" ? "text-white" : "text-black ${}"
-        }`}
+        className={`mt-3 font-bold ${titleAlign} text-black dark:text-white`}
       >
         {post.title}
       </h2>
@@ -23,11 +19,11 @@ function PostText({ post }) {
         maxLines={3}
         readMoreText={t("readMore")}
         readLessText={t("readLess")}
-        textColor={theme === "dark" ? "text-white" : "text-black"}
+        textColor="text-black dark:text-white"
       >
         {post.description}
       </ExpandableText>
-      <h2 className="mt-3 font-semibold text-blue-600 flex flex-wrap gap-1">
+      <h2 className="mt-3 font-semibold text-blue-600 flex flex-wrap gap-1 mb-2">
         {post.tags.map((tag, i) => (
           <span key={i} dir="ltr">
             #{tag}

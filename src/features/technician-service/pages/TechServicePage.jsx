@@ -59,7 +59,7 @@ const TechServicePage = () => {
 
         <div className="lg:col-span-1 border p-6 flex flex-col gap-6 bg-white dark:bg-gray-900 shadow-md">
           <p className="text-xl font-bold text-gray-900 dark:text-gray-100">
-            {t("Price")}: EGP {service.price}
+            {t("Price")}: {service.price} {t("egp")}
           </p>
 
           <Button>{t("Chat with Technician")}</Button>
