@@ -53,7 +53,7 @@ function PostHeader({ post }) {
     <div className="flex gap-2 items-center">
       <img
         className="h-12 w-12 bg-black object-cover rounded-full shrink-0"
-        src={post.user.image.url}
+        src={post.user?.image?.url || DefaultUserImage}
         fallback={DefaultUserImage}
       />
       <div>

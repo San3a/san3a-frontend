@@ -98,7 +98,7 @@ export default function Navbar() {
           </form>
 
           <LanguageSwitcher />
-          <ChatBotButton />
+          <ChatBotButton setIsOpen={setIsOpen} />
           <ThemeToggle />
         </div>
 
@@ -134,12 +134,6 @@ export default function Navbar() {
           >
             {t("appName")}
           </Link>
-          <button
-            onClick={() => setIsOpen(false)}
-            className="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <X size={28} className="text-gray-900 dark:text-white" />
-          </button>
         </div>
 
         <div className="flex flex-col gap-6 flex-grow">

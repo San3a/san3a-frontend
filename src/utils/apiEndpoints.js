@@ -54,7 +54,12 @@ export const API_ENDPOINTS = {
   },
   TechService: {
     GET_ALL: "/tech-services",
+    ADD_TECH_SERVICE: "/tech-services",
     GET_SPECIFIC: (id) => `/tech-services/${id}`,
+    GET_REVIEWS: (id, page) => `/reviews?techService=${id}&page=${page}`,
+    ADD_REVIEW: "/reviews",
+    DELETE_REVIEW: (id) => `/reviews/${id}`,
+    EDIT_REVIEW: (id) => `/reviews/${id}`,
   },
   ChatBot: {
     SEND_MESSAGE: "/chatbot",

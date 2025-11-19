@@ -2,6 +2,7 @@ import { Star } from "lucide-react";
 import ImageCarousel from "./ImageCarousel";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import RatingComponent from "./RatingComponent";
 
 export default function TechServiceCard({
   _id,
@@ -14,10 +15,11 @@ export default function TechServiceCard({
   ratingsQuantity,
 }) {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const handleClick = () => {
     navigate(`/tech-service/${_id}`);
   };
+  const isRTL = i18n.dir() == "rtl";
   return (
     <div
       onClick={handleClick}
@@ -38,7 +40,7 @@ export default function TechServiceCard({
           text-xs px-2 py-1 rounded-md
         "
         >
-          {category.name}
+          {isRTL ? category.nameAr : category.name}
         </div>
       </div>
 
@@ -53,15 +55,10 @@ export default function TechServiceCard({
           {title}
         </h3>
 
-        <div className="flex items-center gap-1 text-sm">
-          <Star size={16} className="text-yellow-400 fill-yellow-400" />
-          <span className="font-semibold text-gray-700 dark:text-gray-300">
-            {ratingsAverage}
-          </span>
-          <span className="text-gray-500 dark:text-gray-400">
-            ({ratingsQuantity})
-          </span>
-        </div>
+        <RatingComponent
+          ratingsAverage={ratingsAverage}
+          ratingsQuantity={ratingsQuantity}
+        />
 
         <div className="space-y-[-4px]">
           <span className="text-lg font-bold text-gray-900 dark:text-gray-100">
