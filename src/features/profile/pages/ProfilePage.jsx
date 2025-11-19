@@ -73,8 +73,6 @@ const ProfilePage = () => {
 
   return (
     <>
-      <Navbar />
-
       <div className="w-4/5 mx-auto mt-10 px-4">
         <div className="w-full shadow-xl rounded-2xl p-8 bg-card text-card-foreground border border-border">
           {/* Profile Header */}

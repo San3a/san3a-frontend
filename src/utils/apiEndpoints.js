@@ -78,3 +78,4 @@ export const Category = API_ENDPOINTS.CATEGORY;
 export const Admin = API_ENDPOINTS.ADMIN;
 export const TechService = API_ENDPOINTS.TechService;
 export const ChatBot = API_ENDPOINTS.ChatBot;
+export const Profile = API_ENDPOINTS.PROFILE;
