@@ -85,7 +85,7 @@ function PostOffer({ postId }) {
   ) : (
     <>
       {offers.map((offer) => (
-        <div key={offer._id} className="mt-5">
+        <div key={offer._id} className="mt-5 border-t pt-4">
           <div className="flex">
             <img
               className="h-8 w-8 bg-black rounded-full shrink-0"

@@ -7,7 +7,20 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "next-themes";
 
+import { useSelector } from "react-redux";
+import { useDidTechnicianAlreadyAddOfferQuery } from "../postsApi";
+import { useMemo } from "react";
+
 function AddOfferForm({ post }) {
+  const { user } = useSelector((state) => state.auth);
+  const { data, isLoading, isError } = useDidTechnicianAlreadyAddOfferQuery({
+    postId: post._id,
+  });
+  const didTechnicianAlreadyAddOffer = useMemo(
+    () => data?.data?.didMakeOffer,
+    [data]
+  );
+
   const { theme } = useTheme();
   const [createOffer, { reset: resetMutation }] = useAddOfferToPostMutation();
   const { t } = useTranslation();
@@ -36,6 +49,15 @@ function AddOfferForm({ post }) {
       toast.error(err?.data?.message || t("errorOccurred"));
     }
   };
+
+  if (
+    user.role !== "technician" ||
+    isLoading ||
+    isError ||
+    didTechnicianAlreadyAddOffer
+  ) {
+    return <div></div>;
+  }
 
   return (
     <div className="sticky top-0 z-10  border-b border-gray-200  shadow-sm pb-2">
