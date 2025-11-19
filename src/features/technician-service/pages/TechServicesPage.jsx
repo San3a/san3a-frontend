@@ -37,7 +37,7 @@ const TechServicesPage = () => {
         ) : data?.data?.length > 0 ? (
           <div className="p-4 flex flex-wrap gap-4">
             {data.data.map((service) => (
-              <TechServiceCard key={service.id} {...service} />
+              <TechServiceCard key={service._id} {...service} />
             ))}
           </div>
         ) : (

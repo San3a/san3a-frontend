@@ -35,6 +35,7 @@ export default function FiltersSidebar() {
     searchParams.delete("ratingsAverage[gte]");
     searchParams.delete("price[gte]");
     searchParams.delete("price[lte]");
+    searchParams.delete("search");
     setSearchParams(searchParams);
   };
 

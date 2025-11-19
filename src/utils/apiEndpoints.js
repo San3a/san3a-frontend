@@ -54,6 +54,7 @@ export const API_ENDPOINTS = {
   },
   TechService: {
     GET_ALL: "/tech-services",
+    GET_SPECIFIC: (id) => `/tech-services/${id}`,
   },
   ChatBot: {
     SEND_MESSAGE: "/chatbot",

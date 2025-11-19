@@ -1,7 +1,9 @@
 import { Star } from "lucide-react";
 import ImageCarousel from "./ImageCarousel";
+import { useNavigate } from "react-router-dom";
 
 export default function TechServiceCard({
+  _id,
   images,
   title,
   description,
@@ -10,8 +12,14 @@ export default function TechServiceCard({
   ratingsAverage,
   ratingsQuantity,
 }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/tech-service/${_id}`);
+  };
   return (
     <div
+      onClick={handleClick}
       className="
       w-64 rounded-xl border overflow-hidden shadow-sm 
       bg-white dark:bg-[#1e1e1e] 
