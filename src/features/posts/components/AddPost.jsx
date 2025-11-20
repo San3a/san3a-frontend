@@ -17,7 +17,7 @@ function AddPost() {
       <div className="dark:bg-[#252728] bg-white p-8 rounded-xl shadow-lg w-full max-w-lg flex justify-center items-center gap-4">
         <img
           className="h-12 w-12 bg-black border border-black object-cover rounded-full shrink-0"
-          src={user?.image.url}
+          src={user?.image?.url ?? DefaultUserImage}
           fallback={DefaultUserImage}
         />
 
