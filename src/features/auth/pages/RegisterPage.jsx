@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const RegisterPage = () => {
   const { t } = useTranslation();
@@ -105,10 +106,16 @@ const RegisterPage = () => {
           <Button
             type="submit"
             disabled={isLoading}
-            className="bg-blue-500 text-white font-medium py-2 rounded-md hover:bg-blue-700 transition-colors"
+            className="font-medium py-2 rounded-md transition-colors"
           >
             {isLoading ? t("registering") : t("register")}
           </Button>
+          <p className="mt-4 text-sm text-center text-muted-foreground">
+            {t("Already have account?")}
+            <Link to="/login" className="text-primary hover:underline">
+              {t("login")}
+            </Link>
+          </p>
         </form>
 
         <div className="flex items-center my-6">
