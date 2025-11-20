@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useSelector } from "react-redux";
 import { AddTechServiceModal } from "../components/AddTechServiceModal";
-import { Button } from "../../components/ui/Button";
+import { Button } from "../../../components/ui/button";
 
 const TechServicesPage = () => {
   const [searchParams] = useSearchParams();
