@@ -108,7 +108,7 @@ function PostOffer({ postId }) {
           <div className="flex">
             <img
               className="h-8 w-8 bg-black rounded-full shrink-0"
-              src={offer.technician.image.url}
+              src={offer.technician.image?.url ?? DefaultUserImage}
               fallback={DefaultUserImage}
             />
             <div className="w-full bg-black/10 rounded-lg px-3 py-1 ms-2 dark:text-white text-black">
