@@ -65,21 +65,22 @@ export default function FiltersSidebar() {
             />
             <span>{t("All")}</span>
           </label>
-          {categories?.map((c) => (
-            <label
-              key={c._id}
-              className="flex items-center space-x-2 dark:text-gray-200"
-            >
-              <input
-                type="radio"
-                name="category"
-                value={c._id}
-                checked={selectedCategory === c._id}
-                onChange={handleCategoryChange}
-              />
-              <span>{isRTL ? c.nameAr : c.name}</span>
-            </label>
-          ))}
+          {Array.isArray(categories) &&
+            categories?.map((c) => (
+              <label
+                key={c._id}
+                className="flex items-center space-x-2 dark:text-gray-200"
+              >
+                <input
+                  type="radio"
+                  name="category"
+                  value={c._id}
+                  checked={selectedCategory === c._id}
+                  onChange={handleCategoryChange}
+                />
+                <span>{isRTL ? c.nameAr : c.name}</span>
+              </label>
+            ))}
         </div>
       </div>
 

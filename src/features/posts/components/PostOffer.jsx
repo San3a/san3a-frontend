@@ -65,7 +65,7 @@ function PostOffer({ postId }) {
       setIsDeleteModalOpen(false);
       toast.success(t("offerDeletedSuccessfully"));
     } catch (err) {
-      console.log(`This is the error while deleting offer: ${err}`);
+      console.error(`This is the error while deleting offer: ${err}`);
       toast.error(t("errorOccurred"));
     }
   };
