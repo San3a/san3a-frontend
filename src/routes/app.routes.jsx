@@ -3,7 +3,6 @@ import MainLayout from "../layouts/MainLayout";
 import TechServicesPage from "../features/technician-service/pages/TechServicesPage";
 import LoginPage from "../features/auth/pages/LoginPage";
 import RegisterPage from "../features/auth/pages/RegisterPage";
-import TestPage from "../pages/TestPage";
 import HomePage from "../pages/HomePage";
 import ChatBotPage from "../features/chatbot/pages/ChatBotPage";
 import ChatPage from "../features/chat/pages/ChatPage";
@@ -12,6 +11,8 @@ import Users from "../features/admin/pages/Users";
 import Categories from "../features/admin/pages/Categories";
 import Reviews from "../features/admin/pages/Reviews";
 import Layout from "../features/admin/components/Layout";
+import TechServicePage from "../features/technician-service/pages/TechServicePage";
+import Checkout from "../features/Checkout/pages/Checkout";
 
 const AppRoutes = () => {
   return (
@@ -20,10 +21,11 @@ const AppRoutes = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/chat-bot-messaging" element={<ChatBotPage />} />
         <Route path="/tech-services" element={<TechServicesPage />} />
+        <Route path="/tech-service/:id" element={<TechServicePage />} />
+        <Route path="/chat/:conversationId" element={<ChatPage />} />
+        <Route path="/checkout/:id" element={<Checkout />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/test" element={<TestPage />}></Route>
-        <Route path="/chat/:conversationId" element={<ChatPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
       <Route element={<Layout />}>

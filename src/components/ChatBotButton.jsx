@@ -2,10 +2,11 @@ import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
-const ChatBotButton = () => {
+const ChatBotButton = ({ setIsOpen }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const handleClick = () => {
+    setIsOpen(false);
     navigate("/chat-bot-messaging");
   };
   return (

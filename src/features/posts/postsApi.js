@@ -1,5 +1,5 @@
 import { apiSlice } from "../../services/baseApi";
-import { Offers, Posts } from "../../utils/apiEndpoints";
+import { Chat, Offers, Posts } from "../../utils/apiEndpoints";
 
 export const postsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -98,6 +98,15 @@ export const postsApiSlice = apiSlice.injectEndpoints({
         "Posts",
       ],
     }),
+    didTechnicianAlreadyAddOffer: builder.query({
+      query: ({ postId }) => ({
+        url: Offers.DID_TECHNICIAN_ALREADY_ADD_OFFER(postId),
+        method: "GET",
+        headers: {
+          "Cache-Control": "no-cache",
+        },
+      }),
+    }),
   }),
 });
 
@@ -110,4 +119,5 @@ export const {
   useDeleteOfferMutation,
   useUpdatePostMutation,
   useDeletePostMutation,
+  useDidTechnicianAlreadyAddOfferQuery,
 } = postsApiSlice;

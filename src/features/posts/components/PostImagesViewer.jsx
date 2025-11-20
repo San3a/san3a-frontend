@@ -6,7 +6,6 @@ import { FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
 import PostImagesArrowBtn from "./PostImagesArrowBtn";
 import PostMainContent from "./PostMainContent";
 import AddOfferForm from "./AddOfferForm";
-import { useTheme } from "next-themes";
 import { useSelector } from "react-redux";
 
 function PostImagesViewer({
@@ -16,7 +15,6 @@ function PostImagesViewer({
   onClose,
 }) {
   const [index, setIndex] = useState(selectedIndex);
-  const { theme } = useTheme();
   const { user } = useSelector((state) => state.auth);
 
   const images = post.images.map((img) => img.url);
@@ -44,9 +42,7 @@ function PostImagesViewer({
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: -200, opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className={`hidden md:flex md:flex-col ms-5 max-w-md w-full h-[80vh] ${
-            theme === "dark" ? "bg-black" : "bg-white"
-          }`}
+          className="hidden md:flex md:flex-col ms-5 max-w-md w-full h-[80vh] bg-white dark:bg-black"
         >
           <div className="flex-1 overflow-y-auto p-6">
             <PostMainContent

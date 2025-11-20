@@ -1,13 +1,9 @@
 import { t } from "i18next";
 import { toast } from "sonner";
 import { FaCheckCircle } from "react-icons/fa";
-import LoadingButton from "../../../../components/LoadingButton";
-import { useTheme } from "next-themes";
 import { useState } from "react";
 
 export default function LocationPicker({ coords, setCoords }) {
-  const { theme } = useTheme();
-
   const [isLoadingLocation, setIsLoadingLocation] = useState(false);
 
   const getLocation = () => {
@@ -25,7 +21,7 @@ export default function LocationPicker({ coords, setCoords }) {
         setIsLoadingLocation(false);
       },
       (err) => {
-        console.log(`location error: ${err}`);
+        console.error(`location error: ${err}`);
         toast.error(t("locationFailed"));
         setIsLoadingLocation(false);
       }
@@ -33,16 +29,8 @@ export default function LocationPicker({ coords, setCoords }) {
   };
 
   return (
-    <div
-      className={`space-y-3 p-4 rounded-xl ${
-        theme === "dark" ? "" : "bg-gray-50"
-      }`}
-    >
-      <h3
-        className={`font-semibold ${
-          theme === "dark" ? "text-white" : "text-gray-700"
-        }`}
-      >
+    <div className={"space-y-3 p-4 rounded-xl dark:bg-black bg-gray-50"}>
+      <h3 className={"font-semibold dark:text-white text-gray-700"}>
         {t("location")}
       </h3>
 

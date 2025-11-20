@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { useGetAllCategoriesQuery } from "../categoryApi";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
@@ -15,9 +15,6 @@ const CategorySection = () => {
   const isRTL = i18n.dir() === "rtl"; // safer than checking language === 'ar'
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [activeCategory, setActiveCategory] = useState(
-    searchParams.get("category") || null
-  );
 
   const getName = (category) =>
     isRTL && category.nameAr ? category.nameAr : category.name;
@@ -40,8 +37,6 @@ const CategorySection = () => {
   }, [categories, dispatch]);
 
   const handleCategoryClick = (catId) => {
-    setActiveCategory(catId);
-
     searchParams.set("category", catId);
     setSearchParams(searchParams);
 
@@ -75,7 +70,7 @@ const CategorySection = () => {
           key={cat._id}
           onClick={() => handleCategoryClick(cat._id)}
           className={`flex-shrink-0 flex items-center px-4 py-2 rounded-lg text-sm sm:text-base font-medium transition-colors duration-200 ${
-            activeCategory === cat._id
+            searchParams.get("category") === cat._id
               ? "bg-white text-black shadow"
               : "bg-background text-foreground"
           }`}

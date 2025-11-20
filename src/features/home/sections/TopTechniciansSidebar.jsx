@@ -1,4 +1,3 @@
-import { useTheme } from "next-themes";
 import { useTranslation } from "react-i18next";
 
 const mockTechnicians = [
@@ -50,13 +49,12 @@ const mockTechnicians = [
 ];
 
 function TopTechniciansSidebar() {
-  const { theme } = useTheme();
   const { t, i18n } = useTranslation();
   const isArabic = i18n.language === "ar";
 
-  const cardBg = theme === "dark" ? "bg-[#252728]" : "bg-white";
-  const subtleBg = theme === "dark" ? "bg-[#1b1d1e]" : "bg-slate-50";
-  const borderColor = theme === "dark" ? "border-white/5" : "border-slate-200";
+  const cardBg = "dark:bg-[#252728] bg-white";
+  const subtleBg = "dark:bg-[#1b1d1e] bg-slate-50";
+  const borderColor = "dark:border-white/5 border-slate-200";
 
   return (
     <aside
@@ -78,7 +76,7 @@ function TopTechniciansSidebar() {
         className={`${subtleBg} rounded-xl p-3 mb-3 text-xs text-muted-foreground`}
       >
         <span className="inline-flex items-center gap-2">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
           {t("topTechniciansHint")}
         </span>
       </div>

@@ -12,8 +12,6 @@ import DefaultUserImage from "@/assets/default-user.jpg";
 import { useSelector } from "react-redux";
 
 function PostHeader({ post }) {
-  const { theme } = useTheme();
-
   const { t, i18n } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -56,22 +54,14 @@ function PostHeader({ post }) {
     <div className="flex gap-2 items-center">
       <img
         className="h-12 w-12 bg-black object-cover rounded-full shrink-0"
-        src={post.user.image.url}
+        src={post.user?.image?.url || DefaultUserImage}
         fallback={DefaultUserImage}
       />
       <div>
-        <h2
-          className={`font-semibold ${
-            theme === "dark" ? "text-white" : "text-black"
-          }`}
-        >
+        <h2 className="font-semibold text-black dark:text-white">
           {post.user.name}
         </h2>
-        <p
-          className={`text-xs font-semibold ${
-            theme === "dark" ? "text-gray-400" : "text-gray-600"
-          }`}
-        >
+        <p className="text-xs font-semibold text-gray-600 dark:text-gray-400">
           {formatDate(post.createdAt)}
         </p>
       </div>

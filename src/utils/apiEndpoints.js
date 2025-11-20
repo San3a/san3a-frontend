@@ -6,7 +6,7 @@ export const API_ENDPOINTS = {
   },
   POSTS: {
     CREATE_POST: "/posts/",
-    GET_POSTS: "/posts/me",
+    GET_POSTS: "/posts",
     UPDATE_POST: (postId) => `/posts/${postId}`,
     DELETE_POST: (postId) => `/posts/${postId}`,
   },
@@ -28,6 +28,8 @@ export const API_ENDPOINTS = {
     ADD_OFFER_TO_POST: (postId) => `/posts/${postId}/offers`,
     UPDATE_OFFER: (postId, offerId) => `/posts/${postId}/offers/${offerId}`,
     DELETE_OFFER: (postId, offerId) => `/posts/${postId}/offers/${offerId}`,
+    DID_TECHNICIAN_ALREADY_ADD_OFFER: (postId) =>
+      `/posts/${postId}/offers/did-make-offer`,
   },
   ADMIN: {
     GET_ALL_USERS: "/admin/users",
@@ -52,6 +54,12 @@ export const API_ENDPOINTS = {
   },
   TechService: {
     GET_ALL: "/tech-services",
+    ADD_TECH_SERVICE: "/tech-services",
+    GET_SPECIFIC: (id) => `/tech-services/${id}`,
+    GET_REVIEWS: (id, page) => `/reviews?techService=${id}&page=${page}`,
+    ADD_REVIEW: "/reviews",
+    DELETE_REVIEW: (id) => `/reviews/${id}`,
+    EDIT_REVIEW: (id) => `/reviews/${id}`,
   },
   ChatBot: {
     SEND_MESSAGE: "/chatbot",

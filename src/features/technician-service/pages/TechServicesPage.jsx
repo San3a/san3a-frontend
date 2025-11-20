@@ -4,16 +4,22 @@ import CircularProgressIndicator from "../../../components/CircularProgressIndic
 import TechServiceCard from "../components/TechServiceCard";
 import FiltersSidebar from "../components/FiltersSidebar";
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { useSelector } from "react-redux";
+import { AddTechServiceModal } from "../components/AddTechServiceModal";
+import { Button } from "@/components/ui/Button";
 
 const TechServicesPage = () => {
   const [searchParams] = useSearchParams();
   const { t } = useTranslation();
   const filters = Object.fromEntries([...searchParams]);
+  const user = useSelector((state) => state.auth.user);
   const { data, error, isLoading, isError } = useGetTechServicesQuery(filters, {
     refetchOnMountOrArgChange: true,
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   useEffect(() => {
     if (isError) {
       const msg =
@@ -30,6 +36,13 @@ const TechServicesPage = () => {
       <FiltersSidebar />
 
       <div className="flex-1 flex flex-col">
+        {user?.role === "technician" && (
+          <div className="p-4">
+            <Button onClick={() => setIsModalOpen(true)}>
+              + {t("Add New Service")}
+            </Button>
+          </div>
+        )}
         {isLoading ? (
           <div className="flex justify-center items-center h-full">
             <CircularProgressIndicator />
@@ -37,7 +50,7 @@ const TechServicesPage = () => {
         ) : data?.data?.length > 0 ? (
           <div className="p-4 flex flex-wrap gap-4">
             {data.data.map((service) => (
-              <TechServiceCard key={service.id} {...service} />
+              <TechServiceCard key={service._id} {...service} />
             ))}
           </div>
         ) : (
@@ -46,6 +59,9 @@ const TechServicesPage = () => {
           </div>
         )}
       </div>
+      {isModalOpen && (
+        <AddTechServiceModal onClose={() => setIsModalOpen(false)} />
+      )}
     </div>
   );
 };
