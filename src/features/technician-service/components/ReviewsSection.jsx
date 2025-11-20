@@ -7,7 +7,7 @@ import {
   useEditUserReviewMutation,
   useDeleteUserReviewMutation,
 } from "../techServiceApi";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
 const ReviewsSection = ({ id, userId, userHasBooked }) => {

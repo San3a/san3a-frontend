@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useCreateConversationMutation } from "../chatApi";
 import { Mail } from "lucide-react";
-import { useTranslation } from "react-i18next"; // import i18n hook
-import { Button } from "@/components/ui/Button";
+import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui/button";
 
 const ChatButton = ({ userId, currentUserId }) => {
   const navigate = useNavigate();
