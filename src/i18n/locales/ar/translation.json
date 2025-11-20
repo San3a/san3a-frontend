@@ -216,5 +216,7 @@
   "Deleting...": "يتم الحذف...",
   "Add New Service": "أضف خدمتك",
   "Select Category": "أختر الفئة",
-  "Submit": "تسجيل"
+  "Submit": "تسجيل",
+  "Don't have account?": "ليس لديك حساب؟",
+  "Already have account?": "بالفعل لديك حساب؟"
 }
