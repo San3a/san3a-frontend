@@ -12,7 +12,8 @@ import {
 } from "../adminApi";
 
 export default function Categories() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language === "ar";
 
   const { data: categories, refetch } = useGetAdminCategoriesQuery();
   const [createCategory] = useCreateCategoryMutation();
@@ -163,47 +164,46 @@ export default function Categories() {
       {/* Category List */}
       <Card className="p-6" title={t("allCategories")}>
         <ul className="space-y-4">
-          {(categories || []).map((cat) => (
-            <li
-              key={cat._id}
-              className="flex items-center justify-between p-4 bg-gray-50 rounded-xl border"
-            >
-              <div className="flex items-center gap-4">
-                {cat.images?.[0]?.url && (
-                  <img
-                    src={cat.images[0].url}
-                    className="w-16 h-16 object-cover rounded-xl"
-                  />
-                )}
+          {(categories || []).map((cat) => {
+            const title = isArabic ? cat.nameAr : cat.name;
+            const desc = isArabic ? cat.descriptionAr : cat.description;
 
-                <div>
-                  <div className="font-semibold">{cat.name}</div>
-                  <div className="text-sm text-gray-500">{cat.description}</div>
-
-                  {cat.nameAr && (
-                    <div className="text-sm text-right text-gray-700">
-                      {cat.nameAr}
-                    </div>
+            return (
+              <li
+                key={cat._id}
+                className="flex items-center justify-between p-4 bg-gray-50 rounded-xl border"
+              >
+                <div className="flex items-center gap-4">
+                  {cat.images?.[0]?.url && (
+                    <img
+                      src={cat.images[0].url}
+                      className="w-16 h-16 object-cover rounded-xl"
+                    />
                   )}
-                </div>
-              </div>
 
-              <div className="flex gap-3">
-                <button
-                  onClick={() => openEditModal(cat)}
-                  className="px-4 py-2 rounded-lg bg-yellow-100"
-                >
-                  {t("edit")}
-                </button>
-                <button
-                  onClick={() => handleDelete(cat._id)}
-                  className="px-4 py-2 rounded-lg bg-red-100"
-                >
-                  {t("delete")}
-                </button>
-              </div>
-            </li>
-          ))}
+                  <div className={`${isArabic ? "text-right" : "text-left"}`}>
+                    <div className="font-semibold">{title}</div>
+                    <div className="text-sm text-gray-500">{desc}</div>
+                  </div>
+                </div>
+
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => openEditModal(cat)}
+                    className="px-4 py-2 rounded-lg bg-yellow-100"
+                  >
+                    {t("edit")}
+                  </button>
+                  <button
+                    onClick={() => handleDelete(cat._id)}
+                    className="px-4 py-2 rounded-lg bg-red-100"
+                  >
+                    {t("delete")}
+                  </button>
+                </div>
+              </li>
+            );
+          })}
         </ul>
       </Card>
 
