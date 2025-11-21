@@ -7,12 +7,12 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -59,13 +59,18 @@ const RegisterPage = () => {
       setEmail("");
       setPassword("");
       setPasswordConfirm("");
+      if (userData.role == "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
     } catch {
       // error handled by useEffect
     }
   };
 
   return (
-    <div className="flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center p-4">
       <div className="p-8 rounded-xl shadow-lg w-full max-w-md">
         <h2 className="text-3xl font-bold mb-6 text-center">{t("register")}</h2>
 

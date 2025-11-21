@@ -13,22 +13,35 @@ import Reviews from "../features/admin/pages/Reviews";
 import Layout from "../features/admin/components/Layout";
 import TechServicePage from "../features/technician-service/pages/TechServicePage";
 import Checkout from "../features/Checkout/pages/Checkout";
+import ProtectedRoute from "./ProtectedRoute";
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route element={<MainLayout />}>
+      <Route
+        element={
+          <ProtectedRoute allowedRoles={["user", "technician", "admin"]}>
+            <MainLayout />
+          </ProtectedRoute>
+        }
+      >
         <Route path="/" element={<HomePage />} />
         <Route path="/chat-bot-messaging" element={<ChatBotPage />} />
         <Route path="/tech-services" element={<TechServicesPage />} />
         <Route path="/tech-service/:id" element={<TechServicePage />} />
         <Route path="/chat/:conversationId" element={<ChatPage />} />
         <Route path="/checkout/:id" element={<Checkout />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
-      <Route element={<Layout />}>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route
+        element={
+          <ProtectedRoute allowedRoles={["admin"]}>
+            <Layout />
+          </ProtectedRoute>
+        }
+      >
         <Route path="/admin" element={<Dashboard />} />
         <Route path="/admin/users" element={<Users />} />
         <Route path="/admin/categories" element={<Categories />} />
