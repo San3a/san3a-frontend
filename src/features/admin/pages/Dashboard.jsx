@@ -64,9 +64,7 @@ export default function Dashboard() {
       {/* Counts */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card className="p-4" title={t("dashboard.totalIncome")}>
-          <div className="text-3xl font-bold">
-            {counts?.totalCustomers ?? 0}
-          </div>
+          <div className="text-3xl font-bold">{3120}</div>
         </Card>
         <Card className="p-4" title={t("dashboard.totalCustomers")}>
           <div className="text-3xl font-bold">

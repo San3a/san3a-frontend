@@ -223,5 +223,19 @@
 
   "loading": "جاري التحميل",
   "errorLoadingConversations": "حدث خطأ أثناء تحميل المحادثات",
-  "noConversationsYet": "لا توجد محادثات حتى الآن"
+
+  "editCategory": "تعديل الفئة",
+
+  "nameEn": "الاسم (إنجليزي)",
+  "nameAr": "الاسم (عربي)",
+  "descriptionEn": "الوصف (إنجليزي)",
+  "descriptionAr": "الوصف (عربي)",
+
+  "save": "حفظ",
+
+  "categoryUpdated": "تم تحديث الفئة بنجاح",
+  "categoryDeleted": "تم حذف الفئة بنجاح",
+
+  "categoryUpdateFailed": "فشل في تحديث الفئة",
+  "categoryDeleteFailed": "فشل في حذف الفئة"
 }

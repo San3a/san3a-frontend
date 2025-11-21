@@ -199,5 +199,19 @@
   "offers": "Offers",
   "loading": "Loading",
   "errorLoadingConversations": "Error loading conversations",
-  "noConversationsYet": "No conversations yet"
+  "noConversationsYet": "No conversations yet",
+  "editCategory": "Edit Category",
+
+  "nameEn": "Name (EN)",
+  "nameAr": "Name (AR)",
+  "descriptionEn": "Description (EN)",
+  "descriptionAr": "Description (AR)",
+
+  "save": "Save",
+
+  "categoryUpdated": "Category updated successfully",
+  "categoryDeleted": "Category deleted successfully",
+
+  "categoryUpdateFailed": "Failed to update category",
+  "categoryDeleteFailed": "Failed to delete category"
 }
