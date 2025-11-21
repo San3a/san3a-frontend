@@ -13,6 +13,7 @@ import Reviews from "../features/admin/pages/Reviews";
 import Layout from "../features/admin/components/Layout";
 import TechServicePage from "../features/technician-service/pages/TechServicePage";
 import Checkout from "../features/Checkout/pages/Checkout";
+import AboutUsPage from "../pages/AboutUsPage";
 
 const AppRoutes = () => {
   return (
@@ -26,6 +27,7 @@ const AppRoutes = () => {
         <Route path="/checkout/:id" element={<Checkout />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/aboutus" element={<AboutUsPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
       <Route element={<Layout />}>

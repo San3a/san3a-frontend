@@ -44,7 +44,7 @@ export const API_ENDPOINTS = {
     USER_EARNINGS: (id) => `/admin/users/${id}/earnings`,
 
     ADMIN_GET_CATEGORIES: "/admin/categories",
-    ADMIN_CREATE_CATEGORY: "/admin/categories",
+    ADMIN_CREATE_CATEGORY: "/categories",
     ADMIN_UPDATE_CATEGORY: (id) => `/admin/categories/${id}`,
     ADMIN_DELETE_CATEGORY: (id) => `/admin/categories/${id}`,
 

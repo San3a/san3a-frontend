@@ -24,7 +24,7 @@ export default function Navbar() {
       { name: t("home"), href: "/" },
       { name: t("services"), href: "/tech-services" },
       { name: t("categories"), href: "/categories" },
-      { name: t("about"), href: "/about" },
+      { name: t("about"), href: "/aboutus" },
     ]);
   }, [i18n.language, t]);
 
