@@ -32,6 +32,9 @@ export const API_ENDPOINTS = {
     DID_TECHNICIAN_ALREADY_ADD_OFFER: (postId) =>
       `/posts/${postId}/offers/did-make-offer`,
   },
+  HOME: {
+    GET_TOP_TECHNICIANS: "/users/top-technicians-nearby",
+  },
   ADMIN: {
     GET_ALL_USERS: "/admin/users",
     GET_TECHNICIANS: "/admin/technicians",
@@ -75,3 +78,4 @@ export const Category = API_ENDPOINTS.CATEGORY;
 export const Admin = API_ENDPOINTS.ADMIN;
 export const TechService = API_ENDPOINTS.TechService;
 export const ChatBot = API_ENDPOINTS.ChatBot;
+export const Home = API_ENDPOINTS.HOME;
