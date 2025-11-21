@@ -213,5 +213,46 @@
   "categoryDeleted": "Category deleted successfully",
 
   "categoryUpdateFailed": "Failed to update category",
-  "categoryDeleteFailed": "Failed to delete category"
+  "categoryDeleteFailed": "Failed to delete category",
+  "hero": {
+    "title": "San3a: Connecting Customers with Experts",
+    "desc": "Find skilled, verified technicians for any service — fast, reliable, and trusted.",
+    "alt": "Connecting Technicians"
+  },
+  "mission": {
+    "title": "Our Mission",
+    "desc": "San3a revolutionizes home services by connecting users with trusted technicians efficiently. We ensure transparency, professionalism, and quality across every job, making service booking fast and reliable.",
+    "alt": "Our Mission"
+  },
+  "vision": {
+    "title": "Our Vision",
+    "desc": "We envision a world where professional home services are accessible, fast, and transparent. San3a strives to set the standard for service excellence while empowering technicians to grow and succeed.",
+    "alt": "Our Vision"
+  },
+  "why": {
+    "title": "Why Choose San3a?",
+    "verified": "Verified Technicians",
+    "verifiedDesc": "Experienced, background-checked pros for every job.",
+    "pricing": "Transparent Pricing",
+    "pricingDesc": "Clear costs with no surprises.",
+    "booking": "Fast Booking",
+    "bookingDesc": "Schedule anytime through our intuitive platform.",
+    "ratings": "Ratings & Reviews",
+    "ratingsDesc": "Real feedback ensures consistent service quality.",
+    "range": "Wide Service Range",
+    "rangeDesc": "Electrical, plumbing, carpentry, cleaning, and more.",
+    "support": "24/7 Support",
+    "supportDesc": "Dedicated support ready to assist at all times."
+  },
+  "team": {
+    "title": "Meet Our Team",
+    "desc": "Our diverse team of developers, designers, and service experts work tirelessly to provide the best experience for customers and technicians alike, fostering innovation, trust, and growth.",
+    "ceo": "Co-Founder & CEO",
+    "design": "Head of Design",
+    "engineer": "Lead Engineer",
+    "experience": "Customer Experience"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  }
 }
