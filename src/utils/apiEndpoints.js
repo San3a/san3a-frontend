@@ -64,11 +64,21 @@ export const API_ENDPOINTS = {
   },
   TechService: {
     GET_ALL: "/tech-services",
+    ADD_TECH_SERVICE: "/tech-services",
     GET_SPECIFIC: (id) => `/tech-services/${id}`,
+    GET_REVIEWS: (id, page) => `/reviews?techService=${id}&page=${page}`,
+    ADD_REVIEW: "/reviews",
+    DELETE_REVIEW: (id) => `/reviews/${id}`,
+    EDIT_REVIEW: (id) => `/reviews/${id}`,
   },
   ChatBot: {
     SEND_MESSAGE: "/chatbot",
   },
+  Payment: {
+    CREATE_SERVICE_ORDER: () => '/service-order',
+    PAY_FOR_A_TECH_SERVICE: (id) => `/payments/checkout/techService/${id}`,
+    CANCEL_PAYMENT: (id) => `/session/${id}`,
+  }
 };
 
 export const Auth = API_ENDPOINTS.AUTH;
@@ -80,3 +90,4 @@ export const Admin = API_ENDPOINTS.ADMIN;
 export const TechService = API_ENDPOINTS.TechService;
 export const ChatBot = API_ENDPOINTS.ChatBot;
 export const Profile = API_ENDPOINTS.PROFILE;
+export const Payment = API_ENDPOINTS.Payment;

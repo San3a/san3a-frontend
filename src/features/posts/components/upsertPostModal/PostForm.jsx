@@ -75,7 +75,6 @@ export default function PostForm({ post, onClose }) {
       formData.append("location[address]", data.address || "");
     }
 
-    console.log("FormData content:");
     for (let [key, value] of formData.entries()) {
       console.log(key, value);
     }

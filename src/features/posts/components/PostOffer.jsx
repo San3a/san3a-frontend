@@ -2,7 +2,8 @@ import { useTranslation } from "react-i18next";
 import { useDeleteOfferMutation, useGetPostOffersQuery } from "../postsApi";
 import { useEffect, useState } from "react";
 import OfferShimmer from "./OfferShimmer";
-import CustomActionsDropDown from "../../../components/customActionsDropDown";
+import { useTheme } from "next-themes";
+import CustomActionsDropDown from "../../../components/CustomActionsDropDown";
 import UpdateOfferModal from "./UpdateOfferModal";
 import { toast } from "sonner";
 import ConfirmModal from "../../../components/ConfirmModal";
@@ -65,7 +66,7 @@ function PostOffer({ postId }) {
       setIsDeleteModalOpen(false);
       toast.success(t("offerDeletedSuccessfully"));
     } catch (err) {
-      console.log(`This is the error while deleting offer: ${err}`);
+      console.error(`This is the error while deleting offer: ${err}`);
       toast.error(t("errorOccurred"));
     }
   };
@@ -108,7 +109,7 @@ function PostOffer({ postId }) {
           <div className="flex">
             <img
               className="h-8 w-8 bg-black rounded-full shrink-0"
-              src={offer.technician.image.url}
+              src={offer.technician.image?.url ?? DefaultUserImage}
               fallback={DefaultUserImage}
             />
             <div className="w-full bg-black/10 rounded-lg px-3 py-1 ms-2 dark:text-white text-black">

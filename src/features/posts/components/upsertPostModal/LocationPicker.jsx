@@ -21,7 +21,7 @@ export default function LocationPicker({ coords, setCoords }) {
         setIsLoadingLocation(false);
       },
       (err) => {
-        console.log(`location error: ${err}`);
+        console.error(`location error: ${err}`);
         toast.error(t("locationFailed"));
         setIsLoadingLocation(false);
       }

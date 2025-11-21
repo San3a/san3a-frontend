@@ -15,6 +15,7 @@ import Layout from "../features/admin/components/Layout";
 import TechServicePage from "../features/technician-service/pages/TechServicePage";
 import Checkout from "../features/Checkout/pages/Checkout";
 import SuccessCashPayment from "../features/Checkout/pages/SuccessCashPayment";
+import CancelPayment from "../features/Checkout/pages/CancelPayment";
 
 const AppRoutes = () => {
   return (
@@ -35,6 +36,8 @@ const AppRoutes = () => {
           path="/success-cash-payment"
           element={<SuccessCashPayment />}
         ></Route>
+        <Route path="/payment-cancel" element={<CancelPayment />}></Route>
+
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
       <Route element={<Layout />}>

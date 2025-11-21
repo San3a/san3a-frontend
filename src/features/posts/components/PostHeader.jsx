@@ -6,7 +6,8 @@ import ConfirmModal from "@/components/ConfirmModal";
 import { useState } from "react";
 import { useDeletePostMutation } from "../postsApi";
 import { toast } from "sonner";
-import CustomActionsDropDown from "../../../components/customActionsDropDown";
+import { useTheme } from "next-themes";
+import CustomActionsDropDown from "../../../components/CustomActionsDropDown";
 import DefaultUserImage from "@/assets/default-user.jpg";
 import { useSelector } from "react-redux";
 

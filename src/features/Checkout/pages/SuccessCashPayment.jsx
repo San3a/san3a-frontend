@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -10,6 +10,10 @@ const SuccessCashPayment = () => {
   useEffect(() => {
     toast.success("Order Placed Successfully");
   }, []);
+
+  const [params] = useSearchParams();
+  const sessionId = params.get("session_id");
+  console.log("sessionId", sessionId);
 
   return (
     <div className="flex items-center justify-center min-h-screen w-full p-4 -mt-16">

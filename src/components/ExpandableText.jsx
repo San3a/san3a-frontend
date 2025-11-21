@@ -16,7 +16,6 @@ function ExpandableText({
   const textRef = useRef(null);
   const textDirection = isTextRTL(children) ? "rtl" : "ltr";
   const textAlign = isTextRTL(children) ? "text-right" : "text-left";
-  console.log(`isTextRTL(children):`, isTextRTL(children));
   useEffect(() => {
     if (textRef.current) {
       const el = textRef.current;
