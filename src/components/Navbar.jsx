@@ -5,6 +5,8 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import ChatBotButton from "./ChatBotButton";
+import { useSelector } from "react-redux";
+import ChatDropdown from "../features/chat/components/ChatDropdown";
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
@@ -12,8 +14,10 @@ export default function Navbar() {
   const [links, setLinks] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchParams] = useSearchParams();
+  const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const isRTL = i18n.dir() === "rtl";
+  console.log(user);
 
   useEffect(() => {
     setLinks([
@@ -98,6 +102,10 @@ export default function Navbar() {
           </form>
 
           <LanguageSwitcher />
+
+          {/* ✅ ADDED CHAT DROPDOWN — ONLY IF USER LOGGED IN */}
+          {user && <ChatDropdown currentUserId={user._id} />}
+
           <ChatBotButton setIsOpen={setIsOpen} />
           <ThemeToggle />
         </div>

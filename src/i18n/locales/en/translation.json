@@ -196,5 +196,8 @@
   "techProfileReminderTitle": "Complete your profile",
   "techProfileReminderDesc": "Add your skills, city, and clear photos of your work to stand out to customers.",
   "egp": "EGP",
-  "offers": "Offers"
+  "offers": "Offers",
+  "loading": "Loading",
+  "errorLoadingConversations": "Error loading conversations",
+  "noConversationsYet": "No conversations yet"
 }

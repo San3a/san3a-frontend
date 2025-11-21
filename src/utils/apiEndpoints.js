@@ -15,6 +15,7 @@ export const API_ENDPOINTS = {
     AllConversations: "/chat/:userId",
     ConversationMessages: "/chat/messages/:conversationId",
     SendMessage: "/chat/messages",
+    AllUserConversations: "/chat/conversations",
   },
   CATEGORY: {
     GET_ALL: "/categories",

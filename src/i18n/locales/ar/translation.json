@@ -219,5 +219,9 @@
   "Submit": "تسجيل",
   "offers": "العروض",
   "Don't have account?": "ليس لديك حساب؟",
-  "Already have account?": "بالفعل لديك حساب؟"
+  "Already have account?": "بالفعل لديك حساب؟",
+
+  "loading": "جاري التحميل",
+  "errorLoadingConversations": "حدث خطأ أثناء تحميل المحادثات",
+  "noConversationsYet": "لا توجد محادثات حتى الآن"
 }
