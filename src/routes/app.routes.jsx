@@ -32,6 +32,7 @@ const AppRoutes = () => {
         }
       >
         <Route path="/" element={<HomePage />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="/chat-bot-messaging" element={<ChatBotPage />} />
         <Route path="/tech-services" element={<TechServicesPage />} />
         <Route path="/tech-service/:id" element={<TechServicePage />} />
