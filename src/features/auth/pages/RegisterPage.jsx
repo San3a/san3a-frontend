@@ -7,19 +7,41 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const RegisterPage = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [role, setRole] = useState("user");
+
   const [register, { isLoading, isError, error }] = useRegisterMutation();
 
+  // -------------------------
+  // Handle OAuth redirect
+  // -------------------------
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const token = params.get("token");
+    const userRole = params.get("role");
+
+    if (token) {
+      // If backend returns user info in JWT payload
+      dispatch(setCredentials({ user: null, token })); // you can parse user from JWT if needed
+      toast.success(t("registrationSuccessful"));
+      navigate(userRole === "admin" ? "/admin" : "/");
+    }
+  }, [location.search, dispatch, navigate, t]);
+
+  // -------------------------
+  // Handle errors
+  // -------------------------
   useEffect(() => {
     if (isError) {
       const msg =
@@ -28,6 +50,9 @@ const RegisterPage = () => {
     }
   }, [isError, error, t]);
 
+  // -------------------------
+  // Normal registration
+  // -------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -60,7 +85,8 @@ const RegisterPage = () => {
       setEmail("");
       setPassword("");
       setPasswordConfirm("");
-      if (userData.role == "admin") {
+
+      if (userData.role === "admin") {
         navigate("/admin");
       } else {
         navigate("/");
@@ -70,6 +96,20 @@ const RegisterPage = () => {
     }
   };
 
+  // -------------------------
+  // Social login handlers
+  // -------------------------
+  const handleGoogleLogin = () => {
+    window.location.href = "http://localhost:3000/api/auth/google";
+  };
+
+  const handleGithubLogin = () => {
+    window.location.href = "http://localhost:3000/api/auth/github";
+  };
+
+  // -------------------------
+  // JSX
+  // -------------------------
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="p-8 rounded-xl shadow-lg w-full max-w-md">
@@ -81,7 +121,7 @@ const RegisterPage = () => {
             placeholder={t("name")}
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className=" focus:ring-2 focus:ring-blue-500"
+            className="focus:ring-2 focus:ring-blue-500"
             required
           />
           <Input
@@ -97,7 +137,7 @@ const RegisterPage = () => {
             placeholder={t("password")}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="  focus:ring-2 focus:ring-blue-500"
+            className="focus:ring-2 focus:ring-blue-500"
             required
           />
           <Input
@@ -105,7 +145,7 @@ const RegisterPage = () => {
             placeholder={t("confirmPassword")}
             value={passwordConfirm}
             onChange={(e) => setPasswordConfirm(e.target.value)}
-            className="  focus:ring-2 focus:ring-blue-500"
+            className="focus:ring-2 focus:ring-blue-500"
             required
           />
           <div className="flex gap-4 mt-2">
@@ -138,9 +178,10 @@ const RegisterPage = () => {
           >
             {isLoading ? t("registering") : t("register")}
           </Button>
+
           <p className="mt-4 text-sm text-center text-muted-foreground">
             {t("Already have account?")}
-            <Link to="/login" className="text-primary hover:underline">
+            <Link to="/login" className="text-primary hover:underline ml-1">
               {t("login")}
             </Link>
           </p>
@@ -158,6 +199,7 @@ const RegisterPage = () => {
           <Button
             variant="outline"
             className="w-full flex items-center justify-center gap-2 transition-colors"
+            onClick={handleGithubLogin}
           >
             <FaGithub /> GitHub
           </Button>
@@ -165,6 +207,7 @@ const RegisterPage = () => {
           <Button
             variant="outline"
             className="w-full flex items-center justify-center gap-2 transition-colors"
+            onClick={handleGoogleLogin}
           >
             <FaGoogle /> Google
           </Button>

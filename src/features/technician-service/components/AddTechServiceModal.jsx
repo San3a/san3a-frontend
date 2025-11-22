@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useState } from "react";

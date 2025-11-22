@@ -12,6 +12,7 @@ import TechnicianInformation from "../components/TechnicianInformation";
 import ReviewsSection from "../components/ReviewsSection";
 import { useSelector } from "react-redux";
 import ChatButton from "../../chat/components/ChatButton";
+import { Button } from "@/components/ui/button";
 
 const TechServicePage = () => {
   const { t } = useTranslation();
@@ -57,25 +58,57 @@ const TechServicePage = () => {
           </div>
         </div>
         <div className="lg:col-span-1 border p-6 flex flex-col gap-6 bg-white dark:bg-gray-900 shadow-md">
-          <p className="text-xl font-bold text-gray-900 dark:text-gray-100">
-            {t("Price")}: {service.price} {t("egp")}
-          </p>
-          <ChatButton userId={service?.user?._id} currentUserId={user._id} />
-          <div className="border-t pt-4">
-            <h3 className="text-lg font-semibold mb-3">
-              {t("Technician Information")}
-            </h3>
-            <div className="flex items-center gap-3">
-              <TechnicianInformation
-                user={service.user}
-                imageDefault={imageDefault}
-              />
+          {service?.user?._id === user?._id ? (
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold">{t("Manage Service")}</h3>
+
+              <Button className=" w-full py-2 ">{t("Edit Service")}</Button>
+
+              <Button className="bg-red-600 w-full py-2">
+                {t("Delete Service")}
+              </Button>
+
+              <div className="border-t pt-4">
+                <h3 className="text-lg font-semibold mb-2">
+                  {t("Manage Availability")}
+                </h3>
+                <AvailabilityPicker
+                  availabilities={service?.availabity}
+                  id={id}
+                  isOwner={true}
+                />
+              </div>
             </div>
-          </div>
-          <div className="border-t pt-4">
-            <h3 className="text-lg font-semibold">{t("Availability")} </h3>
-            <AvailabilityPicker availabilities={service?.availabity} id={id} />
-          </div>
+          ) : (
+            <div className="space-y-6">
+              <p className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                {t("Price")}: {service.price} {t("egp")}
+              </p>
+
+              <ChatButton
+                userId={service?.user?._id}
+                currentUserId={user._id}
+              />
+
+              <div className="border-t pt-4">
+                <h3 className="text-lg font-semibold mb-3">
+                  {t("Technician Information")}
+                </h3>
+                <TechnicianInformation
+                  user={service.user}
+                  imageDefault={imageDefault}
+                />
+              </div>
+
+              <div className="border-t pt-4">
+                <h3 className="text-lg font-semibold">{t("Availability")}</h3>
+                <AvailabilityPicker
+                  availabilities={service?.availabity}
+                  id={id}
+                />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
