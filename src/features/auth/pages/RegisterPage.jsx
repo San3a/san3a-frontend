@@ -7,17 +7,17 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-
+  const [role, setRole] = useState("user");
   const [register, { isLoading, isError, error }] = useRegisterMutation();
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!name || !email || !password || !passwordConfirm) {
+    if (!name || !email || !password || !passwordConfirm || !role) {
       toast.error(t("pleaseFillAllFields"));
       return;
     }
@@ -47,6 +47,7 @@ const RegisterPage = () => {
         email,
         password,
         passwordConfirm,
+        role,
       }).unwrap();
 
       dispatch(
@@ -59,13 +60,18 @@ const RegisterPage = () => {
       setEmail("");
       setPassword("");
       setPasswordConfirm("");
+      if (userData.role == "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
     } catch {
       // error handled by useEffect
     }
   };
 
   return (
-    <div className="flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center p-4">
       <div className="p-8 rounded-xl shadow-lg w-full max-w-md">
         <h2 className="text-3xl font-bold mb-6 text-center">{t("register")}</h2>
 
@@ -102,6 +108,28 @@ const RegisterPage = () => {
             className="  focus:ring-2 focus:ring-blue-500"
             required
           />
+          <div className="flex gap-4 mt-2">
+            <label className="flex items-center gap-2">
+              <input
+                type="radio"
+                name="role"
+                value="user"
+                checked={role === "user"}
+                onChange={(e) => setRole(e.target.value)}
+              />
+              {t("مستخدم عادي")}
+            </label>
+            <label className="flex items-center gap-2">
+              <input
+                type="radio"
+                name="role"
+                value="technician"
+                checked={role === "technician"}
+                onChange={(e) => setRole(e.target.value)}
+              />
+              {t("صنايعي")}
+            </label>
+          </div>
 
           <Button
             type="submit"

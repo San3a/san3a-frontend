@@ -15,6 +15,7 @@ export const API_ENDPOINTS = {
     AllConversations: "/chat/:userId",
     ConversationMessages: "/chat/messages/:conversationId",
     SendMessage: "/chat/messages",
+    AllUserConversations: "/chat/conversations",
   },
   CATEGORY: {
     GET_ALL: "/categories",
@@ -42,6 +43,9 @@ export const API_ENDPOINTS = {
     DID_TECHNICIAN_ALREADY_ADD_OFFER: (postId) =>
       `/posts/${postId}/offers/did-make-offer`,
   },
+  HOME: {
+    GET_TOP_TECHNICIANS: "/users/top-technicians-nearby",
+  },
   ADMIN: {
     GET_ALL_USERS: "/admin/users",
     GET_TECHNICIANS: "/admin/technicians",
@@ -51,7 +55,7 @@ export const API_ENDPOINTS = {
     USER_EARNINGS: (id) => `/admin/users/${id}/earnings`,
 
     ADMIN_GET_CATEGORIES: "/admin/categories",
-    ADMIN_CREATE_CATEGORY: "/admin/categories",
+    ADMIN_CREATE_CATEGORY: "/categories",
     ADMIN_UPDATE_CATEGORY: (id) => `/admin/categories/${id}`,
     ADMIN_DELETE_CATEGORY: (id) => `/admin/categories/${id}`,
 
@@ -65,6 +69,7 @@ export const API_ENDPOINTS = {
   },
   TechService: {
     GET_ALL: "/tech-services",
+    ADD_TECH_SERVICE: "/tech-services",
     ADD_TECH_SERVICE: "/tech-services",
     GET_SPECIFIC: (id) => `/tech-services/${id}`,
     GET_REVIEWS: (id, page) => `/reviews?techService=${id}&page=${page}`,
@@ -93,3 +98,4 @@ export const TechService = API_ENDPOINTS.TechService;
 export const ChatBot = API_ENDPOINTS.ChatBot;
 export const Profile = API_ENDPOINTS.PROFILE;
 export const Payment = API_ENDPOINTS.Payment;
+export const Home = API_ENDPOINTS.HOME;

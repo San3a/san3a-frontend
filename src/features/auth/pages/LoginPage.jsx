@@ -7,13 +7,14 @@ import { Input } from "@/components/ui/input";
 import { useTranslation } from "react-i18next";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Separator } from "@/components/ui/separator";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const [login, { isLoading, isError, error }] = useLoginMutation();
 
@@ -40,6 +41,15 @@ const LoginPage = () => {
       toast.success("Login successful!");
       setEmail("");
       setPassword("");
+      const user = userData?.data?.user;
+      if (user) {
+        if (user.role === "admin") {
+          navigate("/admin");
+        } else {
+          console.log("here");
+          navigate("/");
+        }
+      }
     } catch {
       // error is handled by useEffect
     }
