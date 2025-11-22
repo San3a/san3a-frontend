@@ -309,5 +309,17 @@
   },
   "footer": {
     "rights": "جميع الحقوق محفوظة."
-  }
+  },
+  "Checkout": "الدفع",
+  "Service Summary": "ملخص الخدمة",
+  "Payment Method": "طريقة الدفع",
+  "Cash on Delivery": "الدفع عند الاستلام",
+  "Credit Card (Stripe)": "بطاقة بنكية (سترايب)",
+  "Order Summary": "ملخص الطلب",
+  "Service Price": "سعر الخدمة",
+  "Service Fee": "ضريبة الخدمة",
+  "Total": "الاجمالى",
+  "Technician": "الفني",
+  "Your Info": "معلوماتك",
+  "Confirm Order": "تأكيد الطلب"
 }

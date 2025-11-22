@@ -287,5 +287,17 @@
   },
   "footer": {
     "rights": "All rights reserved."
-  }
+  },
+  "Checkout": "Checkout",
+  "Service Summary": "Service Summary",
+  "Payment Method": "Payment Method",
+  "Cash on Delivery": "Cash on Delivery",
+  "Credit Card (Stripe)": "Credit Card (Stripe)",
+  "Order Summary": "Order Summary",
+  "Service Price": "Service Price",
+  "Service Fee": "Service Fee",
+  "Total": "Total",
+  "Technician": "Technician",
+  "Your Info": "Your Info",
+  "Confirm Order": "Confirm Order"
 }
