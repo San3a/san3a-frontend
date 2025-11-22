@@ -279,5 +279,9 @@
   },
   "footer": {
     "rights": "جميع الحقوق محفوظة."
-  }
+  },
+  "Manage Availability": "أضف مواعيد",
+  "Manage Service": "وحدة تحكم الخدمة",
+  "Edit Service": "عدل الخدمة",
+  "Delete Service": "حدف الخدمة"
 }
