@@ -15,6 +15,7 @@ import TechServicePage from "../features/technician-service/pages/TechServicePag
 import Checkout from "../features/Checkout/pages/Checkout";
 import ProtectedRoute from "./ProtectedRoute";
 import AboutUsPage from "../pages/AboutUsPage";
+import AuthCallback from "../features/auth/pages/AuthCallback";
 
 const AppRoutes = () => {
   return (
@@ -35,6 +36,7 @@ const AppRoutes = () => {
         <Route path="/aboutus" element={<AboutUsPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
+      <Route path="/auth/callback" element={<AuthCallback />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route
