@@ -31,7 +31,7 @@ const ChatBotPage = () => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
   const handleViewService = (id) => {
-    navigate(`/tech-services?user=${id}`);
+    navigate(`/tech-service/${id}`);
   };
 
   useEffect(() => {
@@ -161,7 +161,7 @@ const ChatBotPage = () => {
 
                         <div className="flex flex-col gap-1">
                           <Button
-                            onClick={() => handleViewService(tech.technicianId)}
+                            onClick={() => handleViewService(tech.serviceId)}
                             size="sm"
                             className="bg-primary"
                           >
