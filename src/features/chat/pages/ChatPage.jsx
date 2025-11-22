@@ -167,72 +167,65 @@ export default function ChatPage() {
       )}
 
       <div className="flex-1 overflow-y-auto p-15 space-y-4 flex flex-col">
-        {messages.map(
-          (m) => (
-            console.log(JSON.stringify(m)),
-            (
-              <div
-                key={m._id}
-                className={`w-full max-w-lg break-words p-4 rounded-2xl shadow-sm relative flex flex-col ${
-                  m.author?._id === user._id
-                    ? "bg-blue-500 text-white self-end rounded-bl-none"
-                    : "bg-white text-gray-800 self-start rounded-br-none"
-                }`}
-              >
-                <div className="flex justify-between items-center text-sm font-semibold mb-1 relative">
-                  <span>{m.author?.name || "Unknown"}</span>
-                  {m.author?._id === user._id && (
-                    <div className="relative">
+        {messages.map((m) => (
+          <div
+            key={m._id}
+            className={`w-full max-w-lg break-words p-4 rounded-2xl shadow-sm relative flex flex-col ${
+              m.author?._id === user._id
+                ? "bg-blue-500 text-white self-end rounded-bl-none"
+                : "bg-white text-gray-800 self-start rounded-br-none"
+            }`}
+          >
+            <div className="flex justify-between items-center text-sm font-semibold mb-1 relative">
+              <span>{m.author?.name || "Unknown"}</span>
+              {m.author?._id === user._id && (
+                <div className="relative">
+                  <button
+                    onClick={() =>
+                      setOpenDropdownId(openDropdownId === m._id ? null : m._id)
+                    }
+                    className="p-1 hover:bg-blue-600 hover:bg-opacity-20 rounded-full transition"
+                  >
+                    <MoreVertical size={16} />
+                  </button>
+
+                  {openDropdownId === m._id && (
+                    <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-40 bg-white rounded-md shadow-lg border border-gray-200 z-50">
                       <button
-                        onClick={() =>
-                          setOpenDropdownId(
-                            openDropdownId === m._id ? null : m._id
-                          )
-                        }
-                        className="p-1 hover:bg-blue-600 hover:bg-opacity-20 rounded-full transition"
+                        onClick={() => confirmUnsend(m._id)}
+                        className="w-full text-center px-4 py-2 hover:bg-red-100 text-red-600 transition rounded-md"
                       >
-                        <MoreVertical size={16} />
+                        {t("Delete Message")}
                       </button>
-
-                      {openDropdownId === m._id && (
-                        <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-40 bg-white rounded-md shadow-lg border border-gray-200 z-50">
-                          <button
-                            onClick={() => confirmUnsend(m._id)}
-                            className="w-full text-center px-4 py-2 hover:bg-red-100 text-red-600 transition rounded-md"
-                          >
-                            {t("Delete Message")}
-                          </button>
-                        </div>
-                      )}
                     </div>
                   )}
                 </div>
+              )}
+            </div>
 
-                <div className="mb-2">
-                  {m.type === "image" && m.images?.length > 0 ? (
-                    <div className="w-full rounded-xl overflow-hidden shadow-sm">
-                      <img
-                        src={m.images[0].url}
-                        alt="uploaded"
-                        className="w-full max-w-full max-h-80 object-contain rounded-xl"
-                      />
-                    </div>
-                  ) : (
-                    <span>{m.content}</span>
-                  )}
+            <div className="mb-2">
+              {m.type === "image" && m.images?.length > 0 ? (
+                <div className="w-full rounded-xl overflow-hidden shadow-sm">
+                  <img
+                    src={m.images[0].url}
+                    alt="uploaded"
+                    className="w-full max-w-full max-h-80 object-contain rounded-xl"
+                  />
                 </div>
+              ) : (
+                <span>{m.content}</span>
+              )}
+            </div>
 
-                <div className="text-xs self-end">
-                  {new Date(m.date).toLocaleDateString(currentLocale, {
-                    day: "2-digit",
-                    month: "short",
-                    year: "numeric",
-                  })}
-                </div>
-              </div>
-            )
-          )
-        )}
+            <div className="text-xs self-end">
+              {new Date(m.date).toLocaleDateString(currentLocale, {
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+              })}
+            </div>
+          </div>
+        ))}
 
         {isTyping && (
           <div className="text-sm text-gray-500 italic ml-2">
@@ -275,7 +268,7 @@ export default function ChatPage() {
             value={newMessage}
             onChange={handleInputChange}
             placeholder={t("Message")}
-            className="flex-1 border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="flex-1 text-black border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           />
           <input
             type="file"

@@ -26,7 +26,7 @@ function PostMainContent({
           }}
         />
       )}
-      {showOffers && <PostOffer postId={post._id} />}
+      {showOffers && <PostOffer post={post} />}
       {isShowPostOffersBtnVisible && (
         <ShowPostOffersBtn
           post={post}

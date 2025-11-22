@@ -6,7 +6,8 @@ import ConfirmModal from "@/components/ConfirmModal";
 import { useState } from "react";
 import { useDeletePostMutation } from "../postsApi";
 import { toast } from "sonner";
-import CustomActionsDropDown from "../../../components/customActionsDropDown";
+import { useTheme } from "next-themes";
+import CustomActionsDropDown from "../../../components/CustomActionsDropDown";
 import DefaultUserImage from "@/assets/default-user.jpg";
 import { useSelector } from "react-redux";
 
@@ -53,7 +54,7 @@ function PostHeader({ post }) {
     <div className="flex gap-2 items-center">
       <img
         className="h-12 w-12 bg-black object-cover rounded-full shrink-0"
-        src={post?.user?.image?.url}
+        src={post.user?.image?.url || DefaultUserImage}
         fallback={DefaultUserImage}
       />
       <div>

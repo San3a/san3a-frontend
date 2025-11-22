@@ -12,12 +12,12 @@ export default function ImageCarousel({ images = [] }) {
     setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
   return (
-    <div className="relative w-full h-48 overflow-hidden rounded-lg">
+    <div className={`relative w-full h-48 overflow-hidden rounded-lg`}>
       {images.length > 0 && (
         <img
           src={images[current].url}
           alt={`Service ${current + 1}`}
-          className="w-full h-48 object-cover transition-opacity duration-500"
+          className={`w-full h-48 object-cover transition-opacity duration-500`}
         />
       )}
 

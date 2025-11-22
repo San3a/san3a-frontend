@@ -15,6 +15,14 @@ export const chatApiSlice = apiSlice.injectEndpoints({
       query: (userId) => `${Chat.AllConversations.replace(":userId", userId)}`,
     }),
 
+    getAllUserConversations: builder.mutation({
+      query: (userId) => ({
+        url: `${Chat.AllUserConversations}`,
+        method: "POST",
+        body: { userId },
+      }),
+    }),
+
     getMessages: builder.query({
       query: (conversationId) =>
         `${Chat.ConversationMessages.replace(
@@ -56,4 +64,5 @@ export const {
   useGetMessagesQuery,
   useSendMessageMutation,
   useUploadMessageImageMutation,
+  useGetAllUserConversationsMutation,
 } = chatApiSlice;
