@@ -66,6 +66,12 @@ export const postsApiSlice = apiSlice.injectEndpoints({
       }),
       providesTags: (result, error, postId) => [{ type: "Offers", id: postId }],
     }),
+    getOffer: builder.query({
+        query: ({ offerId }) => ({
+            url: Offers.GET_OFFER(offerId),
+            method: 'GET'
+        }),
+    }),
     addOfferToPost: builder.mutation({
       query: ({ postId, data }) => ({
         url: Offers.ADD_OFFER_TO_POST(postId),
@@ -114,6 +120,7 @@ export const {
   useCreatePostMutation,
   useGetAllPostsQuery,
   useGetPostOffersQuery,
+  useGetOfferQuery,
   useAddOfferToPostMutation,
   useUpdateOfferMutation,
   useDeleteOfferMutation,
