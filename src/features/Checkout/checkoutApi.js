@@ -13,6 +13,16 @@ export const checkoutApiSlice = apiSlice.injectEndpoints({
             }),
         }),
 
+        payForAnOffer: builder.mutation({
+            query: (id) => ({
+                url: Payment.PAY_FOR_AN_OFFER(id),
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            }),
+        }),
+
         createServiceOrder: builder.mutation({
             query: (body) => ({
                 url: Payment.CREATE_SERVICE_ORDER(),
@@ -39,5 +49,6 @@ export const {
     usePayForATechServiceMutation,
     useCreateServiceOrderMutation,
     useCancelPaymentQuery,
+    usePayForAnOfferMutation,
 
 } = checkoutApiSlice;

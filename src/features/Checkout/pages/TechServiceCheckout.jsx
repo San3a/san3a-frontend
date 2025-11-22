@@ -7,11 +7,11 @@ import CircularProgressIndicator from "../../../components/CircularProgressIndic
 import { useSelector } from "react-redux";
 import { User } from "lucide-react";
 import {
-  //   useCreateServiceOrderMutation,
+  useCreateServiceOrderMutation,
   usePayForATechServiceMutation,
 } from "../checkoutApi";
 
-const Checkout = () => {
+const TechServiceCheckout = () => {
   const user = useSelector((state) => state.auth.user);
   console.log("user", user);
   const { t } = useTranslation();
@@ -26,7 +26,7 @@ const Checkout = () => {
   console.log("service", service);
 
   const [payWithStripe] = usePayForATechServiceMutation();
-  //   const [createServiceOrder] = useCreateServiceOrderMutation();
+  const [createServiceOrder] = useCreateServiceOrderMutation();
 
   const [paymentMethod, setPaymentMethod] = useState("cash");
 
@@ -36,6 +36,17 @@ const Checkout = () => {
       loadingToastId = toast.loading("Placing the order");
       console.log("loadingToastId", loadingToastId);
       try {
+        const body = {
+          user: user?._id,
+          serviceType: "TechService",
+          service: service?._id,
+          paymentMethod: "cash",
+          paidAt: new Date().toISOString(),
+          address: user?.address,
+        };
+        const newServiceOrder = await createServiceOrder(body).unwrap();
+        console.log("newServiceOrder", newServiceOrder);
+
         setTimeout(() => {
           navigate("/success-cash-payment");
           toast.dismiss(loadingToastId);
@@ -320,4 +331,4 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+export default TechServiceCheckout;

@@ -13,9 +13,10 @@ import Categories from "../features/admin/pages/Categories";
 import Reviews from "../features/admin/pages/Reviews";
 import Layout from "../features/admin/components/Layout";
 import TechServicePage from "../features/technician-service/pages/TechServicePage";
-import Checkout from "../features/Checkout/pages/Checkout";
+import TechServiceCheckout from "../features/Checkout/pages/TechServiceCheckout";
 import SuccessCashPayment from "../features/Checkout/pages/SuccessCashPayment";
 import CancelPayment from "../features/Checkout/pages/CancelPayment";
+import OfferCheckout from "../features/Checkout/pages/OfferCheckout";
 
 const AppRoutes = () => {
   return (
@@ -26,7 +27,13 @@ const AppRoutes = () => {
         <Route path="/tech-services" element={<TechServicesPage />} />
         <Route path="/tech-service/:id" element={<TechServicePage />} />
         <Route path="/chat/:conversationId" element={<ChatPage />} />
-        <Route path="/checkout/:id" element={<Checkout />} />
+
+        <Route
+          path="/tech-service-checkout/:id"
+          element={<TechServiceCheckout />}
+        />
+        <Route path="/offer-checkout/:id" element={<OfferCheckout />} />
+
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         {/* <Route path="/test" element={<TestPage />}></Route> */}

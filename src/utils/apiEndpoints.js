@@ -36,6 +36,7 @@ export const API_ENDPOINTS = {
   OFFERS: {
     GET_POST_OFFERS: (postId) => `/posts/${postId}/offers`,
     ADD_OFFER_TO_POST: (postId) => `/posts/${postId}/offers`,
+    GET_OFFER: (offerId) => `/offers/${offerId}`,
     UPDATE_OFFER: (postId, offerId) => `/posts/${postId}/offers/${offerId}`,
     DELETE_OFFER: (postId, offerId) => `/posts/${postId}/offers/${offerId}`,
     DID_TECHNICIAN_ALREADY_ADD_OFFER: (postId) =>
@@ -77,6 +78,7 @@ export const API_ENDPOINTS = {
   Payment: {
     CREATE_SERVICE_ORDER: () => '/service-order',
     PAY_FOR_A_TECH_SERVICE: (id) => `/payments/checkout/techService/${id}`,
+    PAY_FOR_AN_OFFER: (id) => `/payments/checkout/offer/${id}`,
     CANCEL_PAYMENT: (id) => `/session/${id}`,
   }
 };

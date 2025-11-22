@@ -73,7 +73,7 @@ const TechServicePage = () => {
             </div>
           </div>
           <div className="border-t pt-4">
-            <h3 className="text-lg font-semibold">{t("Availability")} </h3>
+            {/* <h3 className="text-lg font-semibold">{t("Availability")} </h3> */}
             <AvailabilityPicker availabilities={service?.availabity} id={id} />
           </div>
         </div>
