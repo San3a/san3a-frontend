@@ -97,7 +97,9 @@ const LoginPage = () => {
             variant="outline"
             className="w-full flex items-center justify-center gap-2 transition-colors"
             onClick={() =>
-              (window.location.href = "http://localhost:3000/api/auth/github")
+              (window.location.href = `${
+                import.meta.env.VITE_API_BASE_URL
+              }/auth/github`)
             }
           >
             <FaGithub /> GitHub
@@ -107,7 +109,9 @@ const LoginPage = () => {
             variant="outline"
             className="w-full flex items-center justify-center gap-2 transition-colors"
             onClick={() =>
-              (window.location.href = "http://localhost:3000/api/auth/google")
+              (window.location.href = `${
+                import.meta.env.VITE_API_BASE_URL
+              }/api/auth/google`)
             }
           >
             <FaGoogle /> Google

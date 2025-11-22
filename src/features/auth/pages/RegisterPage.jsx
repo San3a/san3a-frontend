@@ -100,11 +100,15 @@ const RegisterPage = () => {
   // Social login handlers
   // -------------------------
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:3000/api/auth/google";
+    window.location.href = `${
+      import.meta.env.VITE_API_BASE_URL
+    }/api/auth/google`;
   };
 
   const handleGithubLogin = () => {
-    window.location.href = "http://localhost:3000/api/auth/github";
+    window.location.href = `${
+      import.meta.env.VITE_API_BASE_URL
+    }/api/auth/github`;
   };
 
   // -------------------------
