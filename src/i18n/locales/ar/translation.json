@@ -235,7 +235,8 @@
   "Logout": "تسجيل خروج",
   "categoryUpdated": "تم تحديث الفئة بنجاح",
   "categoryDeleted": "تم حذف الفئة بنجاح",
-
+  "View Service": "مشاهدة الخدمة",
+  "Top Technicians": "بعض الأقتراحات",
   "categoryUpdateFailed": "فشل في تحديث الفئة",
   "categoryDeleteFailed": "فشل في حذف الفئة",
   "hero": {
