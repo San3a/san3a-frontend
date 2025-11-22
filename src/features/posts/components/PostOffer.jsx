@@ -2,7 +2,6 @@ import { useTranslation } from "react-i18next";
 import { useDeleteOfferMutation, useGetPostOffersQuery } from "../postsApi";
 import { useEffect, useState } from "react";
 import OfferShimmer from "./OfferShimmer";
-import { useTheme } from "next-themes";
 import CustomActionsDropDown from "../../../components/CustomActionsDropDown";
 import UpdateOfferModal from "./UpdateOfferModal";
 import { toast } from "sonner";
@@ -11,8 +10,10 @@ import DefaultUserImage from "@/assets/default-user.jpg";
 import { useSelector } from "react-redux";
 import { useCreateConversationMutation } from "../../chat/chatApi";
 import { useNavigate } from "react-router-dom";
+import MoneyIcon from "@/assets/images/money.png";
 
-function PostOffer({ postId }) {
+function PostOffer({ post }) {
+  const postId = post._id;
   const { data, isLoading, isError, error } = useGetPostOffersQuery(postId);
   const [createConversation] = useCreateConversationMutation();
   const [offers, setOffers] = useState([]);
@@ -127,6 +128,17 @@ function PostOffer({ postId }) {
                   </span>
                 </div>
 
+                {user._id === post.user._id && (
+                  <button
+                    onClick={() => navigate(`/offer-checkout/${offer._id}`)}
+                    className="flex justify-center items-center gap-2 cursor-pointer hover:bg-gray-600 p-1 rounded-md hover:text-white transition-colors"
+                  >
+                    <img src={MoneyIcon} alt="Money Icon" className="h-6 w-6" />
+                    <p className="font-normal dark:text-white">
+                      {t("checkout")}
+                    </p>
+                  </button>
+                )}
                 {user._id === offer.technician._id && (
                   <CustomActionsDropDown options={getOfferOptions(offer)} />
                 )}
