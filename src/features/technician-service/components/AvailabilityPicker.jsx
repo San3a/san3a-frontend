@@ -7,6 +7,7 @@ const AvailabilityPicker = ({ availabilities, id, isOwner }) => {
   const [selectedTime, setSelectedTime] = useState(null);
   const { t } = useTranslation();
   const navigate = useNavigate();
+  availabilities.forEach((a) => console.log(a));
 
   const groupedByDay = availabilities.reduce((acc, dayObj) => {
     const dayKey = new Date(dayObj.day).toLocaleDateString("en-US", {
@@ -16,7 +17,7 @@ const AvailabilityPicker = ({ availabilities, id, isOwner }) => {
     });
 
     if (!acc[dayKey]) acc[dayKey] = [];
-    acc[dayKey].push(...dayObj.slots);
+    acc[dayKey].push(...(dayObj.slots || []));
 
     return acc;
   }, {});
@@ -24,8 +25,8 @@ const AvailabilityPicker = ({ availabilities, id, isOwner }) => {
   const noDates = Object.keys(groupedByDay).length === 0;
 
   const handleCheckout = () => {
-    if (!selectedTime) return;
-    navigate(`/checkout/${id}`);
+    // if (!selectedTime) return;
+    navigate(`/tech-service-checkout/${id}`);
   };
 
   const formatDayCard = (dayKey) => {
@@ -58,13 +59,13 @@ const AvailabilityPicker = ({ availabilities, id, isOwner }) => {
                     setSelectedTime(null);
                   }}
                   className={`
-                    flex flex-col items-center px-4 py-2 rounded-xl border transition-all
-                    ${
-                      selectedDay?.key === dayKey
-                        ? "bg-blue-500 text-white border-blue-500"
-                        : "bg-gray-100 text-black border-gray-300"
-                    }
-                  `}
+                      flex flex-col items-center px-4 py-2 rounded-xl border transition-all
+                      ${
+                        selectedDay?.key === dayKey
+                          ? "bg-blue-500 text-white border-blue-500"
+                          : "bg-gray-100 text-black border-gray-300"
+                      }
+                    `}
                 >
                   <span className="text-sm">{f.weekday}</span>
                   <span className="text-lg font-bold">{f.dayNum}</span>
@@ -104,13 +105,7 @@ const AvailabilityPicker = ({ availabilities, id, isOwner }) => {
             disabled={!selectedTime}
             onClick={handleCheckout}
             className={`
-              w-full py-3 rounded-xl text-white font-semibold transition-all
-              ${
-                selectedTime
-                  ? "bg-blue-500 hover:bg-blue-600"
-                  : "bg-blue-300 cursor-not-allowed"
-              }
-            `}
+              cursor-pointer w-full py-3 rounded-xl text-white font-semibold transition-all bg-blue-500 hover:bg-blue-600`}
           >
             {t("Proceed to Checkout")}
           </button>

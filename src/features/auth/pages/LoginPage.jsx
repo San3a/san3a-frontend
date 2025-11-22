@@ -96,6 +96,9 @@ const LoginPage = () => {
           <Button
             variant="outline"
             className="w-full flex items-center justify-center gap-2 transition-colors"
+            onClick={() =>
+              (window.location.href = "http://localhost:3000/api/auth/github")
+            }
           >
             <FaGithub /> GitHub
           </Button>
@@ -103,6 +106,9 @@ const LoginPage = () => {
           <Button
             variant="outline"
             className="w-full flex items-center justify-center gap-2 transition-colors"
+            onClick={() =>
+              (window.location.href = "http://localhost:3000/api/auth/google")
+            }
           >
             <FaGoogle /> Google
           </Button>

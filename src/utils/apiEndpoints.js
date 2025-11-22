@@ -2,7 +2,7 @@ export const API_ENDPOINTS = {
   AUTH: {
     LOGIN: "/auth/login",
     REGISTER: "/auth/signup",
-    PROFILE: "/auth/profile",
+    // PROFILE: "/auth/profile",
   },
   POSTS: {
     CREATE_POST: "/posts/",
@@ -24,9 +24,20 @@ export const API_ENDPOINTS = {
     UPDATE: (id) => `/categories/${id}`,
     DELETE: (id) => `/categories/${id}`,
   },
+  PROFILE: {
+    getProfile: '/profile',
+    getPastWork: (id) => `/users/past-work/${id}`,
+    updateProfile: () => '/users/updateMe',
+    addPastWork: () => '/past-work/',
+    getReviews: (id) => `users/reviews/${id}`,
+    getPosts: () => 'posts/me',
+    addPost: () => 'posts'
+  },
+
   OFFERS: {
     GET_POST_OFFERS: (postId) => `/posts/${postId}/offers`,
     ADD_OFFER_TO_POST: (postId) => `/posts/${postId}/offers`,
+    GET_OFFER: (offerId) => `/offers/${offerId}`,
     UPDATE_OFFER: (postId, offerId) => `/posts/${postId}/offers/${offerId}`,
     DELETE_OFFER: (postId, offerId) => `/posts/${postId}/offers/${offerId}`,
     DID_TECHNICIAN_ALREADY_ADD_OFFER: (postId) =>
@@ -59,6 +70,7 @@ export const API_ENDPOINTS = {
   TechService: {
     GET_ALL: "/tech-services",
     ADD_TECH_SERVICE: "/tech-services",
+    ADD_TECH_SERVICE: "/tech-services",
     GET_SPECIFIC: (id) => `/tech-services/${id}`,
     GET_REVIEWS: (id, page) => `/reviews?techService=${id}&page=${page}`,
     ADD_REVIEW: "/reviews",
@@ -68,6 +80,12 @@ export const API_ENDPOINTS = {
   ChatBot: {
     SEND_MESSAGE: "/chatbot",
   },
+  Payment: {
+    CREATE_SERVICE_ORDER: () => '/service-order',
+    PAY_FOR_A_TECH_SERVICE: (id) => `/payments/checkout/techService/${id}`,
+    PAY_FOR_AN_OFFER: (id) => `/payments/checkout/offer/${id}`,
+    CANCEL_PAYMENT: (id) => `/session/${id}`,
+  }
 };
 
 export const Auth = API_ENDPOINTS.AUTH;
@@ -78,4 +96,6 @@ export const Category = API_ENDPOINTS.CATEGORY;
 export const Admin = API_ENDPOINTS.ADMIN;
 export const TechService = API_ENDPOINTS.TechService;
 export const ChatBot = API_ENDPOINTS.ChatBot;
+export const Profile = API_ENDPOINTS.PROFILE;
+export const Payment = API_ENDPOINTS.Payment;
 export const Home = API_ENDPOINTS.HOME;
