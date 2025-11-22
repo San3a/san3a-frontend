@@ -321,5 +321,8 @@
   "Total": "الاجمالى",
   "Technician": "الفني",
   "Your Info": "معلوماتك",
-  "Confirm Order": "تأكيد الطلب"
+  "Confirm Order": "تأكيد الطلب",
+  "Manage Availability": "أضف مواعيد",
+  "Manage Service": "وحدة تحكم الخدمة",
+  "Edit Service": "عدل الخدمة"
 }

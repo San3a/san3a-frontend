@@ -56,7 +56,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center">
       <div className=" p-8 rounded-xl shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">{t("login")}</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -96,6 +96,9 @@ const LoginPage = () => {
           <Button
             variant="outline"
             className="w-full flex items-center justify-center gap-2 transition-colors"
+            onClick={() =>
+              (window.location.href = "http://localhost:3000/api/auth/github")
+            }
           >
             <FaGithub /> GitHub
           </Button>
@@ -103,6 +106,9 @@ const LoginPage = () => {
           <Button
             variant="outline"
             className="w-full flex items-center justify-center gap-2 transition-colors"
+            onClick={() =>
+              (window.location.href = "http://localhost:3000/api/auth/google")
+            }
           >
             <FaGoogle /> Google
           </Button>

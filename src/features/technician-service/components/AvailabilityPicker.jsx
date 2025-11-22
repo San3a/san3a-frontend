@@ -1,10 +1,10 @@
-// import { useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
-const AvailabilityPicker = ({ availabilities, id }) => {
-  //   const [selectedDay, setSelectedDay] = useState(null);
-  //   const [selectedTime, setSelectedTime] = useState(null);
+const AvailabilityPicker = ({ availabilities, id, isOwner }) => {
+  const [selectedDay, setSelectedDay] = useState(null);
+  const [selectedTime, setSelectedTime] = useState(null);
   const { t } = useTranslation();
   const navigate = useNavigate();
   availabilities.forEach((a) => console.log(a));
@@ -45,36 +45,36 @@ const AvailabilityPicker = ({ availabilities, id }) => {
         </div>
       ) : (
         <div className="p-3">
-          {/* <h2 className="font-semibold mb-2">{t("Select Date")}</h2> */}
+          <h2 className="font-semibold mb-2">{t("Select Date")}</h2>
 
           <div className="flex gap-3 mb-6">
             {Object.entries(groupedByDay).map(([dayKey, slots]) => {
               const f = formatDayCard(dayKey);
 
-              //   return (
-              //     <button
-              //       key={dayKey}
-              //       onClick={() => {
-              //         setSelectedDay({ key: dayKey, slots });
-              //         setSelectedTime(null);
-              //       }}
-              //       className={`
-              //         flex flex-col items-center px-4 py-2 rounded-xl border transition-all
-              //         ${
-              //           selectedDay?.key === dayKey
-              //             ? "bg-blue-500 text-white border-blue-500"
-              //             : "bg-gray-100 text-black border-gray-300"
-              //         }
-              //       `}
-              //     >
-              //       <span className="text-sm">{f.weekday}</span>
-              //       <span className="text-lg font-bold">{f.dayNum}</span>
-              //     </button>
-              //   );
+              return (
+                <button
+                  key={dayKey}
+                  onClick={() => {
+                    setSelectedDay({ key: dayKey, slots });
+                    setSelectedTime(null);
+                  }}
+                  className={`
+                      flex flex-col items-center px-4 py-2 rounded-xl border transition-all
+                      ${
+                        selectedDay?.key === dayKey
+                          ? "bg-blue-500 text-white border-blue-500"
+                          : "bg-gray-100 text-black border-gray-300"
+                      }
+                    `}
+                >
+                  <span className="text-sm">{f.weekday}</span>
+                  <span className="text-lg font-bold">{f.dayNum}</span>
+                </button>
+              );
             })}
           </div>
 
-          {/* {selectedDay && (
+          {selectedDay && (
             <>
               <h2 className="font-semibold mb-2">{t("Select Time")}</h2>
 
@@ -99,10 +99,10 @@ const AvailabilityPicker = ({ availabilities, id }) => {
                 ))}
               </div>
             </>
-          )} */}
+          )}
 
           <button
-            // disabled={!selectedTime}
+            disabled={!selectedTime}
             onClick={handleCheckout}
             className={`
               cursor-pointer w-full py-3 rounded-xl text-white font-semibold transition-all bg-blue-500 hover:bg-blue-600`}

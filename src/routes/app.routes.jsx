@@ -19,6 +19,7 @@ import AboutUsPage from "../pages/AboutUsPage";
 import SuccessCashPayment from "../features/Checkout/pages/SuccessCashPayment";
 import CancelPayment from "../features/Checkout/pages/CancelPayment";
 import OfferCheckout from "../features/Checkout/pages/OfferCheckout";
+import AuthCallback from "../features/auth/pages/AuthCallback";
 
 const AppRoutes = () => {
   return (
@@ -54,6 +55,7 @@ const AppRoutes = () => {
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
+      <Route path="/auth/callback" element={<AuthCallback />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route
