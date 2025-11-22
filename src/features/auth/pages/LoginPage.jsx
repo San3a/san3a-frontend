@@ -7,13 +7,14 @@ import { Input } from "@/components/ui/input";
 import { useTranslation } from "react-i18next";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Separator } from "@/components/ui/separator";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const [login, { isLoading, isError, error }] = useLoginMutation();
 
@@ -40,13 +41,22 @@ const LoginPage = () => {
       toast.success("Login successful!");
       setEmail("");
       setPassword("");
+      const user = userData?.data?.user;
+      if (user) {
+        if (user.role === "admin") {
+          navigate("/admin");
+        } else {
+          console.log("here");
+          navigate("/");
+        }
+      }
     } catch {
       // error is handled by useEffect
     }
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center">
       <div className=" p-8 rounded-xl shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">{t("login")}</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">

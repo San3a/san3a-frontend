@@ -1,29 +1,30 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Search } from "lucide-react";
+import { Menu, X, Search, LogOut } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import ChatBotButton from "./ChatBotButton";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ChatDropdown from "../features/chat/components/ChatDropdown";
+import { Button } from "@/components/ui/button";
+import { logout } from "@/features/auth/authSlice";
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [links, setLinks] = useState([]);
+  const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState("");
   const [searchParams] = useSearchParams();
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const isRTL = i18n.dir() === "rtl";
-  console.log(user);
 
   useEffect(() => {
     setLinks([
       { name: t("home"), href: "/" },
       { name: t("services"), href: "/tech-services" },
-      { name: t("categories"), href: "/categories" },
       { name: t("about"), href: "/aboutus" },
     ]);
   }, [i18n.language, t]);
@@ -40,6 +41,12 @@ export default function Navbar() {
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    setIsOpen(false);
+    navigate("/login");
+  };
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -103,11 +110,17 @@ export default function Navbar() {
 
           <LanguageSwitcher />
 
-          {/* ✅ ADDED CHAT DROPDOWN — ONLY IF USER LOGGED IN */}
           {user && <ChatDropdown currentUserId={user._id} />}
 
           <ChatBotButton setIsOpen={setIsOpen} />
           <ThemeToggle />
+          <Button
+            onClick={handleLogout}
+            className="flex items-center gap-2 hover:text-red-700 transition"
+          >
+            <LogOut size={18} />
+            {t("Logout")}
+          </Button>
         </div>
 
         <button
@@ -179,6 +192,13 @@ export default function Navbar() {
           <LanguageSwitcher />
           <ChatBotButton setIsOpen={setIsOpen} />
           <ThemeToggle />
+          <Button
+            onClick={handleLogout}
+            className="flex items-center gap-2 font-semibold hover:text-red-700 transition"
+          >
+            <LogOut size={18} />
+            {t("Logout")}
+          </Button>
         </div>
       </div>
     </nav>

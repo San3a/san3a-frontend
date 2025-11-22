@@ -12,18 +12,26 @@ import { useTranslation } from "react-i18next";
 import { useSendChatAiMutation } from "../chatBotApi";
 import ReactMarkdown from "react-markdown";
 import { Bot, User } from "lucide-react";
+import { useSelector } from "react-redux";
+import DefaultUserImage from "@/assets/default-user.jpg";
+import { useNavigate } from "react-router-dom";
+import ChatButton from "../../chat/components/ChatButton";
 
 const ChatBotPage = () => {
   const { t } = useTranslation();
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
-  const [conversationId] = useState("default");
+  const user = useSelector((state) => state.auth.user);
+  const conversationId = user._id;
   const [sendChatAi, { isLoading }] = useSendChatAiMutation();
-
   const chatEndRef = useRef(null);
+  const navigate = useNavigate();
 
   const scrollToBottom = () => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+  const handleViewService = (id) => {
+    navigate(`/tech-services?user=${id}`);
   };
 
   useEffect(() => {
@@ -54,7 +62,12 @@ const ChatBotPage = () => {
         setMessages((prev) =>
           prev.map((msg) =>
             msg.id === thinkingId
-              ? { sender: "bot", text: response, category }
+              ? {
+                  sender: "bot",
+                  text: response,
+                  category,
+                  technicians: result.data.technicians,
+                }
               : msg
           )
         );
@@ -102,7 +115,6 @@ const ChatBotPage = () => {
                   : "bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100 self-start"
               } ${msg.thinking ? "italic opacity-70" : ""}`}
             >
-              {/* Icon */}
               <div className="flex-shrink-0 mt-1">
                 {msg.sender === "bot" ? (
                   <Bot className="w-6 h-6 text-gray-500 dark:text-gray-400" />
@@ -111,12 +123,57 @@ const ChatBotPage = () => {
                 )}
               </div>
 
-              {/* Message Text */}
               <div className="prose dark:prose-invert break-words">
                 <ReactMarkdown>{msg.text}</ReactMarkdown>
+
                 {msg.category && (
                   <div className="text-xs text-gray-500 mt-1">
                     {t("Category")}: {msg.category}
+                  </div>
+                )}
+
+                {msg.technicians && msg.technicians.length > 0 && (
+                  <div className="mt-3 space-y-2">
+                    <div className="text-sm font-semibold">
+                      {t("Top Technicians")}:
+                    </div>
+
+                    {msg.technicians.map((tech) => (
+                      <div
+                        key={tech.technicianId}
+                        className="flex items-center gap-3 p-2 bg-white dark:bg-gray-700 rounded-lg shadow"
+                      >
+                        <img
+                          src={tech?.image?.url || DefaultUserImage}
+                          alt={tech.name}
+                          className="w-12 h-12 rounded-full object-cover"
+                        />
+
+                        <div className="flex-1">
+                          <div className="font-semibold">{tech.name}</div>
+                          <div className="text-xs text-gray-500 dark:text-gray-300">
+                            ⭐ {tech.rating} • {tech.title}
+                          </div>
+                          <div className="text-xs text-gray-500 dark:text-gray-300">
+                            {t("Price")}: {tech.price} EGP
+                          </div>
+                        </div>
+
+                        <div className="flex flex-col gap-1">
+                          <Button
+                            onClick={() => handleViewService(tech.technicianId)}
+                            size="sm"
+                            className="bg-primary"
+                          >
+                            {t("View Service")}
+                          </Button>
+                          <ChatButton
+                            userId={tech.technicianId}
+                            currentUserId={user._id}
+                          />
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>
